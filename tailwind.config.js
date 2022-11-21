@@ -24,6 +24,10 @@ module.exports = {
         "box-shadow-3": "box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;",
       },
     },
+    fontFamily: {
+      header: ["Proza Libre", "sans-serif"],
+      paragraph: ["Inter", "sans-serif"],
+    },
   },
   plugins: [],
 };
