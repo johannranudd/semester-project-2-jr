@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .hoverAnimation {
+    padding: 5px;
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+  .hoverAnimation:hover {
+    background-color: rgb(200, 200, 200);
+  }
+}

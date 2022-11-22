@@ -5,9 +5,146 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./dist/css/output.css" />
+    <script
+      src="https://kit.fontawesome.com/7246593e30.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./src/js/mobile-menu.js" defer></script>
     <title>Stash Auction House</title>
   </head>
-  <body>
-    <h1 class="pl-5 text-3xl">first commit dev branch</h1>
+  <body class="min-h-screen">
+    <!-- flex flex-col min-h-screen -->
+    <!-- navbar -->
+    <nav class="fixed top-0 z-10 w-full bg-primaryClr px-2">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- logo -->
+        <a href="./">
+          <img
+            src="./assets/images/stash-logo.png"
+            alt="stash logo"
+            class="w-full max-w-logo"
+          />
+        </a>
+        <!-- hamburger button -->
+        <button
+          id="menu-btn"
+          class="hoverAnimation h-8 w-8 -mr-[5px] text-whiteClr md:hidden"
+        >
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- main -->
+    <main class="relative top-12 container w-full mx-auto z-0 mb-20">
+      <!-- sidebar -->
+      <aside
+        id="sidebar"
+        class="fixed top-12 -translate-x-[200%] w-64 min-h-screen bg-thirdClr transition duration-300 md:translate-x-0 w-72"
+      >
+        <a href="#" class="hoverAnimation">sidebar</a>
+      </aside>
+      <!-- main content here -->
+      <!-- md:ml-64 -->
+      <section class="bg-[#fed] md:ml-72">
+        <p class="p-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt nisi
+          reiciendis odit. Ad distinctio, sit amet qui optio enim cum facere
+          nesciunt, alias quod voluptatum consectetur. Doloremque, ullam
+          voluptate porro asperiores quaerat voluptatibus corrupti quidem quasi
+          beatae expedita explicabo sequi aspernatur commodi neque, deleniti
+          incidunt assumenda a odit dolores consequuntur quod, minima sit! Minus
+          fugiat doloremque esse, numquam dolorem maiores nam quidem ad,
+          mollitia iure quos nemo aspernatur nulla ipsam. Officia, laborum
+          quisquam, odit beatae est dolorem quidem quod a iste blanditiis
+          laudantium ad eligendi dignissimos fuga repellat sapiente sed suscipit
+          perferendis ea? Sed porro id ipsa illo illum perferendis, quam, quasi
+          recusandae, doloribus voluptas assumenda officia impedit ex ullam.
+          Veniam harum aliquam animi aliquid numquam nisi maxime non reiciendis
+          velit sed est blanditiis excepturi dolores necessitatibus, nobis
+          ratione, illo assumenda perferendis? Laudantium iste repellendus
+          aliquam porro voluptatum facere. Nulla velit magnam ipsam amet omnis
+          quia quam, officia beatae temporibus! Modi, doloremque. Necessitatibus
+          numquam ex, deserunt consectetur magnam debitis dignissimos veritatis
+          delectus fugiat ut officia perspiciatis, voluptatum minima. Laudantium
+          architecto obcaecati non libero sed modi cum pariatur quo iusto? Optio
+          vel aut eligendi consequatur quam possimus, voluptatum, accusantium
+          sint laborum qui porro. Amet, dicta. Magni voluptas quisquam eius
+          eligendi aut maiores voluptatibus cum corporis esse expedita obcaecati
+          fugit, hic voluptates repellat nisi ullam? Minima, quia totam?
+          Exercitationem earum doloremque voluptas. Quisquam, debitis minus.
+          Temporibus numquam asperiores voluptatem consequatur maiores excepturi
+          libero cupiditate magnam voluptatum doloremque itaque error tempora
+          sed modi quas iusto, veritatis odit voluptate nemo, eveniet rerum
+          quaerat, quod expedita! Sapiente voluptas impedit ipsum voluptate
+          numquam cupiditate qui dolor asperiores eligendi ab eveniet quas earum
+          mollitia accusamus, soluta necessitatibus quae quos odit maiores. Esse
+          vitae minus autem quos deleniti exercitationem consequuntur laborum
+          ducimus temporibus alias deserunt ut illum dignissimos modi corporis
+          ipsam officiis nihil eos tempora quia vel quod similique, sequi
+          necessitatibus. Eos cum sequi animi voluptatem possimus nostrum
+          doloremque, magni earum recusandae provident voluptatum. Culpa
+          incidunt error explicabo libero obcaecati similique corrupti odit
+          asperiores est eum mollitia ipsa, delectus, doloremque quae hic quidem
+          deleniti nemo vero dolores ullam nulla distinctio voluptatibus vel.
+          Placeat eius blanditiis quisquam iusto, dolores reprehenderit tempora
+          non esse soluta sint? Illo numquam itaque nam officia quod! Odio,
+          aperiam voluptate unde ea quae at laudantium nulla, et iure natus
+          numquam debitis asperiores excepturi maxime dicta optio corrupti sed
+          perferendis necessitatibus maiores cum molestiae dolore. Quas,
+          molestiae, optio iusto aliquam voluptas accusamus obcaecati numquam
+          doloribus corrupti voluptatem eveniet. Unde iure facilis ipsam error
+          eaque ducimus corporis sit illum sint, incidunt nostrum iusto
+          laboriosam fuga laborum quidem repellendus repudiandae quae autem
+          tempora nemo totam? Tenetur nesciunt sit quo delectus quisquam. A
+          iusto dignissimos consectetur quos in nihil deleniti quo adipisci quod
+          labore? Dolores corrupti vero alias perspiciatis fuga quod dicta
+          quasi, voluptates aliquid, incidunt nam, impedit omnis odio quisquam
+          corporis dignissimos nostrum repellendus veniam ducimus dolor.
+          Suscipit sint reprehenderit reiciendis assumenda, maxime corrupti
+          dignissimos ipsa repudiandae nesciunt velit provident distinctio fugit
+          ad consequatur natus possimus officia ipsum soluta voluptatem cumque
+          deleniti? Eum corrupti esse odit natus quod?
+        </p>
+      </section>
+    </main>
+    <!-- footer -->
+    <footer class="absolute mt-auto bg-primaryClr p-2 text-whiteClr">
+      <div class="flex justify-between mb-5">
+        <!-- logo -->
+        <a href="./">
+          <img
+            src="./assets/images/stash-logo.png"
+            alt="stash logo"
+            class="w-full max-w-logo"
+          />
+        </a>
+        <!-- social -->
+        <div class="flex flex-col items-center">
+          <p>Find us on:</p>
+          <div class="flex space-x-6">
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- text -->
+      <div class="text-center">
+        <p>
+          Do you have any questions? Contact us by email at:
+          stash.info@stash.com
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
