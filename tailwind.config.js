@@ -1,17 +1,22 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./*.html"],
   theme: {
-    screen: {
-      xs: "480px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1440px",
-      "3xl": "1536px",
-    },
     extend: {
+      screen: {
+        "2xs": "400px",
+        xs: "480px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1440px",
+        "3xl": "1536px",
+        ...defaultTheme.screens,
+      },
       colors: {
         primaryClr: "#06212D",
         secondaryClr: "#EAF6F8",
@@ -31,7 +36,6 @@ module.exports = {
       },
       maxWidth: {
         logo: "3rem",
-        "2xs": "16rem",
       },
     },
     fontFamily: {
