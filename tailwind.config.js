@@ -8,8 +8,8 @@ module.exports = {
       md: "768px",
       lg: "1024px",
       xl: "1280px",
-      xxl: "1440px",
-      xxxl: "1536px",
+      "2xl": "1440px",
+      "3xl": "1536px",
     },
     extend: {
       colors: {
@@ -30,7 +30,8 @@ module.exports = {
         "box-shadow-3": "box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;",
       },
       maxWidth: {
-        logo: "4rem",
+        logo: "3rem",
+        "2xs": "16rem",
       },
     },
     fontFamily: {

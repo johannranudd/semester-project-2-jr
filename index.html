@@ -14,18 +14,36 @@
   <body>
     <!-- navbar -->
     <nav class="relative bg-primaryClr px-2">
-      <!-- logo -->
       <div class="container mx-auto flex justify-between items-center">
-        <img
-          src="./assets/images/stash-logo.png"
-          alt="stash logo"
-          class="w-full max-w-logo"
-        />
+        <!-- logo -->
+        <a href="./">
+          <img
+            src="./assets/images/stash-logo.png"
+            alt="stash logo"
+            class="w-full max-w-logo"
+          />
+        </a>
         <!-- hamburger button -->
-        <button class="hoverAnimation h-8 w-8 text-whiteClr">
+        <button class="hoverAnimation h-8 w-8 text-whiteClr md:hidden">
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
       </div>
     </nav>
+
+    <!-- main -->
+    <main class="relative container mx-auto bg-fourthClr">
+      sdfsd
+      <!-- sidebar/mobilebar -->
+      <div class="absolute">
+        <aside
+          id="sidebar"
+          class="fixed top-12 left-0 w-full h-screen bg-thirdClr sm:max-w-2xs"
+        >
+          sidebar
+        </aside>
+      </div>
+      <!-- main content here -->
+      <section></section>
+    </main>
   </body>
 </html>
