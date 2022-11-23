@@ -28,7 +28,7 @@
         <!-- hamburger button -->
         <button
           id="menu-btn"
-          class="hoverAnimation h-8 w-8 -mr-[5px] text-whiteClr md:hidden"
+          class="hoverAnimation h-8 w-8 -mr-[5px] rounded-full text-whiteClr md:hidden"
         >
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
@@ -36,7 +36,10 @@
     </nav>
 
     <!-- main -->
-    <main class="relative top-12 container w-full mx-auto z-0 mb-20">
+    <main
+      id="main-container"
+      class="relative top-12 container w-full mx-auto z-0 mb-20"
+    >
       <!-- sidebar -->
       <div
         id="backdrop"
@@ -44,11 +47,14 @@
       >
         backdrop
       </div>
+      <!-- border-solid border-2 border-pink-500 -->
       <aside
         id="sidebar"
-        class="fixed top-12 -translate-x-[200%] w-64 min-h-screen bg-thirdClr transition duration-300 md:translate-x-0 w-72"
+        class="fixed top-12 -translate-x-[200%] w-full min-h-screen bg-thirdClr transition duration-300 2xs:w-64 md:translate-x-0 md:w-72"
       >
-        <a href="#" class="hoverAnimation">sidebar</a>
+        <a href="#" class="hoverAnimation"
+          >sidebar sidebarsidebarsidebarsidebar</a
+        >
       </aside>
 
       <!-- main content here -->

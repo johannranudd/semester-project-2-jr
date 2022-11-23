@@ -517,6 +517,18 @@ video {
   width: 100%;
 }
 
+@media (min-width: 420px) {
+  .container {
+    max-width: 420px;
+  }
+}
+
+@media (min-width: 480px) {
+  .container {
+    max-width: 480px;
+  }
+}
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
@@ -541,6 +553,12 @@ video {
   }
 }
 
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
 @media (min-width: 1536px) {
   .container {
     max-width: 1536px;
@@ -549,7 +567,7 @@ video {
 
 .hoverAnimation {
   padding: 5px;
-  border-radius: 50%;
+  border-radius: 5px;
   transition: 0.2s;
 }
 
@@ -642,20 +660,16 @@ video {
   width: 2rem;
 }
 
-.w-64 {
-  width: 16rem;
-}
-
-.w-72 {
-  width: 18rem;
-}
-
 .max-w-logo {
   max-width: 3rem;
 }
 
 .-translate-x-\[200\%\] {
   --tw-translate-x: -200%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -679,6 +693,23 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.5rem * var(--tw-space-x-reverse));
   margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-solid {
+  border-style: solid;
+}
+
+.border-pink-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(236 72 153 / var(--tw-border-opacity));
 }
 
 .bg-primaryClr {
@@ -748,6 +779,12 @@ video {
   color: rgb(200 200 200 / var(--tw-text-opacity));
 }
 
+@media (min-width: 420px) {
+  .\32xs\:w-64 {
+    width: 16rem;
+  }
+}
+
 @media (min-width: 768px) {
   .md\:ml-72 {
     margin-left: 18rem;
@@ -755,6 +792,10 @@ video {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:w-72 {
+    width: 18rem;
   }
 
   .md\:translate-x-0 {

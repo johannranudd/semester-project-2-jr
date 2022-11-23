@@ -5,7 +5,7 @@
 @layer components {
   .hoverAnimation {
     padding: 5px;
-    border-radius: 50%;
+    border-radius: 5px;
     transition: 0.2s;
   }
   .hoverAnimation:hover {
