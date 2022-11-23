@@ -12,7 +12,7 @@
     <script type="module" src="./src/js/mobile-menu.js" defer></script>
     <title>Stash Auction House</title>
   </head>
-  <body class="min-h-screen">
+  <body class="flex flex-col justify-between min-h-screen">
     <!-- flex flex-col min-h-screen -->
     <!-- navbar -->
     <nav class="fixed top-0 z-10 w-full bg-primaryClr px-2">
@@ -38,16 +38,22 @@
     <!-- main -->
     <main class="relative top-12 container w-full mx-auto z-0 mb-20">
       <!-- sidebar -->
+      <div
+        id="backdrop"
+        class="hidden top-0 -left-[50vw] right-0 bottom-0 min-h-screen min-w-screen bg-blackClr opacity-50 md:hidden"
+      >
+        backdrop
+      </div>
       <aside
         id="sidebar"
         class="fixed top-12 -translate-x-[200%] w-64 min-h-screen bg-thirdClr transition duration-300 md:translate-x-0 w-72"
       >
         <a href="#" class="hoverAnimation">sidebar</a>
       </aside>
+
       <!-- main content here -->
-      <!-- md:ml-64 -->
-      <section class="bg-[#fed] md:ml-72">
-        <p class="p-2">
+      <section class="p-2 bg-[#fed] md:ml-72">
+        <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt nisi
           reiciendis odit. Ad distinctio, sit amet qui optio enim cum facere
           nesciunt, alias quod voluptatum consectetur. Doloremque, ullam
@@ -109,7 +115,7 @@
       </section>
     </main>
     <!-- footer -->
-    <footer class="absolute mt-auto w-full bg-primaryClr p-2 text-whiteClr">
+    <footer class="mt-auto w-full z-50 bg-primaryClr p-2 text-whiteClr">
       <div class="flex justify-between mb-5">
         <!-- logo -->
         <a href="./">
@@ -123,16 +129,16 @@
         <div class="flex flex-col items-center">
           <p>Find us on:</p>
           <div class="flex space-x-6">
-            <a href="#">
+            <a href="#" class="hover:text-hoverWhiteClr">
               <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="#">
+            <a href="#" class="hover:text-hoverWhiteClr">
               <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="#">
+            <a href="#" class="hover:text-hoverWhiteClr">
               <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="#">
+            <a href="#" class="hover:text-hoverWhiteClr">
               <i class="fa-brands fa-instagram"></i>
             </a>
           </div>
@@ -142,7 +148,11 @@
       <div class="text-center">
         <p>
           Do you have any questions? Contact us by email at:
-          stash.info@stash.com
+          <a
+            href="mailto:stash.info@stash.com"
+            class="underline hover:text-hoverWhiteClr"
+            >stash.info@stash.com</a
+          >
         </p>
       </div>
     </footer>

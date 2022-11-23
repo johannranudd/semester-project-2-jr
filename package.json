@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tailwindcss -i ./src/css/input.css -o ./dist/css/output.css",
-    "watch": "tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --watch"
+    "watch": "tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --watch & live-server"
   },
   "repository": {
     "type": "git",
