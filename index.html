@@ -38,7 +38,7 @@
     <!-- main -->
     <main
       id="main-container"
-      class="relative top-12 container w-full mx-auto z-0 mb-20"
+      class="relative top-12 w-full mx-auto z-0 mb-20 md:container"
     >
       <!-- sidebar -->
       <div
@@ -48,13 +48,90 @@
         backdrop
       </div>
       <!-- border-solid border-2 border-pink-500 -->
+      <!-- 2xs:w-64 md:w-72-->
       <aside
         id="sidebar"
-        class="fixed top-12 -translate-x-[200%] w-full min-h-screen bg-thirdClr transition duration-300 2xs:w-64 md:translate-x-0 md:w-72"
+        class="fixed top-12 -translate-x-[200%] w-full min-h-screen bg-thirdClr transition duration-300 text-whiteClr 2xs:w-72 md:translate-x-0"
       >
-        <a href="#" class="hoverAnimation"
-          >sidebar sidebarsidebarsidebarsidebar</a
+        <!-- profile card -->
+        <header
+          class="flex justify-between items-center w-full p-1 bg-primaryClr"
         >
+          <!-- image -->
+          <div class="relative mr-1 min-w-16">
+            <img
+              src="./assets/images/profile-img.png"
+              alt="your profile image"
+              class="w-12 h-12 rounded-full object-cover border-solid border-2 border-whiteClr 2xs:w-14 2xs:h-14"
+            />
+            <div
+              class="absolute left-8 bottom-0 w-2.5 h-2.5 rounded-full shadow-lg shadow-success bg-success"
+            ></div>
+          </div>
+          <!-- text -->
+          <div class="grow">
+            <h3 class="capitalize">johann ranudd</h3>
+            <div class="flex justify-between space-x-3">
+              <p id="listings-profile-card" class="text-sm">Listings: 10</p>
+              <p id="bids-profile-card" class="text-sm">Active bids: 2</p>
+              <p id="credit-profile-card" class="text-sm">Credit: 1000</p>
+            </div>
+          </div>
+        </header>
+
+        <!-- search bar -->
+        <div class="p-1">
+          <form class="flex justify-between">
+            <input
+              type="text"
+              placeholder="Search title, tag or description"
+              aria-label="search"
+            />
+            <button type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+
+          <!-- Links -->
+          <!-- TODO: active class for page user is on -->
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="#"
+                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+                >Listings</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+                >New Listning</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
       </aside>
 
       <!-- main content here -->

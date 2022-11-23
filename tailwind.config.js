@@ -6,6 +6,7 @@ module.exports = {
   content: ["./src/**/*.js", "./*.html"],
   theme: {
     screens: {
+      "3xs": "320px",
       "2xs": "420px",
       xs: "480px",
       ...defaultTheme.screens,
@@ -27,6 +28,7 @@ module.exports = {
         fourthClr: "#515150",
         fifthClr: "#94746F",
         contrastClr: "#DC0A27",
+        success: "#5DC60B",
         blackClr: "#000000",
         whiteClr: "#FFFFFF",
         hoverClr: "rgb(50, 50, 50)",
@@ -46,8 +48,10 @@ module.exports = {
       paragraph: ["Inter", "sans-serif"],
     },
     fontSize: {
+      xs: "0.6rem",
       sm: "0.8rem",
       base: "1rem",
+      lg: "1.125rem",
       xl: "1.25rem",
       "2xl": "1.563rem",
       "3xl": "1.953rem",

@@ -5,10 +5,13 @@
 @layer components {
   .hoverAnimation {
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 20px;
     transition: 0.2s;
   }
   .hoverAnimation:hover {
     background-color: rgb(200, 200, 200);
+  }
+  p {
+    font-size: 1rem;
   }
 }
