@@ -2,24 +2,31 @@ const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
 const menuBackdrop = document.querySelector("#backdrop");
 
-// const { screen } = require("../../tailwind.config.js");
+function showMenu() {
+  sidebar.classList.remove("-translate-x-[200%]");
+  menuBackdrop.classList.remove("hidden");
+  menuBackdrop.classList.add("fixed");
+}
+function hideMenu() {
+  sidebar.classList.add("-translate-x-[200%]");
+  menuBackdrop.classList.remove("fixed");
+  menuBackdrop.classList.add("hidden");
+}
+
+function toggleMenu() {
+  if (sidebar.className.includes("-translate-x-[200%]")) {
+    showMenu();
+  } else {
+    hideMenu();
+  }
+}
 
 menuBtn.addEventListener("click", () => {
-  sidebar.classList.toggle("show-sidebar");
-  if (sidebar.className.includes("-translate-x-[200%]")) {
-    sidebar.classList.remove("-translate-x-[200%]");
-    menuBackdrop.classList.remove("hidden");
-    menuBackdrop.classList.add("fixed");
-    console.log("show");
-  } else {
-    sidebar.classList.add("-translate-x-[200%]");
-    menuBackdrop.classList.remove("fixed");
-    menuBackdrop.classList.add("hidden");
-    console.log("hidden");
-  }
+  toggleMenu();
 });
 
 window.addEventListener("resize", () => {
-  //   console.log(window.innerWidth);
-  //   console.log(screen);
+  if (window.innerWidth >= 768) {
+    hideMenu();
+  }
 });

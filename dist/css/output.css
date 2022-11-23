@@ -659,6 +659,10 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.resize {
+  resize: both;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -697,11 +701,6 @@ video {
   background-color: rgb(255 238 221 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#def\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(221 238 255 / var(--tw-bg-opacity));
-}
-
 .p-2 {
   padding: 0.5rem;
 }
@@ -732,12 +731,6 @@ video {
   opacity: 0.5;
 }
 
-.backdrop-blur-sm {
-  --tw-backdrop-blur: blur(4px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -750,43 +743,12 @@ video {
   transition-duration: 300ms;
 }
 
-.before\:absolute::before {
-  content: var(--tw-content);
-  position: absolute;
-}
-
-.before\:w-\[200vw\]::before {
-  content: var(--tw-content);
-  width: 200vw;
-}
-
-.before\:-translate-x-\[50vw\]::before {
-  content: var(--tw-content);
-  --tw-translate-x: -50vw;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.before\:bg-pink-500::before {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
-}
-
-.before\:content-\[\'div\'\]::before {
-  --tw-content: 'div';
-  content: var(--tw-content);
-}
-
 .hover\:text-hoverWhiteClr:hover {
   --tw-text-opacity: 1;
   color: rgb(200 200 200 / var(--tw-text-opacity));
 }
 
 @media (min-width: 768px) {
-  .md\:ml-64 {
-    margin-left: 16rem;
-  }
-
   .md\:ml-72 {
     margin-left: 18rem;
   }
