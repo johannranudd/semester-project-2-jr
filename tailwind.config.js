@@ -38,6 +38,7 @@ module.exports = {
       boxShadow: {
         custom: "rgba(234, 246, 248, .3) 0px -4px 12px;",
         custom2: "rgba(6, 33, 45, .3) 0px 4px 12px;",
+        custom3: "rgba(93, 198, 11, 1) 0px 0px 12px;",
       },
       maxWidth: {
         logo: "3rem",

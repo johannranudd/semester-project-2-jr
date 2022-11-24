@@ -17,7 +17,7 @@
     <nav
       class="fixed top-0 z-10 w-full bg-primaryClr px-2 border-solid border-b-[1px] border-whiteClr"
     >
-      <div class="container mx-auto flex justify-between items-center">
+      <div class="mx-auto flex justify-between items-center md:container">
         <!-- logo -->
         <a href="./">
           <img
@@ -28,10 +28,13 @@
         </a>
         <!-- hamburger button -->
         <button
+          type="button"
           id="menu-btn"
-          class="hoverAnimation h-8 w-8 -mr-[5px] rounded-full text-whiteClr md:hidden"
+          class="h-8 w-8 rounded-full text-whiteClr md:hidden"
         >
-          <i class="fa-solid fa-bars text-xl"></i>
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
         </button>
       </div>
     </nav>
@@ -67,13 +70,15 @@
               class="w-12 h-12 rounded-full object-cover border-solid border-2 border-whiteClr 2xs:w-14 2xs:h-14"
             />
             <div
-              class="absolute left-8 bottom-0 w-2.5 h-2.5 rounded-full shadow-lg shadow-success bg-success"
+              class="absolute left-8 bottom-0 w-2.5 h-2.5 rounded-full shadow-lg shadow-custom3 bg-success 2xs:left-10"
             ></div>
           </div>
           <!-- text -->
           <div class="grow">
-            <h3 class="capitalize">johann ranudd</h3>
-            <div class="flex justify-between space-x-3">
+            <h3 class="test capitalize">johann ranudd</h3>
+            <div
+              class="flex justify-between items-center space-x-1 md:space-x-2"
+            >
               <p id="listings-profile-card" class="text-sm">Listings: 10</p>
               <p id="bids-profile-card" class="text-sm">Active bids: 2</p>
               <p id="credit-profile-card" class="text-sm">Credit: 1000</p>
@@ -84,7 +89,7 @@
         <!-- <div class="p-1 text-primaryClr"> -->
         <div class="p-1 text-primaryClr">
           <!-- search bar -->
-          <form class="flex justify-between my-4 mx-[5px]">
+          <form class="flex justify-between my-4 mx-[5px] shadow-lg">
             <input
               type="text"
               placeholder="Search title, tag or description"
@@ -142,94 +147,54 @@
           laudantium ad eligendi dignissimos fuga repellat sapiente sed suscipit
           perferendis ea? Sed porro id ipsa illo illum perferendis, quam, quasi
           recusandae, doloribus voluptas assumenda officia impedit ex ullam.
-          Veniam harum aliquam animi aliquid numquam nisi maxime non reiciendis
-          velit sed est blanditiis excepturi dolores necessitatibus, nobis
-          ratione, illo assumenda perferendis? Laudantium iste repellendus
-          aliquam porro voluptatum facere. Nulla velit magnam ipsam amet omnis
-          quia quam, officia beatae temporibus! Modi, doloremque. Necessitatibus
-          numquam ex, deserunt consectetur magnam debitis dignissimos veritatis
-          delectus fugiat ut officia perspiciatis, voluptatum minima. Laudantium
-          architecto obcaecati non libero sed modi cum pariatur quo iusto? Optio
-          vel aut eligendi consequatur quam possimus, voluptatum, accusantium
-          sint laborum qui porro. Amet, dicta. Magni voluptas quisquam eius
-          eligendi aut maiores voluptatibus cum corporis esse expedita obcaecati
-          fugit, hic voluptates repellat nisi ullam? Minima, quia totam?
-          Exercitationem earum doloremque voluptas. Quisquam, debitis minus.
-          Temporibus numquam asperiores voluptatem consequatur maiores excepturi
-          libero cupiditate magnam voluptatum doloremque itaque error tempora
-          sed modi quas iusto, veritatis odit voluptate nemo, eveniet rerum
-          quaerat, quod expedita! Sapiente voluptas impedit ipsum voluptate
-          numquam cupiditate qui dolor asperiores eligendi ab eveniet quas earum
-          mollitia accusamus, soluta necessitatibus quae quos odit maiores. Esse
-          vitae minus autem quos deleniti exercitationem consequuntur laborum
-          ducimus temporibus alias deserunt ut illum dignissimos modi corporis
-          ipsam officiis nihil eos tempora quia vel quod similique, sequi
-          necessitatibus. Eos cum sequi animi voluptatem possimus nostrum
-          doloremque, magni earum recusandae provident voluptatum. Culpa
-          incidunt error explicabo libero obcaecati similique corrupti odit
-          asperiores est eum mollitia ipsa, delectus, doloremque quae hic quidem
-          deleniti nemo vero dolores ullam nulla distinctio voluptatibus vel.
-          Placeat eius blanditiis quisquam iusto, dolores reprehenderit tempora
-          non esse soluta sint? Illo numquam itaque nam officia quod! Odio,
-          aperiam voluptate unde ea quae at laudantium nulla, et iure natus
-          numquam debitis asperiores excepturi maxime dicta optio corrupti sed
-          perferendis necessitatibus maiores cum molestiae dolore. Quas,
-          molestiae, optio iusto aliquam voluptas accusamus obcaecati numquam
-          doloribus corrupti voluptatem eveniet. Unde iure facilis ipsam error
-          eaque ducimus corporis sit illum sint, incidunt nostrum iusto
-          laboriosam fuga laborum quidem repellendus repudiandae quae autem
-          tempora nemo totam? Tenetur nesciunt sit quo delectus quisquam. A
-          iusto dignissimos consectetur quos in nihil deleniti quo adipisci quod
-          labore? Dolores corrupti vero alias perspiciatis fuga quod dicta
-          quasi, voluptates aliquid, incidunt nam, impedit omnis odio quisquam
-          corporis dignissimos nostrum repellendus veniam ducimus dolor.
-          Suscipit sint reprehenderit reiciendis assumenda, maxime corrupti
-          dignissimos ipsa repudiandae nesciunt velit provident distinctio fugit
-          ad consequatur natus possimus officia ipsum soluta voluptatem cumque
-          deleniti? Eum corrupti esse odit natus quod?
         </p>
       </section>
     </main>
     <!-- footer -->
-    <footer class="mt-auto w-full z-50 bg-primaryClr p-2 text-whiteClr">
-      <div class="flex justify-between mb-5">
-        <!-- logo -->
-        <a href="./">
-          <img
-            src="./assets/images/stash-logo.png"
-            alt="stash logo"
-            class="w-full max-w-logo"
-          />
-        </a>
-        <!-- social -->
-        <div class="flex flex-col items-center">
-          <p>Find us on:</p>
-          <div class="flex space-x-6">
-            <a href="#" class="hover:text-hoverWhiteClr">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" class="hover:text-hoverWhiteClr">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" class="hover:text-hoverWhiteClr">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" class="hover:text-hoverWhiteClr">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
+    <footer class="w-full mt-auto z-50 bg-primaryClr p-2 text-whiteClr">
+      <!-- wrapper -->
+      <div class="relative w-full max-w-sm m-auto md:container">
+        <div class="flex justify-between mb-5 mx-3 md:mx-0">
+          <!-- logo -->
+          <a href="./">
+            <img
+              src="./assets/images/stash-logo.png"
+              alt="stash logo"
+              class="w-full max-w-logo"
+            />
+          </a>
+          <!-- social -->
+          <div class="flex flex-col items-center">
+            <p>Find us on:</p>
+            <div class="flex space-x-6">
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- text -->
-      <div class="text-center">
-        <p>
-          Do you have any questions? Contact us by email at:
-          <a
-            href="mailto:stash.info@stash.com"
-            class="underline hover:text-hoverWhiteClr"
-            >stash.info@stash.com</a
-          >
-        </p>
+        <!-- text -->
+        <div
+          class="text-center md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2"
+        >
+          <p>
+            Do you have any questions? Contact us by email at:
+            <a
+              href="mailto:stash.info@stash.com"
+              class="underline hover:text-hoverWhiteClr"
+              >stash.info@stash.com</a
+            >
+          </p>
+        </div>
       </div>
     </footer>
   </body>
