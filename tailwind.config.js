@@ -34,13 +34,16 @@ module.exports = {
         hoverClr: "rgb(50, 50, 50)",
         hoverBlackClr: "rgb(50, 50, 50)",
         hoverWhiteClr: "rgb(200, 200, 200)",
-        "box-shadow-1":
-          "box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;",
-        "box-shadow-2": "box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;",
-        "box-shadow-3": "box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+      },
+      boxShadow: {
+        custom: "rgba(234, 246, 248, .3) 0px -4px 12px;",
+        custom2: "rgba(6, 33, 45, .3) 0px 4px 12px;",
       },
       maxWidth: {
         logo: "3rem",
+      },
+      transitionDuration: {
+        custom: "300ms",
       },
     },
     fontFamily: {

@@ -13,9 +13,10 @@
     <title>Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
-    <!-- flex flex-col min-h-screen -->
     <!-- navbar -->
-    <nav class="fixed top-0 z-10 w-full bg-primaryClr px-2">
+    <nav
+      class="fixed top-0 z-10 w-full bg-primaryClr px-2 border-solid border-b-[1px] border-whiteClr"
+    >
       <div class="container mx-auto flex justify-between items-center">
         <!-- logo -->
         <a href="./">
@@ -47,15 +48,14 @@
       >
         backdrop
       </div>
-      <!-- border-solid border-2 border-pink-500 -->
-      <!-- 2xs:w-64 md:w-72-->
       <aside
         id="sidebar"
-        class="fixed top-12 -translate-x-[200%] w-full min-h-screen bg-thirdClr transition duration-300 text-whiteClr 2xs:w-72 md:translate-x-0"
+        class="fixed top-12 -translate-x-[200%] w-full min-h-screen bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
       >
         <!-- profile card -->
+        <!-- px-1 pt-3 pb-5 -->
         <header
-          class="flex justify-between items-center w-full p-1 bg-primaryClr"
+          class="flex justify-between items-center w-full px-1 py-4 rounded-b-md shadow-custom2 text-whiteClr bg-primaryClr"
         >
           <!-- image -->
           <div class="relative mr-1 min-w-16">
@@ -79,56 +79,46 @@
           </div>
         </header>
 
-        <!-- search bar -->
-        <div class="p-1">
-          <form class="flex justify-between">
+        <div class="p-1 text-primaryClr">
+          <!-- search bar -->
+          <form class="flex justify-between my-4 mx-[5px]">
             <input
               type="text"
               placeholder="Search title, tag or description"
               aria-label="search"
+              class="grow p-1 border-solid border-2 border-primaryClr border-r-0 outline-none rounded-l-md"
             />
-            <button type="submit">
+            <button
+              type="submit"
+              class="w-10 bg-primaryClr text-whiteClr border-solid border-2 border-primaryClr rounded-r-md hover:bg-secondaryClr hover:text-primaryClr transition duration-custom"
+            >
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
 
           <!-- Links -->
           <!-- TODO: active class for page user is on -->
-          <ul class="space-y-3">
+          <ul class="space-y-3 font-semibold">
             <li>
-              <a
-                href="#"
-                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
-                >Home</a
-              >
+              <a href="#" class="inline-block text-lg hoverAnimation">Home</a>
             </li>
             <li>
-              <a
-                href="#"
-                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+              <a href="#" class="inline-block text-lg hoverAnimation"
                 >Listings</a
               >
             </li>
             <li>
-              <a
-                href="#"
-                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+              <a href="#" class="inline-block text-lg hoverAnimation"
                 >New Listning</a
               >
             </li>
             <li>
-              <a
-                href="#"
-                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
+              <a href="#" class="inline-block text-lg hoverAnimation"
                 >Profile</a
               >
             </li>
             <li>
-              <a
-                href="#"
-                class="inline-block text-lg hoverAnimation font-semibold text-primaryClr"
-                >Logout</a
-              >
+              <a href="#" class="inline-block text-lg hoverAnimation">Logout</a>
             </li>
           </ul>
         </div>
