@@ -598,6 +598,14 @@ p {
   left: 2rem;
 }
 
+.top-\[5\%\]{
+  top: 5%;
+}
+
+.left-\[5\%\]{
+  left: 5%;
+}
+
 .z-10{
   z-index: 10;
 }
@@ -678,6 +686,30 @@ p {
   height: 0.5rem;
 }
 
+.h-48{
+  height: 12rem;
+}
+
+.h-10{
+  height: 2.5rem;
+}
+
+.h-80{
+  height: 20rem;
+}
+
+.h-72{
+  height: 18rem;
+}
+
+.h-64{
+  height: 16rem;
+}
+
+.h-auto{
+  height: auto;
+}
+
 .min-h-screen{
   min-height: 100vh;
 }
@@ -704,6 +736,14 @@ p {
 
 .w-10{
   width: 2.5rem;
+}
+
+.w-96{
+  width: 24rem;
+}
+
+.w-64{
+  width: 16rem;
 }
 
 .max-w-logo{
@@ -759,6 +799,10 @@ p {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.5rem * var(--tw-space-x-reverse));
   margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.overflow-hidden{
+  overflow: hidden;
 }
 
 .rounded-full{
@@ -831,9 +875,19 @@ p {
   background-color: rgb(255 238 221 / var(--tw-bg-opacity));
 }
 
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-right-bottom{
+  -o-object-position: right bottom;
+     object-position: right bottom;
 }
 
 .p-1{
@@ -863,16 +917,24 @@ p {
   text-align: center;
 }
 
-.text-xl{
-  font-size: 1.25rem;
-}
-
 .text-sm{
   font-size: 0.8rem;
 }
 
 .text-lg{
   font-size: 1.125rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+}
+
+.text-2xl{
+  font-size: 1.563rem;
+}
+
+.text-3xl{
+  font-size: 1.953rem;
 }
 
 .font-semibold{
@@ -895,6 +957,10 @@ p {
 
 .underline{
   text-decoration-line: underline;
+}
+
+.no-underline{
+  text-decoration-line: none;
 }
 
 .opacity-50{
