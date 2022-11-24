@@ -30,7 +30,7 @@
         <button
           type="button"
           id="menu-btn"
-          class="h-8 w-8 rounded-full text-whiteClr md:hidden"
+          class="rounded-full text-whiteClr md:hidden"
         >
           <div class="line line1"></div>
           <div class="line line2"></div>
@@ -53,7 +53,7 @@
       </div>
       <aside
         id="sidebar"
-        class="fixed top-12 -translate-x-[200%] w-full min-h-screen bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
+        class="fixed top-12 -translate-x-[200%] w-full min-h-screen z-10 bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
       >
         <!-- profile card -->
         <!-- <header
@@ -134,18 +134,34 @@
       <!-- *end sidebar -->
 
       <!-- *main content -->
-      <section class="bg-[#fed] md:ml-72">
+      <section class="bg-[#fed] md:ml-72 -z-10 text-whiteClr">
         <!-- hero section -->
-        <div class="relative">
-          <h1
-            class="absolute top-[5%] left-[5%] text-3xl text-whiteClr no-underline"
-          >
-            Online Auction House
-          </h1>
+        <div class="relative max-h-72 overflow-hidden">
+          <!-- backdrop -->
+          <aside
+            class="absolute top-0 left-0 h-full w-full bg-blackClr opacity-40"
+          ></aside>
+          <!-- text-container -->
+          <div class="absolute top-[8%] left-[2%] space-y-6">
+            <h1
+              class="text-left no-underline text-[7vw] 2xs:text-[5vw] md:text-2xl lg:text-3xl"
+            >
+              Online Auction House
+            </h1>
+            <h3 class="text-[5vw] 2xs:text-[3.7vw] md:text-base lg:text-lg">
+              Buy and sell to the<br />
+              highest bidder
+            </h3>
+            <a href="#" class="inline-block btn-primary p-1 px-2">
+              Sell you stuff
+            </a>
+          </div>
+          <!-- hero image -->
+          <!-- h-auto w-full object-cover  -->
           <img
             src="./assets/images/hero-img.avif"
-            alt=""
-            class="h-64 w-full object-cover"
+            alt="People smiling and laughing"
+            class="h-auto w-full object-cover 2xl:relative bottom-[150px] z-0"
           />
         </div>
         <!--  -->

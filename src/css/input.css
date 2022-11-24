@@ -4,26 +4,6 @@
 @tailwind utilities;
 
 @layer components {
-  .hoverAnimation {
-    padding: 5px;
-    border-radius: 20px;
-    transition: 0.2s;
-  }
-  .hoverAnimation:hover {
-    background-color: rgb(200, 200, 200);
-  }
-  .line {
-    height: 3px;
-    width: 25px;
-    background: #fff;
-    margin: 5px 0;
-    border-radius: 5px;
-    transition: 0.3s;
-    transform-origin: center !important;
-  }
-  .line2 {
-    transition: 0s;
-  }
 }
 
 @layer base {
@@ -42,5 +22,39 @@
   }
   p {
     font-family: "Inter", sans-serif;
+  }
+}
+
+@layer utilities {
+  .hoverAnimation {
+    padding: 5px;
+    border-radius: 20px;
+    transition: 0.2s;
+  }
+  .hoverAnimation:hover {
+    background-color: rgb(200, 200, 200);
+  }
+  .line {
+    height: 3px;
+    width: 25px;
+    background: #fff;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  .line2 {
+    transition: 0s;
+  }
+  .btn-primary {
+    border: 2px solid #06212d;
+    border-radius: 6px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    background: #06212d;
+    transition: 300ms;
+  }
+  .btn-primary:hover {
+    border: 2px solid #fff;
+    background: transparent;
   }
 }
