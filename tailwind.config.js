@@ -3,19 +3,23 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./*.html"],
+  content: ["./src/**/*.js", "./*.html"],
   theme: {
+    screens: {
+      "3xs": "320px",
+      "2xs": "420px",
+      xs: "480px",
+      ...defaultTheme.screens,
+    },
+
     extend: {
-      screen: {
-        "2xs": "400px",
-        xs: "480px",
+      screens: {
         sm: "640px",
         md: "768px",
         lg: "1024px",
         xl: "1280px",
         "2xl": "1440px",
         "3xl": "1536px",
-        ...defaultTheme.screens,
       },
       colors: {
         primaryClr: "#06212D",
@@ -24,18 +28,23 @@ module.exports = {
         fourthClr: "#515150",
         fifthClr: "#94746F",
         contrastClr: "#DC0A27",
+        success: "#5DC60B",
         blackClr: "#000000",
         whiteClr: "#FFFFFF",
         hoverClr: "rgb(50, 50, 50)",
         hoverBlackClr: "rgb(50, 50, 50)",
         hoverWhiteClr: "rgb(200, 200, 200)",
-        "box-shadow-1":
-          "box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;",
-        "box-shadow-2": "box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;",
-        "box-shadow-3": "box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+      },
+      boxShadow: {
+        custom: "rgba(234, 246, 248, .3) 0px -4px 12px;",
+        custom2: "rgba(6, 33, 45, .3) 0px 4px 12px;",
+        custom3: "rgba(93, 198, 11, 1) 0px 0px 12px;",
       },
       maxWidth: {
         logo: "3rem",
+      },
+      transitionDuration: {
+        custom: "300ms",
       },
     },
     fontFamily: {
@@ -43,8 +52,10 @@ module.exports = {
       paragraph: ["Inter", "sans-serif"],
     },
     fontSize: {
+      xs: "0.6rem",
       sm: "0.8rem",
       base: "1rem",
+      lg: "1.125rem",
       xl: "1.25rem",
       "2xl": "1.563rem",
       "3xl": "1.953rem",
