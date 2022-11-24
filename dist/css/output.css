@@ -724,6 +724,14 @@ p {
   width: 2.5rem;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
+.w-72 {
+  width: 18rem;
+}
+
 .max-w-logo {
   max-width: 3rem;
 }
@@ -841,6 +849,11 @@ p {
   background-color: rgb(255 238 221 / var(--tw-bg-opacity));
 }
 
+.bg-thirdClr {
+  --tw-bg-opacity: 1;
+  background-color: rgb(9 96 118 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -950,6 +963,10 @@ p {
 }
 
 .duration-custom {
+  transition-duration: 300ms;
+}
+
+.duration-300 {
   transition-duration: 300ms;
 }
 
