@@ -12,6 +12,10 @@
     text-align: center;
     text-decoration: underline;
   }
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
   h1,
   h2,
   h3,
