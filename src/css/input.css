@@ -7,10 +7,20 @@
 }
 
 @layer base {
+  body {
+    font-family: "Inter", sans-serif;
+    color: #06212d;
+  }
   h1,
   h2 {
     text-align: center;
     text-decoration: underline;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
   }
   h1,
   h2,
@@ -20,9 +30,16 @@
   h6 {
     font-family: "Proza Libre", sans-serif;
   }
-  p {
-    font-family: "Inter", sans-serif;
+  label {
+    font-weight: 900;
   }
+
+  /* form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+  } */
 }
 
 @layer utilities {
@@ -47,14 +64,23 @@
   }
   .btn-primary {
     border: 2px solid #06212d;
+    padding: 0.5rem 0.75rem;
     border-radius: 6px;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.1);
+      0 4px 6px -4px rgb(0 0 0 / 0.1); /*shadow lg*/
     background: #06212d;
+    color: white;
     transition: 300ms;
   }
   .btn-primary:hover {
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
     background: transparent;
+    color: #06212d;
+  }
+  .custom-input {
+    border: 1px solid #06212d;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*shadow md*/
   }
 }
