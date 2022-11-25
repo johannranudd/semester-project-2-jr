@@ -7,7 +7,6 @@ const line2 = document.querySelector(".line2");
 const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
 const LogoutBtn = document.querySelector("#logout-btn");
-const profileCard = document.querySelector(".profile-card");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -45,8 +44,17 @@ window.addEventListener("resize", () => {
 LogoutBtn.addEventListener("click", clearLocalStorage);
 
 window.addEventListener("DOMContentLoaded", () => {
+  const profileCard = document.querySelector(".profile-card");
   const profileImage = profileCard.querySelector("img");
+  // TODO: get active bids and your listings
+  // const listingsProfileCard = profileCard.querySelector(
+  //   "#listings-profile-card"
+  // );
+  // const bidsProfileCard = profileCard.querySelector("#bids-profile-card");
+  const creditProfileCard = profileCard.querySelector(
+    "#credit-profile-card span"
+  );
   const locStor = getLocalStorage();
   profileImage.src = locStor.avatar;
-  // profileImage.src =
+  creditProfileCard.textContent = locStor.credits;
 });

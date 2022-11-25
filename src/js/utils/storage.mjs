@@ -7,7 +7,14 @@ export function getLocalStorage() {
   return locStorage;
 }
 
-export function setLocalStorage(isLoggedIn, token, name, email, avatar) {
+export function setLocalStorage(
+  isLoggedIn,
+  token,
+  name,
+  email,
+  avatar,
+  credits
+) {
   localStorage.setItem(
     "isLoggedIn",
     JSON.stringify({
@@ -16,6 +23,7 @@ export function setLocalStorage(isLoggedIn, token, name, email, avatar) {
       name: name,
       email: email,
       avatar: avatar,
+      credits: credits,
     })
   );
 }
