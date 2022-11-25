@@ -421,10 +421,17 @@ video {
   display: none;
 }
 
+body {
+  font-family: "Inter", sans-serif;
+  color: #06212d;
+}
+
 h1,
   h2 {
   text-align: center;
   text-decoration: underline;
+  font-size: 1.5rem;
+  margin: 1rem 0;
 }
 
 h2 {
@@ -441,9 +448,16 @@ h1,
   font-family: "Proza Libre", sans-serif;
 }
 
-p {
-  font-family: "Inter", sans-serif;
+label {
+  font-weight: 900;
 }
+
+/* form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+  } */
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -611,6 +625,10 @@ p {
   z-index: 50;
 }
 
+.m-0{
+  margin: 0px;
+}
+
 .m-auto{
   margin: auto;
 }
@@ -643,6 +661,14 @@ p {
   margin-right: 0.25rem;
 }
 
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .mt-auto{
   margin-top: auto;
 }
@@ -651,12 +677,12 @@ p {
   margin-bottom: 1.25rem;
 }
 
-.mb-2{
-  margin-bottom: 0.5rem;
+.mt-12{
+  margin-top: 3rem;
 }
 
-.mb-4{
-  margin-bottom: 1rem;
+.mb-8{
+  margin-bottom: 2rem;
 }
 
 .inline-block{
@@ -727,6 +753,10 @@ p {
   max-width: 24rem;
 }
 
+.max-w-md{
+  max-width: 28rem;
+}
+
 .grow{
   flex-grow: 1;
 }
@@ -772,10 +802,10 @@ p {
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 
-.space-y-6 > :not([hidden]) ~ :not([hidden]){
+.space-y-4 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
-  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .space-x-6 > :not([hidden]) ~ :not([hidden]){
@@ -808,6 +838,11 @@ p {
 .rounded-l-md{
   border-top-left-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
+}
+
+.rounded-r-none{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .rounded-r-md{
@@ -1009,6 +1044,11 @@ p {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-thirdClr{
+  --tw-text-opacity: 1;
+  color: rgb(9 96 118 / var(--tw-text-opacity));
+}
+
 .underline{
   text-decoration-line: underline;
 }
@@ -1099,16 +1139,33 @@ p {
 
 .btn-primary {
   border: 2px solid #06212d;
+  padding: 0.5rem 0.75rem;
   border-radius: 6px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
       0 4px 6px -4px rgb(0 0 0 / 0.1);
+  /*shadow lg*/
   background: #06212d;
+  color: white;
   transition: 300ms;
 }
 
 .btn-primary:hover {
-  border: 2px solid #fff;
+  /* border: 2px solid #fff; */
   background: transparent;
+  color: #06212d;
+}
+
+.custom-input {
+  border: 1px solid #06212d;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  /*shadow md*/
+}
+
+.hover\:border-whiteClr:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .hover\:bg-secondaryClr:hover{
@@ -1124,6 +1181,11 @@ p {
 .hover\:text-primaryClr:hover{
   --tw-text-opacity: 1;
   color: rgb(6 33 45 / var(--tw-text-opacity));
+}
+
+.hover\:text-whiteClr:hover{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:text-hoverWhiteClr:hover{
@@ -1185,6 +1247,12 @@ p {
 
   .\32xs\:w-14{
     width: 3.5rem;
+  }
+
+  .\32xs\:space-y-6 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
   }
 
   .\32xs\:text-\[5vw\]{
@@ -1318,5 +1386,9 @@ p {
 @media (min-width: 1440px){
   .\32xl\:relative{
     position: relative;
+  }
+
+  .\32xl\:z-10{
+    z-index: 10;
   }
 }
