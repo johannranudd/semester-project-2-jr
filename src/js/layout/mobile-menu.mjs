@@ -1,9 +1,11 @@
+import { clearLocalStorage } from "../utils/storage.mjs";
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
 const line1 = document.querySelector(".line1");
 const line2 = document.querySelector(".line2");
 const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
+const LogoutBtn = document.querySelector("#logout-btn");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -30,12 +32,12 @@ function toggleMenu() {
   }
 }
 
-menuBtn.addEventListener("click", () => {
-  toggleMenu();
-});
+menuBtn.addEventListener("click", toggleMenu);
 
 window.addEventListener("resize", () => {
   if (window.innerWidth >= 768) {
     hideMenu();
   }
 });
+
+LogoutBtn.addEventListener("click", clearLocalStorage);

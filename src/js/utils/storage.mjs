@@ -1,7 +1,5 @@
-/**
- * gets local storage
- * @returns {object} object, isLoggedIn, current state of localStorage
- */
+import { checkIfLoggedIn } from "./utils.mjs";
+
 export function getLocalStorage() {
   const locStorage = localStorage.getItem("isLoggedIn")
     ? JSON.parse(localStorage.getItem("isLoggedIn"))
@@ -9,14 +7,7 @@ export function getLocalStorage() {
   return locStorage;
 }
 
-export function setLocalStorage(
-  isLoggedIn,
-  token,
-  name,
-  email,
-  avatar
-  //   profileDisplayed
-) {
+export function setLocalStorage(isLoggedIn, token, name, email, avatar) {
   localStorage.setItem(
     "isLoggedIn",
     JSON.stringify({
@@ -25,7 +16,11 @@ export function setLocalStorage(
       name: name,
       email: email,
       avatar: avatar,
-      //   profileDisplayed: profileDisplayed,
     })
   );
+}
+
+export function clearLocalStorage() {
+  localStorage.clear();
+  checkIfLoggedIn();
 }

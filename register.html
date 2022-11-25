@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./dist/css/output.css" />
+    <script type="module" src="./src/js/login/login.mjs" defer></script>
     <title>Register</title>
   </head>
   <body>
     <section class="p-2 mt-12">
       <h1>Register</h1>
 
-      <form class="flex flex-col max-w-md mx-auto space-y-6">
+      <form id="registerForm" class="flex flex-col max-w-md mx-auto space-y-6">
         <p class="login-wanring"></p>
         <div class="flex flex-col space-y-2">
           <label for="name">Name</label>
@@ -22,13 +23,17 @@
           <input type="email" id="email" name="email" class="custom-input" />
         </div>
         <div class="flex flex-col space-y-2">
-          <label for="password">password</label>
+          <label for="password">Password</label>
           <input
             type="password"
             id="password"
             name="password"
             class="custom-input"
           />
+        </div>
+        <div class="flex flex-col space-y-2">
+          <label for="avatar">Avatar</label>
+          <input type="text" id="avatar" name="avatar" class="custom-input" />
         </div>
         <button type="submit" class="btn-primary">Submit</button>
       </form>
