@@ -1,4 +1,5 @@
-import { clearLocalStorage } from "../utils/storage.mjs";
+import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
+
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
 const line1 = document.querySelector(".line1");
@@ -6,6 +7,7 @@ const line2 = document.querySelector(".line2");
 const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
 const LogoutBtn = document.querySelector("#logout-btn");
+const profileCard = document.querySelector(".profile-card");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -41,3 +43,10 @@ window.addEventListener("resize", () => {
 });
 
 LogoutBtn.addEventListener("click", clearLocalStorage);
+
+window.addEventListener("DOMContentLoaded", () => {
+  const profileImage = profileCard.querySelector("img");
+  const locStor = getLocalStorage();
+  profileImage.src = locStor.avatar;
+  // profileImage.src =
+});

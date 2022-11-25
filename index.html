@@ -57,29 +57,39 @@
         class="fixed top-12 -translate-x-[200%] w-full min-h-screen z-10 bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
       >
         <!-- profile card -->
+        <!-- flex justify-between items-center -->
         <header
-          class="flex justify-between items-center w-full px-1 py-4 rounded-b-md shadow-custom2 text-whiteClr bg-primaryClr"
+          class="profile-card flex justify-between items-center px-1 py-4 w-full space-x-1 rounded-b-md shadow-custom2 text-whiteClr bg-primaryClr"
         >
           <!-- image -->
-          <div class="relative mr-1 min-w-16">
+          <div class="relative">
+            <!-- w-12 h-12  -->
             <img
               src="./assets/images/profile-img.png"
               alt="your profile image"
-              class="w-12 h-12 rounded-full object-cover border-solid border-2 border-whiteClr 2xs:w-14 2xs:h-14"
+              class="w-12 h-12 mr-1 rounded-full object-cover border-solid border-2 border-whiteClr 2xs:w-14 2xs:h-14"
             />
             <div
               class="absolute left-8 bottom-0 w-2.5 h-2.5 rounded-full shadow-lg shadow-custom3 bg-success 2xs:left-10"
             ></div>
           </div>
           <!-- text -->
+          <!-- flex flex-col items-right -->
           <div class="grow">
             <h3 class="test capitalize">johann ranudd</h3>
-            <div
-              class="flex justify-between items-center space-x-1 md:space-x-2"
-            >
-              <p id="listings-profile-card" class="text-sm">Listings: 10</p>
-              <p id="bids-profile-card" class="text-sm">Active bids: 2</p>
-              <p id="credit-profile-card" class="text-sm">Credit: 1000</p>
+            <div class="flex justify-between items-center space-x-1">
+              <p id="listings-profile-card" class="text-sm break-words">
+                Listings: 10
+              </p>
+              <p id="bids-profile-card" class="text-sm break-words">
+                Active bids: 2
+              </p>
+              <p
+                id="credit-profile-card"
+                class="text-sm break-words flex self-end"
+              >
+                Credit: 1000
+              </p>
             </div>
           </div>
         </header>
