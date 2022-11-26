@@ -1,4 +1,4 @@
-import { checkIfLoggedIn } from "./utils.mjs";
+import { checkIfLoggedIn } from "../layout/redirect.mjs";
 
 export function getLocalStorage() {
   const locStorage = localStorage.getItem("isLoggedIn")
