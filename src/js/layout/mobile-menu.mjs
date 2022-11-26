@@ -1,4 +1,5 @@
 import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
+import { getListings } from "../utils/gets.mjs";
 
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
@@ -58,3 +59,13 @@ window.addEventListener("DOMContentLoaded", () => {
   profileImage.src = locStor.avatar;
   creditProfileCard.textContent = locStor.credits;
 });
+
+// async function getActiveBids() {
+//   const data = await getListings();
+//   console.log("HERE::: ", data);
+//   const getYourBids = data.filter((listing) => {
+//     const bidsOnListing = listing.bids;
+//     console.log(bidsOnListing);
+//   });
+// }
+// getActiveBids();

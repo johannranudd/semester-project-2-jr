@@ -83,4 +83,50 @@
     padding: 0.5rem 1rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*shadow md*/
   }
+
+  .spinner {
+    height: 300px;
+    width: 300px;
+    background: red;
+  }
+  /* .spinner {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    translate: -50%;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+
+  .spinner:after {
+    content: " ";
+    display: block;
+    height: 64px;
+    width: 64px;
+    margin: 8px;
+    border: 6px solid #000;
+    border-radius: 50%;
+    border-color: #000 transparent #000 transparent;
+    -webkit-animation: spinn 1.2s linear infinite;
+    animation: spinn 1.2s linear infinite;
+  }
+
+  @-webkit-keyframes spinn {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spinn {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } */
 }
