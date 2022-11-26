@@ -84,49 +84,38 @@
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*shadow md*/
   }
 
-  .spinner {
-    height: 300px;
-    width: 300px;
-    background: red;
+  #listing {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 2rem; */
   }
-  /* .spinner {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    translate: -50%;
-    display: inline-block;
-    width: 80px;
-    height: 80px;
+  .card {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*shadow md*/
   }
-
-  .spinner:after {
-    content: " ";
-    display: block;
-    height: 64px;
-    width: 64px;
-    margin: 8px;
-    border: 6px solid #000;
-    border-radius: 50%;
-    border-color: #000 transparent #000 transparent;
-    -webkit-animation: spinn 1.2s linear infinite;
-    animation: spinn 1.2s linear infinite;
+  .card .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16rem;
+    overflow: hidden;
   }
-
-  @-webkit-keyframes spinn {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  .card img {
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
-
-  @keyframes spinn {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  } */
+  .card .text-content {
+    padding: 6px;
+  }
+  .card h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .card p {
+  }
 }

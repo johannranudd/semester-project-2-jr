@@ -90,24 +90,24 @@ function displayListings(data, list, isAddingToPrevList = false) {
       // });
       // console.log(media);
       const listItem = ` 
-             <div class="rounded-lg shadow-lg bg-white max-w-sm">
-               <a href="#">
-                 <img
-                   class="rounded-t-lg"
-                   src="${media.map((image) => {
-                     return image;
-                   })}"
-                  alt=""
-                />
-              </a>
-              <div class="p-6">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">
-                  ${seller.name}
-                </h5>
-                <p class="text-gray-700 text-base mb-4">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
+             <div class="card">
+                    <a href="#" class="image-container">
+                        <img
+                        class=""
+                        src="${media.map((image) => {
+                          return image;
+                        })}"
+                          alt=""
+                          />
+                  </a>
+              <div class="text-content">
+                  <h5>
+                    ${seller.name}
+                  </h5>
+                  <p>
+                    Some quick example text to build on the card title and make up
+                    the bulk of the card's content.
+                  </p>
               </div>
             </div>
           `;
