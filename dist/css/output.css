@@ -689,6 +689,10 @@ label {
   display: flex;
 }
 
+.grid{
+  display: grid;
+}
+
 .hidden{
   display: none;
 }
@@ -780,8 +784,36 @@ label {
   animation: spin 1s linear infinite;
 }
 
+.auto-cols-max{
+  grid-auto-columns: max-content;
+}
+
+.auto-cols-min{
+  grid-auto-columns: min-content;
+}
+
+.auto-cols-auto{
+  grid-auto-columns: auto;
+}
+
+.auto-cols-fr{
+  grid-auto-columns: minmax(0, 1fr);
+}
+
+.grid-flow-col{
+  grid-auto-flow: column;
+}
+
+.grid-cols-3{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .flex-col{
   flex-direction: column;
+}
+
+.flex-wrap{
+  flex-wrap: wrap;
 }
 
 .items-center{
@@ -830,6 +862,12 @@ label {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.space-x-24 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(6rem * var(--tw-space-x-reverse));
+  margin-left: calc(6rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .overflow-hidden{
