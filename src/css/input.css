@@ -130,6 +130,8 @@
   .card p {
     /* color: #515150; */
     color: #06212d;
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden; */
   }
   .card .seller {
     margin-bottom: 0.5rem;

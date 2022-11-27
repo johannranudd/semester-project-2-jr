@@ -1,5 +1,3 @@
-import { loadingSpinner, removeSpinner } from "./loading.mjs";
-
 // sort by most bids
 export function sortByMostBids(data) {
   return data.sort((a, b) => {
@@ -61,54 +59,4 @@ export function addCountdownObject(data) {
   });
   // const { days, hours, minutes, seconds } = countDownObject;
   // const countDownString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-export function displayListings(data, listElement, isAddingToPrevList = false) {
-  if (!isAddingToPrevList) {
-    if (listElement) {
-      listElement.innerHTML = "";
-      loadingSpinner(listElement);
-    }
-  }
-
-  if (data) {
-    removeSpinner();
-    data.map((listing) => {
-      const {
-        id,
-        title,
-        media,
-        seller,
-        bids,
-        _count,
-        endsAt,
-        countDownObject,
-        description,
-      } = listing;
-      const highestBid = filterHighestBid(listing);
-      console.log(listing);
-      const listItem = ` 
-             <div class="card">
-                    <a href="#" class="image-container">
-                         <img src="${
-                           media[0]
-                             ? media[0]
-                             : "../../../assets/images/placeholder.png"
-                         }" alt="Lsiting image" />
-                    </a>
-              <div class="text-content">
-                <div class="title-and-price">
-                  <h5 class="title">${title}</h5>
-                  <p class="price">$ <span> ${highestBid}</span></p>
-                </div>
-                <p class="seller">${seller.name}</p>
-                  <p class="description">${
-                    description ? description : "No description"
-                  }</p>
-              </div>
-            </div>
-          `;
-      listElement.innerHTML += listItem;
-    });
-  }
 }

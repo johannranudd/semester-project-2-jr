@@ -11,10 +11,10 @@ export function loadingSpinner(list) {
     "border-primaryClr"
   );
   spinner.appendChild(innerSpinner);
-  list.appendChild(spinner);
+  list && list.appendChild(spinner);
 }
 
 export function removeSpinner() {
   const spinner = document.querySelector(".spinner");
-  spinner.remove();
+  spinner && spinner.remove();
 }

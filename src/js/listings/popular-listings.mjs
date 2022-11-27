@@ -9,8 +9,8 @@ import {
   returnsTimeLeftInt,
   filterHighestBid,
   addCountdownObject,
-  displayListings,
 } from "../utils/various.mjs";
+import { displayListings } from "../utils/display.mjs";
 
 const listingsULElement = document.querySelector("#listing");
 
