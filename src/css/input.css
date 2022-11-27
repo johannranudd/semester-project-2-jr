@@ -16,7 +16,7 @@
     text-align: center;
     text-decoration: underline;
     font-size: 1.5rem;
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
   h2 {
     font-size: 1.2rem;
@@ -112,10 +112,36 @@
   .card .text-content {
     padding: 6px;
   }
-  .card h5 {
+  .card .title-and-price {
+    /* display: grid; */
+    /* grid-template-columns: 70% 30%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .card .title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-transform: capitalize;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    margin-right: 1.2rem;
   }
   .card p {
+    /* color: #515150; */
+    color: #06212d;
+  }
+  .card .seller {
+    margin-bottom: 0.5rem;
+    color: #515150;
+    /* color: #06212d; */
+  }
+  .card .price {
+    display: flex;
+    font-size: 1.2rem;
+    color: #515150;
+  }
+  .card .price span {
+    margin-left: 0.5rem;
   }
 }
