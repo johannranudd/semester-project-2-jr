@@ -187,10 +187,29 @@
         </nav>
       </section>
       <!-- listings component -->
-      <article class="p-2 md:ml-72 bg-pink-500">
-        <h6 class="text-center">Results: <span>124234</span></h6>
+      <section class="p-2 md:ml-72">
+        <!-- filter section -->
+        <form
+          id="sort-listings-form"
+          class="flex justify-center items-center space-x-3 mb-6"
+        >
+          <p>Sort by</p>
+          <select
+            name="categories"
+            id="categories"
+            class="capitalize px-2 py-1 rounded-md outline-none border-2 border-primaryClr"
+          >
+            <option value="newest">newest</option>
+            <option value="oldest">oldest</option>
+            <option value="title-asc">title (asc)</option>
+            <option value="title-desc">title (desc)</option>
+            <option value="price-low-high">price (low-high)</option>
+            <option value="price-high-low">price (high-low)</option>
+          </select>
+        </form>
+        <!-- lisitngs -->
         <ul id="listing" class="grid grid-cols-fluid gap-4"></ul>
-      </article>
+      </section>
     </main>
     <!-- *end main content -->
     <!-- footer -->

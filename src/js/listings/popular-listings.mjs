@@ -16,10 +16,10 @@ const listingsULElement = document.querySelector("#listing");
 
 async function filterTwentyMostPopular() {
   loadingSpinner(listingsULElement);
-  const data = await getListings();
+  const data = await getListings("", 0);
   const sortedByMostBids = sortByMostBids(data);
-  const stillForSale = getListingsStillForSale(sortedByMostBids);
-  const listingWithCountdownObject = addCountdownObject(stillForSale);
+  // const stillForSale = getListingsStillForSale(sortedByMostBids);
+  const listingWithCountdownObject = addCountdownObject(sortedByMostBids);
   // limit to 20
   const twentyMostPopular = listingWithCountdownObject.slice(0, 10);
   displayListings(twentyMostPopular, listingsULElement);
