@@ -9,21 +9,24 @@ import {
 import { loadingSpinner } from "../utils/loading.mjs";
 const listingsULElement = document.querySelector("#listing");
 const sortListingsForm = document.querySelector("#sort-listings-form");
-const categories = document.querySelector("#categories");
+const categories = document.querySelector("#sort-selector");
+const btnCategory = document.querySelectorAll(".btn-category");
 
 let offset = 0;
+let tag = "";
 
-window.addEventListener("DOMContentLoaded", displayBasedOnSort, getTags());
+window.addEventListener("DOMContentLoaded", displayBasedOnSort);
 
 categories.addEventListener("change", displayBasedOnSort);
+btnCategory.forEach((btn) => {
+  btn.addEventListener("click", getTags);
+});
 
-async function getTags() {
+async function getTags(e) {
   // TODO: come back here to filter after creating posts with apropriate tags
-  const data = await getListings("", offset, "", "", "");
-  data.map((listing) => {
-    console.log(listing.tags);
-  });
-  // GET /api/v1/auction/listings?_tag=my_tag
+  // create a global var that changes so that each fetch gets it
+  console.log(e);
+  console.log(e.currentTarget.dataset.category);
 }
 
 async function displayBasedOnSort(e, isAddingToPrevList = false) {
