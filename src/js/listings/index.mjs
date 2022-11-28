@@ -3,6 +3,8 @@ import { displayListings } from "../utils/display.mjs";
 import {
   getListingsStillForSale,
   filterHighestBid,
+  sortByHighestInteger,
+  sortByLowestInteger,
 } from "../utils/various.mjs";
 import { loadingSpinner } from "../utils/loading.mjs";
 const listingsULElement = document.querySelector("#listing");
@@ -11,69 +13,66 @@ const categories = document.querySelector("#categories");
 
 let offset = 0;
 
-window.addEventListener("DOMContentLoaded", displayBasedOnSort);
+window.addEventListener("DOMContentLoaded", displayBasedOnSort, getTags());
 
 categories.addEventListener("change", displayBasedOnSort);
 
-async function displayBasedOnSort(e) {
-  listingsULElement.innerHTML = "";
-  if (e.target.value === undefined) {
-    loadingSpinner(listingsULElement);
-    const data = await getListings("", offset, "created", "desc");
-    displayListings(data, listingsULElement, false);
-    // console.log(data);
-  } else if (e.target.value === "newest") {
-    loadingSpinner(listingsULElement);
-    const data = await getListings("", offset, "created", "desc");
-    displayListings(data, listingsULElement, false);
-    console.log("newest");
-  } else if (e.target.value === "oldest") {
-    loadingSpinner(listingsULElement);
-    const data = await getListings("", offset, "created", "asc");
-    displayListings(data, listingsULElement, false);
-    console.log("oldest");
-  } else if (e.target.value === "title-asc") {
-    loadingSpinner(listingsULElement);
-    const data = await getListings("", offset, "title", "asc");
-    displayListings(data, listingsULElement, false);
-    console.log("title-asc");
-  } else if (e.target.value === "title-desc") {
-    loadingSpinner(listingsULElement);
-    const data = await getListings("", offset, "title", "desc");
-    displayListings(data, listingsULElement, false);
-    console.log("title-desc");
-  } else if (e.target.value === "price-low-high") {
-    const data = await getListings("", offset, "title", "asc");
-    // TODO: continue here
-    data.map((listing) => {
-      const test = filterHighestBid(listing);
-      console.log(test);
-    });
-    // loadingSpinner(listingsULElement);
-    // displayListings(data, listingsULElement, false);
-    console.log("price-low-high");
-  } else if (e.target.value === "price-high-low") {
-    console.log("price-high-low");
-  }
-
-  //   getListings(limit, (offset = 0), sort, sortOrder);
-  //   console.log(data);
+async function getTags() {
+  // TODO: come back here to filter after creating posts with apropriate tags
+  const data = await getListings("", offset, "", "", "");
+  data.map((listing) => {
+    console.log(listing.tags);
+  });
+  // GET /api/v1/auction/listings?_tag=my_tag
 }
 
-// displayBasedOnSort();
-// async function sortByCategories(e) {
-//   if (e.target.value === "newest") {
-//     const data = await getListings("", offset);
-//     updateOffset(data);
-//     // console.log(data);
-//   }
-// }
+async function displayBasedOnSort(e, isAddingToPrevList = false) {
+  if (!isAddingToPrevList) {
+    if (listingsULElement) {
+      listingsULElement.innerHTML = "";
+      loadingSpinner(listingsULElement);
+    }
+  } else {
+    loadingSpinner(listingsULElement);
+  }
+  if (e.target.value === undefined) {
+    const data = await getListings("", offset, "created", "desc");
+    displayListings(data, listingsULElement, false);
+  } else if (e.target.value === "newest") {
+    const data = await getListings("", offset, "created", "desc");
+    displayListings(data, listingsULElement, false);
+  } else if (e.target.value === "oldest") {
+    const data = await getListings("", offset, "created", "asc");
+    displayListings(data, listingsULElement, false);
+  } else if (e.target.value === "title-asc") {
+    const data = await getListings("", offset, "title", "asc");
+    displayListings(data, listingsULElement, false);
+  } else if (e.target.value === "title-desc") {
+    const data = await getListings("", offset, "title", "desc");
+    displayListings(data, listingsULElement, false);
+  } else if (e.target.value === "price-low-high") {
+    sortByPrice("asc");
+  } else if (e.target.value === "price-high-low") {
+    sortByPrice("desc");
+  }
+}
 
-// function updateOffset(data) {
-//   if (data.length > 0) {
-//     offset += data.length;
-//   }
-// }
+async function sortByPrice(sortDirection) {
+  const newArray = [];
+  const data = await getListings("", offset, "title", "asc");
+  data.map((listing) => {
+    const highestBid = filterHighestBid(listing);
+    const listingWithHighestBidProperty = { ...listing, highestBid };
+    newArray.push(listingWithHighestBidProperty);
+  });
+  if (sortDirection === "asc") {
+    sortDirection = sortByLowestInteger(newArray);
+  } else if (sortDirection === "desc") {
+    sortDirection = sortByHighestInteger(newArray);
+  }
+  const listingsPriceLowToHight = sortDirection;
+  displayListings(listingsPriceLowToHight, listingsULElement, false);
+}
 
 // display all
 // make fetch dynamic based on
