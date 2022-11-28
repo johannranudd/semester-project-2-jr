@@ -3,7 +3,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./src/**/*.js", "./*.html"],
+  content: ["./src/**/*.{js,mjs}", "./*.html"],
   theme: {
     screens: {
       "3xs": "320px",
@@ -45,6 +45,9 @@ module.exports = {
       },
       transitionDuration: {
         custom: "300ms",
+      },
+      gridTemplateColumns: {
+        fluid: "repeat(auto-fit, minmax(210px, 1fr));",
       },
     },
     fontFamily: {

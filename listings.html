@@ -11,11 +11,7 @@
     ></script>
     <script type="module" src="./src/js/layout/redirect.mjs" defer></script>
     <script type="module" src="./src/js/layout/mobile-menu.mjs" defer></script>
-    <script
-      type="module"
-      src="./src/js/listings/popular-listings.mjs"
-      defer
-    ></script>
+    <script type="module" src="./src/js/listings/index.mjs" defer></script>
     <title>Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
@@ -151,44 +147,67 @@
       <!-- *end sidebar -->
 
       <!-- *main content -->
-      <section class="bg-[#fed] md:ml-72 -z-10 text-whiteClr">
-        <!-- hero section -->
-        <div class="relative max-h-72 overflow-hidden">
-          <!-- backdrop -->
-          <aside
-            class="absolute top-0 left-0 h-full w-full bg-blackClr opacity-40 2xl:z-10"
-          ></aside>
-          <!-- text-container -->
-          <div
-            class="absolute top-[8%] left-[2%] space-y-4 2xs:space-y-6 2xl:z-10"
-          >
-            <h1
-              class="m-0 text-left no-underline text-[7vw] 2xs:text-[5vw] md:text-2xl lg:text-3xl"
-            >
-              Online Auction House
-            </h1>
-            <h3 class="text-[5vw] 2xs:text-[3.7vw] md:text-base lg:text-lg">
-              Buy and sell to the<br />
-              highest bidder
-            </h3>
-            <a
-              href="#"
-              class="inline-block btn-primary hover:text-whiteClr hover:border-whiteClr"
-            >
-              Sell you stuff
-            </a>
+      <section
+        class="mb-8 p-2 space-y-6 max-w-sm mx-auto md:ml-72 md:max-w-full md:px-12 lg:px-44 md:space-y-10"
+      >
+        <h1>Categories</h1>
+        <!-- categories -->
+        <nav class="text-xl">
+          <div class="flex justify-between">
+            <button data-category="various">
+              <i class="fa-solid fa-shop"></i>
+            </button>
+            <button data-category="vehicles">
+              <i class="fa-solid fa-car"></i>
+            </button>
+            <button data-category="electronics">
+              <i class="fa-solid fa-lightbulb"></i>
+            </button>
+            <button data-category="realestate">
+              <i class="fa-solid fa-house"></i>
+            </button>
           </div>
-          <!-- hero image -->
-          <img
-            src="./assets/images/hero-img.avif"
-            alt="People smiling and laughing"
-            class="h-auto w-full object-cover 2xl:relative bottom-[150px] z-0"
-          />
-        </div>
+        </nav>
+        <!-- second row -->
+        <nav class="text-xl">
+          <div class="flex justify-between">
+            <button data-category="travel">
+              <i class="fa-solid fa-earth-americas"></i>
+            </button>
+            <button data-category="boats">
+              <i class="fa-solid fa-sailboat"></i>
+            </button>
+            <button data-category="furniture">
+              <i class="fa-solid fa-couch"></i>
+            </button>
+            <button data-category="clothes">
+              <i class="fa-solid fa-shirt"></i>
+            </button>
+          </div>
+        </nav>
       </section>
       <!-- listings component -->
       <section class="p-2 md:ml-72">
-        <h2>Popular listings</h2>
+        <!-- filter section -->
+        <form
+          id="sort-listings-form"
+          class="flex justify-center items-center space-x-3 mb-6"
+        >
+          <p>Sort by</p>
+          <select
+            name="categories"
+            id="categories"
+            class="capitalize px-2 py-1 rounded-md outline-none border-2 border-primaryClr"
+          >
+            <option value="newest">newest</option>
+            <option value="oldest">oldest</option>
+            <option value="title-asc">title (asc)</option>
+            <option value="title-desc">title (desc)</option>
+            <option value="price-low-high">price (low-high)</option>
+            <option value="price-high-low">price (high-low)</option>
+          </select>
+        </form>
+        <!-- lisitngs -->
         <ul id="listing" class="grid grid-cols-fluid gap-4"></ul>
       </section>
     </main>

@@ -1,4 +1,6 @@
-import { clearLocalStorage } from "../utils/storage.mjs";
+import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
+import { getListings } from "../utils/gets.mjs";
+
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
 const line1 = document.querySelector(".line1");
@@ -41,3 +43,29 @@ window.addEventListener("resize", () => {
 });
 
 LogoutBtn.addEventListener("click", clearLocalStorage);
+
+window.addEventListener("DOMContentLoaded", () => {
+  const profileCard = document.querySelector(".profile-card");
+  const profileImage = profileCard.querySelector("img");
+  // TODO: get active bids and your listings
+  // const listingsProfileCard = profileCard.querySelector(
+  //   "#listings-profile-card"
+  // );
+  // const bidsProfileCard = profileCard.querySelector("#bids-profile-card");
+  const creditProfileCard = profileCard.querySelector(
+    "#credit-profile-card span"
+  );
+  const locStor = getLocalStorage();
+  profileImage.src = locStor.avatar;
+  creditProfileCard.textContent = locStor.credits;
+});
+
+// async function getActiveBids() {
+//   const data = await getListings();
+//   console.log("HERE::: ", data);
+//   const getYourBids = data.filter((listing) => {
+//     const bidsOnListing = listing.bids;
+//     console.log(bidsOnListing);
+//   });
+// }
+// getActiveBids();

@@ -1,4 +1,4 @@
-import { checkIfLoggedIn } from "./utils.mjs";
+import { checkIfLoggedIn } from "../layout/redirect.mjs";
 
 export function getLocalStorage() {
   const locStorage = localStorage.getItem("isLoggedIn")
@@ -7,7 +7,14 @@ export function getLocalStorage() {
   return locStorage;
 }
 
-export function setLocalStorage(isLoggedIn, token, name, email, avatar) {
+export function setLocalStorage(
+  isLoggedIn,
+  token,
+  name,
+  email,
+  avatar,
+  credits
+) {
   localStorage.setItem(
     "isLoggedIn",
     JSON.stringify({
@@ -16,6 +23,7 @@ export function setLocalStorage(isLoggedIn, token, name, email, avatar) {
       name: name,
       email: email,
       avatar: avatar,
+      credits: credits,
     })
   );
 }

@@ -1,6 +1,4 @@
 import { setLocalStorage } from "../utils/storage.mjs";
-
-// "/auction/auth/register";
 const baseURL = "https://api.noroff.dev/api/v1";
 const registerForm = document.querySelector("#registerForm");
 const loginForm = document.querySelector("#login-form");
@@ -51,8 +49,8 @@ async function loginFn(email, password) {
     });
     const data = await res.json();
     if (res.ok) {
-      const { accessToken, name, email, avatar } = data;
-      setLocalStorage(true, accessToken, name, email, avatar);
+      const { accessToken, name, email, avatar, credits } = data;
+      setLocalStorage(true, accessToken, name, email, avatar, credits);
       window.location.href = "../../../index.html";
     }
   } catch (e) {

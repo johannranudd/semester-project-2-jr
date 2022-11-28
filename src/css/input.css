@@ -16,7 +16,7 @@
     text-align: center;
     text-decoration: underline;
     font-size: 1.5rem;
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
   h2 {
     font-size: 1.2rem;
@@ -82,5 +82,68 @@
     border-radius: 6px;
     padding: 0.5rem 1rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*shadow md*/
+  }
+
+  #listing {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 2rem; */
+  }
+  .card {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*shadow md*/
+  }
+  .card .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16rem;
+    overflow: hidden;
+  }
+  .card img {
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  .card .text-content {
+    padding: 6px;
+  }
+  .card .title-and-price {
+    /* display: grid; */
+    /* grid-template-columns: 70% 30%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .card .title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1.2rem;
+  }
+  .card p {
+    /* color: #515150; */
+    color: #06212d;
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden; */
+  }
+  .card .seller {
+    margin-bottom: 0.5rem;
+    color: #515150;
+    /* color: #06212d; */
+  }
+  .card .price {
+    display: flex;
+    font-size: 1.2rem;
+    color: #515150;
+  }
+  .card .price span {
+    margin-left: 0.5rem;
   }
 }
