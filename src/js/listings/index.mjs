@@ -25,8 +25,24 @@ btnCategory.forEach((btn) => {
 async function getTags(e) {
   // TODO: come back here to filter after creating posts with apropriate tags
   // create a global var that changes so that each fetch gets it
-  console.log(e);
-  console.log(e.currentTarget.dataset.category);
+  tag = e.currentTarget.dataset.category.toLowerCase();
+  // const data = await getListings("", offset, "", "", "");
+  displayBasedOnSort(e, false);
+  // console.log(tag);
+  // let newArr = [];
+  // const hasDefinedTag = data.filter((item) => {
+  //   if (
+  //     item.tags.length > 0 &&
+  //     !item.tags.includes("") &&
+  //     item.tags !== undefined
+  //   ) {
+  //     return item;
+  //   }
+  // });
+  // // clean array here
+  // const test = hasDefinedTag.map((item) => {
+  //   console.log(item.tags);
+  // });
 }
 
 async function displayBasedOnSort(e, isAddingToPrevList = false) {
@@ -39,25 +55,27 @@ async function displayBasedOnSort(e, isAddingToPrevList = false) {
     loadingSpinner(listingsULElement);
   }
   if (e.target.value === undefined) {
-    const data = await getListings("", offset, "created", "desc");
+    const data = await getListings("", offset, "created", "desc", "");
     displayListings(data, listingsULElement, false);
   } else if (e.target.value === "newest") {
-    const data = await getListings("", offset, "created", "desc");
+    const data = await getListings("", offset, "created", "desc", tag);
     displayListings(data, listingsULElement, false);
   } else if (e.target.value === "oldest") {
-    const data = await getListings("", offset, "created", "asc");
+    const data = await getListings("", offset, "created", "asc", tag);
     displayListings(data, listingsULElement, false);
   } else if (e.target.value === "title-asc") {
-    const data = await getListings("", offset, "title", "asc");
+    const data = await getListings("", offset, "title", "asc", tag);
     displayListings(data, listingsULElement, false);
   } else if (e.target.value === "title-desc") {
-    const data = await getListings("", offset, "title", "desc");
+    const data = await getListings("", offset, "title", "desc", tag);
     displayListings(data, listingsULElement, false);
   } else if (e.target.value === "price-low-high") {
     sortByPrice("asc");
   } else if (e.target.value === "price-high-low") {
     sortByPrice("desc");
   }
+  console.log("e.target.value::", e.target.value);
+  console.log("tag:::", tag);
 }
 
 async function sortByPrice(sortDirection) {

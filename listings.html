@@ -153,15 +153,24 @@
         <h1>Categories</h1>
         <!-- categories -->
         <nav class="text-xl">
-          <div class="flex justify-between">
-            <button data-category="various" class="btn-category">
+          <div class="grid grid-cols-4 w-full">
+            <!-- <button data-category="various" class="btn-category">
+              <i class="fa-solid fa-shop"></i>
+            </button> -->
+            <button data-category="toyota" class="btn-category">
               <i class="fa-solid fa-shop"></i>
             </button>
-            <button data-category="vehicles" class="btn-category">
+            <!-- <button data-category="vehicles" class="btn-category">
               <i class="fa-solid fa-car"></i>
+            </button> -->
+            <button data-category="sword" class="btn-category">
+              <i class="fa-solid fa-shop"></i>
             </button>
-            <button data-category="electronics" class="btn-category">
+            <!-- <button data-category="electronics" class="btn-category">
               <i class="fa-solid fa-lightbulb"></i>
+            </button> -->
+            <button data-category="mystery" class="btn-category">
+              <i class="fa-solid fa-shop"></i>
             </button>
             <button data-category="realestate" class="btn-category">
               <i class="fa-solid fa-house"></i>
@@ -170,7 +179,7 @@
         </nav>
         <!-- second row -->
         <nav class="text-xl">
-          <div class="flex justify-between">
+          <div class="grid grid-cols-4 w-full">
             <button data-category="travel" class="btn-category">
               <i class="fa-solid fa-earth-americas"></i>
             </button>
@@ -191,21 +200,24 @@
         <!-- filter section -->
         <form
           id="sort-listings-form"
-          class="flex justify-center items-center space-x-3 mb-6"
+          class="flex flex-col justify-center items-center space-x-3 mb-6"
         >
-          <p>Sort by</p>
-          <select
-            name="sort-selector"
-            id="sort-selector"
-            class="capitalize px-2 py-1 rounded-md outline-none border-2 border-primaryClr"
-          >
-            <option value="newest">newest</option>
-            <option value="oldest">oldest</option>
-            <option value="title-asc">title (asc)</option>
-            <option value="title-desc">title (desc)</option>
-            <option value="price-low-high">price (low-high)</option>
-            <option value="price-high-low">price (high-low)</option>
-          </select>
+          <div class="flex space-x-3 mb-6">
+            <p>Sort by</p>
+            <select
+              name="sort-selector"
+              id="sort-selector"
+              class="capitalize py-1 rounded-md outline-none border-2 border-primaryClr"
+            >
+              <option value="newest">newest</option>
+              <option value="oldest">oldest</option>
+              <option value="title-asc">title (asc)</option>
+              <option value="title-desc">title (desc)</option>
+              <option value="price-low-high">price (low-high)</option>
+              <option value="price-high-low">price (high-low)</option>
+            </select>
+          </div>
+          <h6 id="results-showing">Showing: <span>Newest</span></h6>
         </form>
         <!-- lisitngs -->
         <ul id="listing" class="grid grid-cols-fluid gap-4"></ul>
