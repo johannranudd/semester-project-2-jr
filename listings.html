@@ -153,34 +153,43 @@
         <h1>Categories</h1>
         <!-- categories -->
         <nav class="text-xl">
-          <div class="flex justify-between">
-            <button data-category="various">
+          <div class="grid grid-cols-4 w-full">
+            <!-- <button data-category="various" class="btn-category">
+              <i class="fa-solid fa-shop"></i>
+            </button> -->
+            <button data-category="toyota" class="btn-category">
               <i class="fa-solid fa-shop"></i>
             </button>
-            <button data-category="vehicles">
+            <!-- <button data-category="vehicles" class="btn-category">
               <i class="fa-solid fa-car"></i>
+            </button> -->
+            <button data-category="sword" class="btn-category">
+              <i class="fa-solid fa-shop"></i>
             </button>
-            <button data-category="electronics">
+            <!-- <button data-category="electronics" class="btn-category">
               <i class="fa-solid fa-lightbulb"></i>
+            </button> -->
+            <button data-category="Mystery" class="btn-category">
+              <i class="fa-solid fa-shop"></i>
             </button>
-            <button data-category="realestate">
+            <button data-category="realestate" class="btn-category">
               <i class="fa-solid fa-house"></i>
             </button>
           </div>
         </nav>
         <!-- second row -->
         <nav class="text-xl">
-          <div class="flex justify-between">
-            <button data-category="travel">
+          <div class="grid grid-cols-4 w-full">
+            <button data-category="travel" class="btn-category">
               <i class="fa-solid fa-earth-americas"></i>
             </button>
-            <button data-category="boats">
+            <button data-category="boats" class="btn-category">
               <i class="fa-solid fa-sailboat"></i>
             </button>
-            <button data-category="furniture">
+            <button data-category="furniture" class="btn-category">
               <i class="fa-solid fa-couch"></i>
             </button>
-            <button data-category="clothes">
+            <button data-category="clothes" class="btn-category">
               <i class="fa-solid fa-shirt"></i>
             </button>
           </div>
@@ -191,21 +200,27 @@
         <!-- filter section -->
         <form
           id="sort-listings-form"
-          class="flex justify-center items-center space-x-3 mb-6"
+          class="flex flex-col justify-center items-center space-x-3 mb-6"
         >
-          <p>Sort by</p>
-          <select
-            name="categories"
-            id="categories"
-            class="capitalize px-2 py-1 rounded-md outline-none border-2 border-primaryClr"
-          >
-            <option value="newest">newest</option>
-            <option value="oldest">oldest</option>
-            <option value="title-asc">title (asc)</option>
-            <option value="title-desc">title (desc)</option>
-            <option value="price-low-high">price (low-high)</option>
-            <option value="price-high-low">price (high-low)</option>
-          </select>
+          <div class="flex space-x-3 mb-6">
+            <p>Sort by</p>
+            <select
+              name="sort-selector"
+              id="sort-selector"
+              class="capitalize py-1 rounded-md outline-none border-2 border-primaryClr"
+            >
+              <option value="newest">newest</option>
+              <option value="oldest">oldest</option>
+              <option value="title-asc">title (asc)</option>
+              <option value="title-desc">title (desc)</option>
+              <option value="price-low-high">price (low-high)</option>
+              <option value="price-high-low">price (high-low)</option>
+            </select>
+          </div>
+          <h6 id="results-showing">
+            <!-- Showing: <span id="sort-span">Newest / </span
+            ><span id="tag-span">toyota</span> -->
+          </h6>
         </form>
         <!-- lisitngs -->
         <ul id="listing" class="grid grid-cols-fluid gap-4"></ul>
