@@ -1,14 +1,7 @@
 import { loadingSpinner, removeSpinner } from "./loading.mjs";
 import { filterHighestBid } from "./various.mjs";
 
-export function displayListings(data, listElement, isAddingToPrevList = false) {
-  if (!isAddingToPrevList) {
-    if (listElement) {
-      listElement.innerHTML = "";
-      loadingSpinner(listElement);
-    }
-  }
-
+export function displayListings(data, listElement) {
   if (data) {
     removeSpinner();
     data.map((listing) => {

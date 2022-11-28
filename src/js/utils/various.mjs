@@ -8,6 +8,26 @@ export function sortByMostBids(data) {
     }
   });
 }
+// sort by highest integer
+export function sortByHighestInteger(data) {
+  return data.sort((a, b) => {
+    if (a.highestBid < b.highestBid) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+}
+// sort by highest integer
+export function sortByLowestInteger(data) {
+  return data.sort((a, b) => {
+    if (a.highestBid > b.highestBid) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+}
 
 // get listing still for sale
 export function getListingsStillForSale(data) {
@@ -60,3 +80,14 @@ export function addCountdownObject(data) {
   // const { days, hours, minutes, seconds } = countDownObject;
   // const countDownString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
+
+// export function addHighestBidObject(data) {
+//   return data.map((listing) => {
+//     const timeLeft = returnsTimeLeftInt(listing);
+//     const countDownObject = calculateTime(timeLeft);
+//     return {
+//       ...listing,
+//       countDownObject,
+//     };
+//   });
+// }
