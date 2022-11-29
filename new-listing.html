@@ -11,11 +11,7 @@
     ></script>
     <script type="module" src="./src/js/layout/redirect.mjs" defer></script>
     <script type="module" src="./src/js/layout/mobile-menu.mjs" defer></script>
-    <!-- <script
-      type="module"
-      src="./src/js/listings/popular-listings.mjs"
-      defer
-    ></script> -->
+    <script type="module" src="./src/js/new-listing/index.mjs" defer></script>
     <title>New lisitng | Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
@@ -99,7 +95,7 @@
           <!-- search bar -->
           <form class="flex justify-between my-4 mx-[5px] shadow-lg">
             <input
-              type="text"
+              type="search"
               placeholder="Search title, tag or description"
               aria-label="search"
               class="grow p-1 border-solid border-2 border-primaryClr border-r-0 outline-none rounded-l-md rounded-r-none"
@@ -159,7 +155,10 @@
       <section class="px-2 md:ml-72 -z-10">
         <h1>Create New Lising</h1>
 
-        <form class="flex flex-col max-w-md mx-auto space-y-6">
+        <form
+          id="new-listing-form"
+          class="flex flex-col max-w-md mx-auto space-y-6"
+        >
           <!-- title -->
           <div class="flex flex-col space-y-2">
             <label for="title"
@@ -168,9 +167,10 @@
             <input type="text" id="title" name="title" class="custom-input" />
           </div>
           <!-- tag -->
-          <!-- class="capitalize py-1 rounded-md outline-none border-2 border-primaryClr" -->
-          <!-- class="custom-input" -->
           <div class="flex flex-col space-y-2">
+            <label for="tag"
+              >Tag<span class="warning" data-name="tag"></span
+            ></label>
             <select
               class="custom-input capitalize"
               name="sort-selector"
@@ -185,10 +185,6 @@
               <option value="furniture">furniture</option>
               <option value="clothes">clothes</option>
             </select>
-            <!-- <label for="tag"
-              >Tag<span class="warning" data-name="tag"></span
-            ></label>
-            <input type="text" id="tag" name="tag" class="custom-input" /> -->
           </div>
           <!-- description -->
           <div class="flex flex-col space-y-2">
@@ -275,7 +271,7 @@
           <button
             type="button"
             id="preview"
-            class="py-2 px-3 border-solid border-2 border-primaryClr rounded-md shadow-lg hover:bg-whiteClr transition duration-300"
+            class="py-2 px-3 border-solid border-2 border-primaryClr rounded-md shadow-lg transition duration-300 hover:bg-primaryClr hover:text-whiteClr"
           >
             Preview
           </button>

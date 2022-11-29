@@ -1284,6 +1284,11 @@ label {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-primaryClr:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(6 33 45 / var(--tw-bg-opacity));
+}
+
 .hover\:text-primaryClr:hover{
   --tw-text-opacity: 1;
   color: rgb(6 33 45 / var(--tw-text-opacity));
