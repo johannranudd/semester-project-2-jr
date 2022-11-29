@@ -54,7 +54,7 @@ async function displayBasedOnSort(sortValue, isAddingToPrevList = false) {
     const data = await getListings("", offset, "created", "desc", tag);
     displayListings(data, listingsULElement, false);
     resultsShowing.innerHTML = `Showing: <span>Newest</span><span> ${tag}</span>`;
-    // sortValue = categories.value;
+    sortValue = categories.value;
   } else if (categories.value === "oldest") {
     console.log(categories.value);
     const data = await getListings("", offset, "created", "asc", tag);
