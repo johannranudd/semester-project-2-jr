@@ -757,18 +757,6 @@ label {
   width: 2.5rem;
 }
 
-.w-24{
-  width: 6rem;
-}
-
-.w-4{
-  width: 1rem;
-}
-
-.w-6{
-  width: 1.5rem;
-}
-
 .max-w-logo{
   max-width: 3rem;
 }
@@ -969,11 +957,6 @@ label {
   background-color: rgb(255 238 221 / var(--tw-bg-opacity));
 }
 
-.bg-pink-500{
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
-}
-
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
@@ -1005,16 +988,6 @@ label {
 .py-1{
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-}
-
-.px-4{
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.px-6{
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .text-left{
