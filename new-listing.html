@@ -11,8 +11,12 @@
     ></script>
     <script type="module" src="./src/js/layout/redirect.mjs" defer></script>
     <script type="module" src="./src/js/layout/mobile-menu.mjs" defer></script>
-    <script type="module" src="./src/js/listings/index.mjs" defer></script>
-    <title>Stash Auction House</title>
+    <!-- <script
+      type="module"
+      src="./src/js/listings/popular-listings.mjs"
+      defer
+    ></script> -->
+    <title>New lisitng | Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
     <!-- *navbar -->
@@ -42,7 +46,7 @@
     </nav>
     <!-- * end navbar -->
 
-    <!-- main -->
+    <!-- *main -->
     <main
       id="main-container"
       class="relative top-12 w-full mx-auto z-0 mb-20 md:container"
@@ -152,74 +156,133 @@
       <!-- *end sidebar -->
 
       <!-- *main content -->
-      <section
-        class="mb-8 p-2 space-y-6 max-w-sm mx-auto md:ml-72 md:max-w-full md:px-12 lg:px-44 md:space-y-10"
-      >
-        <h1>Categories</h1>
-        <!-- categories -->
-        <nav class="text-xl">
-          <div class="grid grid-cols-4 w-full">
-            <button data-category="various" class="btn-category">
-              <i class="fa-solid fa-shop"></i>
-            </button>
-            <button data-category="vehicles" class="btn-category">
-              <i class="fa-solid fa-car"></i>
-            </button>
-            <button data-category="electronics" class="btn-category">
-              <i class="fa-solid fa-lightbulb"></i>
-            </button>
-            <button data-category="realestate" class="btn-category">
-              <i class="fa-solid fa-house"></i>
-            </button>
+      <section class="px-2 md:ml-72 -z-10">
+        <h1>Create New Lising</h1>
+
+        <form class="flex flex-col max-w-md mx-auto space-y-6">
+          <!-- title -->
+          <div class="flex flex-col space-y-2">
+            <label for="title"
+              >Title<span class="warning" data-name="title"></span
+            ></label>
+            <input type="text" id="title" name="title" class="custom-input" />
           </div>
-        </nav>
-        <!-- second row -->
-        <nav class="text-xl">
-          <div class="grid grid-cols-4 w-full">
-            <button data-category="travel" class="btn-category">
-              <i class="fa-solid fa-earth-americas"></i>
-            </button>
-            <button data-category="boats" class="btn-category">
-              <i class="fa-solid fa-sailboat"></i>
-            </button>
-            <button data-category="furniture" class="btn-category">
-              <i class="fa-solid fa-couch"></i>
-            </button>
-            <button data-category="clothes" class="btn-category">
-              <i class="fa-solid fa-shirt"></i>
-            </button>
-          </div>
-        </nav>
-      </section>
-      <!-- listings component -->
-      <section class="p-2 md:ml-72">
-        <!-- filter section -->
-        <form
-          id="sort-listings-form"
-          class="flex flex-col justify-center items-center space-x-3 mb-6"
-        >
-          <div class="flex space-x-3 mb-6">
-            <p>Sort by</p>
+          <!-- tag -->
+          <!-- class="capitalize py-1 rounded-md outline-none border-2 border-primaryClr" -->
+          <!-- class="custom-input" -->
+          <div class="flex flex-col space-y-2">
             <select
+              class="custom-input capitalize"
               name="sort-selector"
               id="sort-selector"
-              class="capitalize py-1 rounded-md outline-none border-2 border-primaryClr"
             >
-              <option value="newest">newest</option>
-              <option value="oldest">oldest</option>
-              <option value="title-asc">title (asc)</option>
-              <option value="title-desc">title (desc)</option>
-              <option value="price-low-high">price (low-high)</option>
-              <option value="price-high-low">price (high-low)</option>
+              <option value="various">various</option>
+              <option value="vehicles">vehicles</option>
+              <option value="electronics">electronics</option>
+              <option value="realestate">realestate</option>
+              <option value="travel">travel</option>
+              <option value="boats">boats</option>
+              <option value="furniture">furniture</option>
+              <option value="clothes">clothes</option>
             </select>
+            <!-- <label for="tag"
+              >Tag<span class="warning" data-name="tag"></span
+            ></label>
+            <input type="text" id="tag" name="tag" class="custom-input" /> -->
           </div>
-          <h6 id="results-showing">
-            <!-- Showing: <span id="sort-span">Newest / </span
-            ><span id="tag-span">toyota</span> -->
-          </h6>
+          <!-- description -->
+          <div class="flex flex-col space-y-2">
+            <label for="description"
+              >Description<span class="warning" data-name="description"></span
+            ></label>
+            <textarea
+              name="description"
+              id="description"
+              rows="10"
+              class="custom-input resize-none"
+            ></textarea>
+          </div>
+          <!-- address -->
+          <div class="flex flex-col space-y-2">
+            <label for="address"
+              >Address<span class="warning" data-name="address"></span
+            ></label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              class="custom-input"
+            />
+          </div>
+          <!-- smaller inputs -->
+          <div
+            class="space-y-4 xs:flex xs:justify-between xs:items-center xs:space-y-0"
+          >
+            <!-- zip -->
+            <div class="flex flex-col space-y-2 w-44">
+              <label for="zip"
+                >zip<span class="warning" data-name="zip"></span
+              ></label>
+              <input type="text" id="zip" name="zip" class="custom-input" />
+            </div>
+            <!-- starting price -->
+            <div class="flex flex-col space-y-2 w-44">
+              <label for="starting-price"
+                >Starting price<span
+                  class="warning"
+                  data-name="starting-price"
+                ></span
+              ></label>
+              <input
+                type="text"
+                id="starting-price"
+                name="starting-price"
+                class="custom-input"
+              />
+            </div>
+          </div>
+          <!-- smaller inputs 2 -->
+          <div
+            class="space-y-4 xs:flex xs:justify-between xs:items-center xs:space-y-0"
+          >
+            <!-- ends at -->
+            <div class="flex flex-col space-y-2 w-44">
+              <label for="ends-at"
+                >Ends at<span class="warning" data-name="ends-at"></span
+              ></label>
+              <input
+                type="date"
+                id="ends-at"
+                name="ends-at"
+                class="custom-input cursor-pointer"
+              />
+            </div>
+            <!-- image url -->
+            <div class="flex flex-col space-y-2 w-44">
+              <label for="image-url"
+                >Image URL<span class="warning" data-name="image-url"></span
+              ></label>
+              <input
+                type="text"
+                id="image-url"
+                name="image-url"
+                class="custom-input"
+              />
+            </div>
+          </div>
+
+          <!-- preview -->
+          <button
+            type="button"
+            id="preview"
+            class="py-2 px-3 border-solid border-2 border-primaryClr rounded-md shadow-lg hover:bg-whiteClr transition duration-300"
+          >
+            Preview
+          </button>
+
+          <!-- submit btn -->
+          <button type="submit" class="btn-primary">Submit</button>
         </form>
-        <!-- lisitngs -->
-        <ul id="listing" class="grid grid-cols-fluid gap-4"></ul>
       </section>
     </main>
     <!-- *end main content -->

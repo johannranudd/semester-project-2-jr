@@ -617,12 +617,12 @@ label {
   z-index: 0;
 }
 
-.-z-10{
-  z-index: -10;
-}
-
 .z-50{
   z-index: 50;
+}
+
+.-z-10{
+  z-index: -10;
 }
 
 .m-0{
@@ -653,12 +653,16 @@ label {
   margin-right: 0.75rem;
 }
 
-.mb-20{
-  margin-bottom: 5rem;
+.mr-1\.5{
+  margin-right: 0.375rem;
 }
 
 .mr-1{
   margin-right: 0.25rem;
+}
+
+.mb-20{
+  margin-bottom: 5rem;
 }
 
 .mt-auto{
@@ -705,10 +709,6 @@ label {
   height: 8rem;
 }
 
-.h-12{
-  height: 3rem;
-}
-
 .h-2\.5{
   height: 0.625rem;
 }
@@ -723,6 +723,10 @@ label {
 
 .h-auto{
   height: auto;
+}
+
+.h-12{
+  height: 3rem;
 }
 
 .max-h-72{
@@ -741,10 +745,6 @@ label {
   width: 100%;
 }
 
-.w-12{
-  width: 3rem;
-}
-
 .w-2\.5{
   width: 0.625rem;
 }
@@ -755,6 +755,18 @@ label {
 
 .w-10{
   width: 2.5rem;
+}
+
+.w-12{
+  width: 3rem;
+}
+
+.w-36{
+  width: 9rem;
+}
+
+.w-44{
+  width: 11rem;
 }
 
 .max-w-logo{
@@ -790,6 +802,14 @@ label {
 
 .animate-spin{
   animation: spin 1s linear infinite;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.resize-none{
+  resize: none;
 }
 
 .resize{
@@ -906,6 +926,10 @@ label {
   border-width: 2px;
 }
 
+.border{
+  border-width: 1px;
+}
+
 .border-b-2{
   border-bottom-width: 2px;
 }
@@ -988,6 +1012,16 @@ label {
 .py-1{
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.py-2{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .text-left{
@@ -1096,6 +1130,10 @@ label {
   transition-duration: 300ms;
 }
 
+.duration-300{
+  transition-duration: 300ms;
+}
+
 .hoverAnimation {
   padding: 5px;
   border-radius: 20px;
@@ -1144,6 +1182,17 @@ label {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   /*shadow md*/
 }
+
+/* class="w-12 h-12 mr-1 rounded-full object-cover border-solid border-2 border-whiteClr 2xs:w-14 2xs:h-14" */
+
+/* .profile-card img {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.25rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid white;
+  } */
 
 #listing {
   /* display: grid;
@@ -1230,6 +1279,11 @@ label {
   background-color: rgb(234 246 248 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-whiteClr:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .hover\:text-primaryClr:hover{
   --tw-text-opacity: 1;
   color: rgb(6 33 45 / var(--tw-text-opacity));
@@ -1274,6 +1328,26 @@ label {
 
   .\32xs\:text-\[3\.7vw\]{
     font-size: 3.7vw;
+  }
+}
+
+@media (min-width: 480px){
+  .xs\:flex{
+    display: flex;
+  }
+
+  .xs\:items-center{
+    align-items: center;
+  }
+
+  .xs\:justify-between{
+    justify-content: space-between;
+  }
+
+  .xs\:space-y-0 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 }
 
