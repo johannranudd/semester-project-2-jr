@@ -709,6 +709,10 @@ label {
   height: 8rem;
 }
 
+.h-12{
+  height: 3rem;
+}
+
 .h-2\.5{
   height: 0.625rem;
 }
@@ -723,10 +727,6 @@ label {
 
 .h-auto{
   height: auto;
-}
-
-.h-12{
-  height: 3rem;
 }
 
 .max-h-72{
@@ -745,6 +745,10 @@ label {
   width: 100%;
 }
 
+.w-12{
+  width: 3rem;
+}
+
 .w-2\.5{
   width: 0.625rem;
 }
@@ -755,14 +759,6 @@ label {
 
 .w-10{
   width: 2.5rem;
-}
-
-.w-12{
-  width: 3rem;
-}
-
-.w-36{
-  width: 9rem;
 }
 
 .w-44{
@@ -924,10 +920,6 @@ label {
 
 .border-2{
   border-width: 2px;
-}
-
-.border{
-  border-width: 1px;
 }
 
 .border-b-2{
@@ -1277,11 +1269,6 @@ label {
 .hover\:bg-secondaryClr:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(234 246 248 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-whiteClr:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-primaryClr:hover{

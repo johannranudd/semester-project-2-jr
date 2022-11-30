@@ -169,13 +169,9 @@
           <!-- tag -->
           <div class="flex flex-col space-y-2">
             <label for="tag"
-              >Tag<span class="warning" data-name="tag"></span
+              >Tag<span class="warning" data-name="tags"></span
             ></label>
-            <select
-              class="custom-input capitalize"
-              name="sort-selector"
-              id="sort-selector"
-            >
+            <select class="custom-input capitalize" name="tags" id="tags">
               <option value="various">various</option>
               <option value="vehicles">vehicles</option>
               <option value="electronics">electronics</option>
@@ -199,7 +195,7 @@
             ></textarea>
           </div>
           <!-- address -->
-          <div class="flex flex-col space-y-2">
+          <!-- <div class="flex flex-col space-y-2">
             <label for="address"
               >Address<span class="warning" data-name="address"></span
             ></label>
@@ -209,20 +205,20 @@
               name="address"
               class="custom-input"
             />
-          </div>
+          </div> -->
           <!-- smaller inputs -->
-          <div
+          <!-- <div
             class="space-y-4 xs:flex xs:justify-between xs:items-center xs:space-y-0"
-          >
-            <!-- zip -->
-            <div class="flex flex-col space-y-2 w-44">
+          > -->
+          <!-- zip -->
+          <!-- <div class="flex flex-col space-y-2 w-44">
               <label for="zip"
                 >zip<span class="warning" data-name="zip"></span
               ></label>
               <input type="text" id="zip" name="zip" class="custom-input" />
-            </div>
-            <!-- starting price -->
-            <div class="flex flex-col space-y-2 w-44">
+            </div> -->
+          <!-- starting price -->
+          <!-- <div class="flex flex-col space-y-2 w-44">
               <label for="starting-price"
                 >Starting price<span
                   class="warning"
@@ -235,35 +231,30 @@
                 name="starting-price"
                 class="custom-input"
               />
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
           <!-- smaller inputs 2 -->
           <div
             class="space-y-4 xs:flex xs:justify-between xs:items-center xs:space-y-0"
           >
             <!-- ends at -->
             <div class="flex flex-col space-y-2 w-44">
-              <label for="ends-at"
-                >Ends at<span class="warning" data-name="ends-at"></span
+              <label for="endsAt"
+                >Ends at<span class="warning" data-name="endsAt"></span
               ></label>
               <input
                 type="date"
-                id="ends-at"
-                name="ends-at"
+                id="endsAt"
+                name="endsAt"
                 class="custom-input cursor-pointer"
               />
             </div>
             <!-- image url -->
             <div class="flex flex-col space-y-2 w-44">
-              <label for="image-url"
-                >Image URL<span class="warning" data-name="image-url"></span
+              <label for="media"
+                >Image URL<span class="warning" data-name="media"></span
               ></label>
-              <input
-                type="text"
-                id="image-url"
-                name="image-url"
-                class="custom-input"
-              />
+              <input type="text" id="media" name="media" class="custom-input" />
             </div>
           </div>
 
