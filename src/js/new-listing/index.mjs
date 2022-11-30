@@ -1,35 +1,44 @@
 // POST /api/v1/auction/listings
+// 3d486168-1380-41e0-b552-66e3fd038a22
 import { getListings } from "../utils/gets.mjs";
-// import { createSubmitObject } from "../utils/various.mjs";
-// import { postListing } from "../utils/posts.mjs";
+import { postListing } from "../utils/posts.mjs";
 const formNewListing = document.querySelector("#new-listing-form");
 
 formNewListing.addEventListener("submit", (e) => {
   e.preventDefault();
-  let sumbitObject = {
-    title, // Required
-    description, // Optional
-    tags: [], // optional
-    media: [], // Optional
-    endsAt, // Required - Instance of new Date()
-  };
+  let submitObject = {};
   const titleVal = formNewListing.querySelector("#title").value;
   const descriptionVal = formNewListing.querySelector("#description").value;
   const dateVal = formNewListing.querySelector("#endsAt").value;
   const tags = formNewListing.querySelector("#tags");
-  const mediaVal = formNewListing.querySelector("#media");
+  const mediaVal = formNewListing.querySelector("#media").value;
 
   if (titleVal && dateVal && tags) {
-    sumbitObject.title = titleVal;
-    // const opt = tags.options;
-    let selected = [];
-    for (var option of tags.options) {
-      if (option.selected) {
-        selected.push(option.value);
+    const now = new Date();
+    const date = new Date(dateVal);
+    if (date.getTime() > now.getTime()) {
+      submitObject.title = titleVal;
+      submitObject.endsAt = date;
+
+      let selected = [];
+      for (var option of tags.options) {
+        if (option.selected) {
+          selected.push(option.value.toLowerCase());
+        }
       }
+      submitObject.tags = selected;
+      if (descriptionVal) {
+        submitObject.description = descriptionVal;
+      }
+      if (mediaVal) {
+        const mediaArray = mediaVal.split(/[ ,]+/);
+        submitObject.media = mediaArray;
+      }
+      postListing(submitObject);
+      // window.location = "../../../listings.html";
     }
-    console.log(selected);
   } else {
+    // display warnings here
   }
 
   // createSubmitObject(descriptionText, sumbitObject);
@@ -46,6 +55,6 @@ formNewListing.addEventListener("submit", (e) => {
   //   });
   // }
 
-  console.log(sumbitObject);
+  // console.log(submitObject);
   // postListing(sumbitObject);
 });
