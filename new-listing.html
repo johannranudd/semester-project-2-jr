@@ -169,9 +169,17 @@
           <!-- tag -->
           <div class="flex flex-col space-y-2">
             <label for="tag"
-              >Tag<span class="warning" data-name="tags"></span
+              >Tag (hold Ctrl or Command for multiple)<span
+                class="warning"
+                data-name="tags"
+              ></span
             ></label>
-            <select class="custom-input capitalize" name="tags" id="tags">
+            <select
+              class="custom-input capitalize"
+              name="tags"
+              id="tags"
+              multiple
+            >
               <option value="various">various</option>
               <option value="vehicles">vehicles</option>
               <option value="electronics">electronics</option>

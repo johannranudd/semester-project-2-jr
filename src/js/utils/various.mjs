@@ -1,3 +1,16 @@
+// export function createSubmitObject(input, object) {
+//   if (input.type === "text") {
+//     createOrDeleteKeys(input, object);
+//   } else if (input.type === "date") {
+//     const date = new Date(input.value).toString();
+//     object.endsAt = date;
+//   } else if (input.type === "textarea") {
+//     createOrDeleteKeys(input, object);
+//   } else if (input.type === "select-one") {
+//     createOrDeleteKeys(input, object);
+//   }
+// }
+
 // sort by most bids
 export function sortByMostBids(data) {
   return data.sort((a, b) => {
