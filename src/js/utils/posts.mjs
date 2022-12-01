@@ -19,7 +19,7 @@ export async function postListing(submitObject) {
       console.log(data);
       return data;
     } else {
-      console.log("res not OK");
+      console.log("req not OK");
     }
   } catch (error) {
     throw new Error(error.toString());

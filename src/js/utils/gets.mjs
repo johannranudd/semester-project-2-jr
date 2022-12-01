@@ -21,15 +21,61 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
     );
     if (res.ok) {
       const data = await res.json();
-      const stillForSale = getListingsStillForSale(data);
-      return stillForSale;
+      return data;
     }
   } catch (error) {
     console.log(error, "an error occured in getListings()");
   }
 }
 
-// `${baseURL}/auction/listings?_seller=true&_bids=true&offset=${offset}${limitQuery}`,
+export async function getSingleListing(id) {
+  const locStor = getLocalStorage();
+  try {
+    const res = await fetch(`${baseURL}/auction/profiles/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${locStor.token}`,
+      },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+  } catch (error) {
+    console.log(error, "an error occured in getSingleListing()");
+  }
+}
+export async function getAllListingsByProfile(
+  limit,
+  offset = 0,
+  sort,
+  sortOrder,
+  tag,
+  name
+) {
+  const locStor = getLocalStorage();
+  const limitQuery = setFetchLimitURL(limit);
+  const sortQuery = setSortQuery(sort);
+  const sortOrderQuery = setSortOrderQuery(sortOrder);
+  const tagQuery = setTagQuery(tag);
+  try {
+    const res = await fetch(
+      `${baseURL}/auction/profiles/${name}/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&offset=${offset}${limitQuery}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${locStor.token}`,
+        },
+      }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+  } catch (error) {
+    console.log(error, "an error occured in getAllListingsByProfile()");
+  }
+}
 
 export function setTagQuery(tag) {
   if (!tag) {

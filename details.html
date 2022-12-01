@@ -11,11 +11,7 @@
     ></script>
     <script type="module" src="./src/js/layout/redirect.mjs" defer></script>
     <script type="module" src="./src/js/layout/mobile-menu.mjs" defer></script>
-    <script
-      type="module"
-      src="./src/js/listings/profile-listings.mjs"
-      defer
-    ></script>
+    <script type="module" src="./src/js/details/index.mjs" defer></script>
     <title>Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
@@ -156,74 +152,13 @@
       <!-- *end sidebar -->
 
       <!-- *main content -->
-      <section class="md:ml-72">
-        <!-- profile card -->
-        <header
-          class="main-profile-card flex justify-between items-center px-2 py-4 w-full space-x-1 shadow-custom2"
-        >
-          <!-- image -->
-          <div class="relative">
-            <img
-              src="./assets/images/profile-img.png"
-              alt="your profile image"
-              class="w-20 h-20 mr-1 rounded-full object-cover border-solid border-2 border-primaryClr xs:w-24 xs:h-24"
-            />
-            <div
-              class="absolute left-11 bottom-0 w-2.5 h-2.5 rounded-full shadow-lg shadow-custom3 bg-success xs:left-[4.8rem] xs:bottom-2"
-            ></div>
-          </div>
-          <!-- text -->
-          <div class="flex flex-col justify-between space-y-3 grow">
-            <div
-              class="flex flex-col 2xs:flex-row 2xs:justify-between 2xs:items-center"
-            >
-              <h3 class="capitalize whitespace-nowrap">johann ranudd</h3>
-              <p class="text-sm">email@email.com</p>
-            </div>
-            <div class="flex justify-between items-end">
-              <div class="flex flex-col">
-                <p id="listings-profile-card" class="text-sm break-words">
-                  Listings: <span>0</span>
-                </p>
-                <p class="text-sm break-words">Active bids: <span>0</span></p>
-                <p class="text-sm break-words">Credit: <span>0</span></p>
-                <p class="text-sm break-words">Wins: <span>0</span></p>
-              </div>
-              <div><button type="button">Edit Profile</button></div>
-            </div>
-          </div>
-        </header>
-      </section>
-      <!-- listings component -->
-
       <section class="p-2 md:ml-72">
-        <h2>Your listings</h2>
-
-        <form
-          id="sort-listings-form"
-          class="flex flex-col justify-center items-center space-x-3 mb-6"
-        >
-          <div class="flex space-x-3 mb-6">
-            <p>Sort by</p>
-            <select
-              name="sort-selector"
-              id="sort-selector"
-              class="capitalize py-1 rounded-md outline-none border-2 border-primaryClr"
-            >
-              <option value="newest">newest</option>
-              <option value="oldest">oldest</option>
-              <option value="title-asc">title (asc)</option>
-              <option value="title-desc">title (desc)</option>
-              <option value="price-low-high">price (low-high)</option>
-              <option value="price-high-low">price (high-low)</option>
-            </select>
-          </div>
-          <h6 id="results-showing">
-            <!-- Showing: <span id="sort-span">Newest / </span
-            ><span id="tag-span">toyota</span> -->
-          </h6>
-        </form>
-        <ul id="listing" class="grid grid-cols-fluid gap-4"></ul>
+        <!-- carousel -->
+        <!-- title, seller, description -->
+        <!-- live auction -->
+        <!-- countdown card -->
+        <!-- bids -->
+        <!-- live auction -->
       </section>
     </main>
     <!-- *end main content -->
