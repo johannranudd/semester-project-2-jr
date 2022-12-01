@@ -4,10 +4,275 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/css/output.css" />
+    <script
+      src="https://kit.fontawesome.com/7246593e30.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="./src/js/layout/redirect.mjs" defer></script>
-    <title>Profile</title>
+    <script type="module" src="./src/js/layout/mobile-menu.mjs" defer></script>
+    <script
+      type="module"
+      src="./src/js/listings/profile-listings.mjs"
+      defer
+    ></script>
+    <title>Stash Auction House</title>
   </head>
-  <body>
-    <h1>Profile page</h1>
+  <body class="flex flex-col justify-between min-h-screen">
+    <!-- *navbar -->
+    <nav
+      class="fixed top-0 z-10 w-full bg-primaryClr px-2 border-solid border-b-[1px] border-whiteClr"
+    >
+      <div class="mx-auto flex justify-between items-center md:container">
+        <!-- logo -->
+        <a href="./">
+          <img
+            src="./assets/images/stash-logo.png"
+            alt="stash logo"
+            class="w-full max-w-logo"
+          />
+        </a>
+        <!-- hamburger button -->
+        <button
+          type="button"
+          id="menu-btn"
+          class="rounded-full text-whiteClr md:hidden mr-1.5"
+        >
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </button>
+      </div>
+    </nav>
+    <!-- * end navbar -->
+
+    <!-- *main -->
+    <main
+      id="main-container"
+      class="relative top-12 w-full mx-auto z-0 mb-20 md:container"
+    >
+      <!-- *sidebar -->
+      <div
+        id="backdrop"
+        class="hidden top-0 -left-[50vw] right-0 bottom-0 min-h-screen min-w-screen bg-blackClr opacity-50 md:hidden"
+      >
+        backdrop
+      </div>
+      <aside
+        id="sidebar"
+        class="fixed top-12 -translate-x-[200%] w-full min-h-screen z-50 bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
+      >
+        <!-- profile card -->
+        <header
+          class="profile-card flex justify-between items-center px-1 py-4 w-full space-x-1 rounded-b-md shadow-custom2 text-whiteClr bg-primaryClr"
+        >
+          <!-- image -->
+          <div class="relative">
+            <img
+              src="./assets/images/profile-img.png"
+              alt="your profile image"
+              class="w-12 h-12 mr-1 rounded-full object-cover border-solid border-2 border-whiteClr 2xs:w-14 2xs:h-14"
+            />
+            <div
+              class="absolute left-8 bottom-0 w-2.5 h-2.5 rounded-full shadow-lg shadow-custom3 bg-success 2xs:left-10"
+            ></div>
+          </div>
+          <!-- text -->
+          <div class="grow">
+            <h3 class="test capitalize">johann ranudd</h3>
+            <div class="flex justify-between items-center space-x-1">
+              <p id="listings-profile-card" class="text-sm break-words">
+                Listings: <span>0</span>
+              </p>
+              <p id="bids-profile-card" class="text-sm break-words">
+                Active bids: <span>0</span>
+              </p>
+              <p id="credit-profile-card" class="text-sm break-words">
+                Credit: <span>0</span>
+              </p>
+            </div>
+          </div>
+        </header>
+
+        <!-- <div class="p-1 text-primaryClr"> -->
+        <div class="p-1 text-primaryClr">
+          <!-- search bar -->
+          <form class="flex justify-between my-4 mx-[5px] shadow-lg">
+            <input
+              type="search"
+              placeholder="Search title, tag or description"
+              aria-label="search"
+              class="grow p-1 border-solid border-2 border-primaryClr border-r-0 outline-none rounded-l-md rounded-r-none"
+            />
+            <button
+              type="submit"
+              class="w-10 bg-primaryClr text-whiteClr border-solid border-2 border-primaryClr rounded-r-md hover:bg-secondaryClr hover:text-primaryClr transition duration-custom"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+
+          <!-- Links -->
+          <!-- TODO: active class for page user is on -->
+          <ul class="space-y-3 font-semibold">
+            <li>
+              <a href="./index.html" class="inline-block text-lg hoverAnimation"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="./listings.html"
+                class="inline-block text-lg hoverAnimation"
+                >Listings</a
+              >
+            </li>
+            <li>
+              <a
+                href="./new-listing.html"
+                class="inline-block text-lg hoverAnimation"
+                >New Listning</a
+              >
+            </li>
+            <li>
+              <a
+                href="./profile.html"
+                class="inline-block text-lg hoverAnimation"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <button
+                type="button"
+                id="logout-btn"
+                class="inline-block text-lg hoverAnimation"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <!-- *end sidebar -->
+
+      <!-- *main content -->
+      <section class="md:ml-72">
+        <!-- profile card -->
+        <header
+          class="main-profile-card flex justify-between items-center px-2 py-4 w-full space-x-1 shadow-custom2"
+        >
+          <!-- image -->
+          <div class="relative">
+            <img
+              src="./assets/images/profile-img.png"
+              alt="your profile image"
+              class="w-20 h-20 mr-1 rounded-full object-cover border-solid border-2 border-primaryClr xs:w-24 xs:h-24"
+            />
+            <div
+              class="absolute left-11 bottom-0 w-2.5 h-2.5 rounded-full shadow-lg shadow-custom3 bg-success xs:left-[4.8rem] xs:bottom-2"
+            ></div>
+          </div>
+          <!-- text -->
+          <div class="flex flex-col justify-between space-y-3 grow">
+            <div
+              class="flex flex-col 2xs:flex-row 2xs:justify-between 2xs:items-center"
+            >
+              <h3 class="capitalize whitespace-nowrap">johann ranudd</h3>
+              <p class="text-sm">email@email.com</p>
+            </div>
+            <div class="flex justify-between items-end">
+              <div class="flex flex-col">
+                <p id="listings-profile-card" class="text-sm break-words">
+                  Listings: <span>0</span>
+                </p>
+                <p class="text-sm break-words">Active bids: <span>0</span></p>
+                <p class="text-sm break-words">Credit: <span>0</span></p>
+                <p class="text-sm break-words">Wins: <span>0</span></p>
+              </div>
+              <div><button type="button">Edit Profile</button></div>
+            </div>
+          </div>
+        </header>
+      </section>
+      <!-- listings component -->
+
+      <section class="p-2 md:ml-72">
+        <h2>Your listings</h2>
+
+        <form
+          id="sort-listings-form"
+          class="flex flex-col justify-center items-center space-x-3 mb-6"
+        >
+          <div class="flex space-x-3 mb-6">
+            <p>Sort by</p>
+            <select
+              name="sort-selector"
+              id="sort-selector"
+              class="capitalize py-1 rounded-md outline-none border-2 border-primaryClr"
+            >
+              <option value="newest">newest</option>
+              <option value="oldest">oldest</option>
+              <option value="title-asc">title (asc)</option>
+              <option value="title-desc">title (desc)</option>
+              <option value="price-low-high">price (low-high)</option>
+              <option value="price-high-low">price (high-low)</option>
+            </select>
+          </div>
+          <h6 id="results-showing">
+            <!-- Showing: <span id="sort-span">Newest / </span
+            ><span id="tag-span">toyota</span> -->
+          </h6>
+        </form>
+        <ul id="listing" class="grid grid-cols-fluid gap-4"></ul>
+      </section>
+    </main>
+    <!-- *end main content -->
+    <!-- footer -->
+    <footer class="w-full mt-auto z-50 bg-primaryClr p-2 text-whiteClr">
+      <!-- wrapper -->
+      <div class="relative w-full max-w-sm m-auto md:container">
+        <div class="flex justify-between mb-5 mx-3 md:mx-0">
+          <!-- logo -->
+          <a href="./">
+            <img
+              src="./assets/images/stash-logo.png"
+              alt="stash logo"
+              class="w-full max-w-logo"
+            />
+          </a>
+          <!-- social -->
+          <div class="flex flex-col items-center">
+            <p>Find us on:</p>
+            <div class="flex space-x-6">
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+              <a href="#" class="hover:text-hoverWhiteClr">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- text -->
+        <div
+          class="text-center md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2"
+        >
+          <p>
+            Do you have any questions? Contact us by email at:
+            <a
+              href="mailto:stash.info@stash.com"
+              class="underline hover:text-hoverWhiteClr"
+              >stash.info@stash.com</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

@@ -32,11 +32,9 @@ export function sortByLowestInteger(data) {
 // get listing still for sale
 export function getListingsStillForSale(data) {
   return data.filter((listing) => {
-    if (listing.bids.length > 0) {
-      const timeLeft = returnsTimeLeftInt(listing);
-      if (timeLeft > 0) {
-        return listing;
-      }
+    const timeLeft = returnsTimeLeftInt(listing);
+    if (timeLeft > 0) {
+      return listing;
     }
   });
 }
@@ -64,6 +62,9 @@ export function filterHighestBid(listings) {
     accumulator.push(currentValue.amount);
     return accumulator;
   }, []);
+  if (highestBid.length === 0) {
+    return 0;
+  }
   return Math.max(...highestBid);
 }
 

@@ -19,9 +19,10 @@ async function filterTwentyMostPopular() {
   const data = await getListings("", 0);
   const sortedByMostBids = sortByMostBids(data);
   // const stillForSale = getListingsStillForSale(sortedByMostBids);
-  const listingWithCountdownObject = addCountdownObject(sortedByMostBids);
-  // limit to 20
-  const twentyMostPopular = listingWithCountdownObject.slice(0, 10);
+  // const listingWithCountdownObject = addCountdownObject(stillForSale);
+  // limit to
+  const twentyMostPopular = sortedByMostBids.slice(0, 20);
+  // console.log(twentyMostPopular);
   displayListings(twentyMostPopular, listingsULElement);
 }
 

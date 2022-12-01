@@ -84,6 +84,17 @@
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*shadow md*/
   }
 
+  /* class="w-12 h-12 mr-1 rounded-full object-cover border-solid border-2 border-whiteClr 2xs:w-14 2xs:h-14" */
+
+  /* .profile-card img {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.25rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid white;
+  } */
+
   #listing {
     /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));

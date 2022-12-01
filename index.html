@@ -19,7 +19,7 @@
     <title>Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
-    <!-- navbar -->
+    <!-- *navbar -->
     <nav
       class="fixed top-0 z-10 w-full bg-primaryClr px-2 border-solid border-b-[1px] border-whiteClr"
     >
@@ -36,7 +36,7 @@
         <button
           type="button"
           id="menu-btn"
-          class="rounded-full text-whiteClr md:hidden"
+          class="rounded-full text-whiteClr md:hidden mr-1.5"
         >
           <div class="line line1"></div>
           <div class="line line2"></div>
@@ -44,8 +44,9 @@
         </button>
       </div>
     </nav>
+    <!-- * end navbar -->
 
-    <!-- main -->
+    <!-- *main -->
     <main
       id="main-container"
       class="relative top-12 w-full mx-auto z-0 mb-20 md:container"
@@ -59,7 +60,7 @@
       </div>
       <aside
         id="sidebar"
-        class="fixed top-12 -translate-x-[200%] w-full min-h-screen z-10 bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
+        class="fixed top-12 -translate-x-[200%] w-full min-h-screen z-50 bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
       >
         <!-- profile card -->
         <header
@@ -98,7 +99,7 @@
           <!-- search bar -->
           <form class="flex justify-between my-4 mx-[5px] shadow-lg">
             <input
-              type="text"
+              type="search"
               placeholder="Search title, tag or description"
               aria-label="search"
               class="grow p-1 border-solid border-2 border-primaryClr border-r-0 outline-none rounded-l-md rounded-r-none"
@@ -127,12 +128,16 @@
               >
             </li>
             <li>
-              <a href="#" class="inline-block text-lg hoverAnimation"
+              <a
+                href="./new-listing.html"
+                class="inline-block text-lg hoverAnimation"
                 >New Listning</a
               >
             </li>
             <li>
-              <a href="#" class="inline-block text-lg hoverAnimation"
+              <a
+                href="./profile.html"
+                class="inline-block text-lg hoverAnimation"
                 >Profile</a
               >
             </li>
