@@ -832,10 +832,6 @@ label {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.flex-row{
-  flex-direction: row;
-}
-
 .flex-col{
   flex-direction: column;
 }
@@ -1334,10 +1330,6 @@ label {
 
   .\32xs\:flex-row{
     flex-direction: row;
-  }
-
-  .\32xs\:items-end{
-    align-items: flex-end;
   }
 
   .\32xs\:items-center{
