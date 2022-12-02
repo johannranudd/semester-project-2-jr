@@ -31,12 +31,15 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
 export async function getSingleListing(id) {
   const locStor = getLocalStorage();
   try {
-    const res = await fetch(`${baseURL}/auction/profiles/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${locStor.token}`,
-      },
-    });
+    const res = await fetch(
+      `${baseURL}/auction/listings/${id}?_seller=true&_bids=true`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${locStor.token}`,
+        },
+      }
+    );
     if (res.ok) {
       const data = await res.json();
       return data;

@@ -9,17 +9,25 @@ const urlID = mySearchParams.get("id");
 
 const listingsULElement = document.querySelector("#listing");
 
-window.addEventListener("DOMContentLoaded", getSingleProfile);
+window.addEventListener("DOMContentLoaded", () => {
+  getSingleProfile();
+  displayBasedOnSort();
+});
 
 async function getSingleProfile() {
+  // * get single profile (yours or others)
+  // *display info and listings based on what profile
   if (!urlID) {
-    const locStor = getLocalStorage();
-    const data = await getSingleListing(locStor.name);
-    // displayProfileInfo()
-    displayProfileListings(data);
+    // * no id means you are displayed
+    // const locStor = getLocalStorage();
+    // const data = await getSingleListing(locStor.name);
+    // displayProfileInfo(data)
+    // displayProfileListings(data);
   } else {
+    // * has id will display other profile and listings
     // display other profiles
+    console.log("has id:: ", urlID);
   }
 }
 
-function displayProfileListings() {}
+// function displayProfileListings() {}
