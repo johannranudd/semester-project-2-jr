@@ -1,6 +1,8 @@
 import { getListings, getSingleListing } from "../utils/gets.mjs";
 import { getLocalStorage } from "../utils/storage.mjs";
+
 import { deleteEntry } from "../utils/deletes.mjs";
+
 
 const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
@@ -10,6 +12,7 @@ const carouselSection = document.querySelector("#carousel-section");
 
 const carousel = document.querySelector("#carousel");
 const btnEditListing = document.querySelector("#edit-listing");
+
 const btnDeleteListing = document.querySelector("#delete-listing");
 const controlsCarousel = document.querySelector("#carousel-controls");
 const prevBtn = document.querySelector("#prev-btn");
@@ -24,11 +27,13 @@ const sellerDescription = sellerSection.querySelector("#desc");
 
 let counter = 0;
 
+
 window.addEventListener("DOMContentLoaded", displaySignle);
 
 async function displaySignle() {
   const locStor = getLocalStorage();
   const data = await getSingleListing(urlID);
+
   // console.log(data);
   const { id, title, description, media, tags, seller, bids } = data;
   media.map((image, index) => {
@@ -128,6 +133,7 @@ function slideFn(carouselItem, index) {
     carouselItem.classList.add("next-slide");
   } else if (index < counter) {
     carouselItem.classList.add("prev-slide");
+
   }
 }
 
