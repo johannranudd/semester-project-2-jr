@@ -569,6 +569,13 @@ label {
   position: relative;
 }
 
+.-inset-1\/2{
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+}
+
 .top-0{
   top: 0px;
 }
@@ -593,6 +600,18 @@ label {
   left: 2rem;
 }
 
+.left-2{
+  left: 0.5rem;
+}
+
+.right-2{
+  right: 0.5rem;
+}
+
+.top-1\/2{
+  top: 50%;
+}
+
 .left-0{
   left: 0px;
 }
@@ -611,6 +630,14 @@ label {
 
 .left-11{
   left: 2.75rem;
+}
+
+.top-2{
+  top: 0.5rem;
+}
+
+.left-1\/2{
+  left: 50%;
 }
 
 .z-10{
@@ -637,6 +664,10 @@ label {
   margin: 0px;
 }
 
+.m-6{
+  margin: 1.5rem;
+}
+
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -650,6 +681,11 @@ label {
 .mx-\[5px\]{
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.my-auto{
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .mx-3{
@@ -693,6 +729,10 @@ label {
   margin-top: 1rem;
 }
 
+.block{
+  display: block;
+}
+
 .inline-block{
   display: inline-block;
 }
@@ -725,6 +765,10 @@ label {
   height: 0.5rem;
 }
 
+.h-64{
+  height: 16rem;
+}
+
 .h-full{
   height: 100%;
 }
@@ -739,6 +783,26 @@ label {
 
 .max-h-72{
   max-height: 18rem;
+}
+
+.max-h-full{
+  max-height: 100%;
+}
+
+.max-h-\[50\%\]{
+  max-height: 50%;
+}
+
+.max-h-\[500px\]{
+  max-height: 500px;
+}
+
+.max-h-\[50vh\]{
+  max-height: 50vh;
+}
+
+.max-h-\[90vh\]{
+  max-height: 90vh;
 }
 
 .min-h-screen{
@@ -789,12 +853,40 @@ label {
   max-width: 28rem;
 }
 
+.max-w-\[90\%\]{
+  max-width: 90%;
+}
+
+.max-w-\[80\%\]{
+  max-width: 80%;
+}
+
 .grow{
   flex-grow: 1;
 }
 
 .-translate-x-\[200\%\]{
   --tw-translate-x: -200%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-1\/2{
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-x-1\/2{
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-x-\[50\%\]{
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-\[50\%\]{
+  --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -988,9 +1080,19 @@ label {
   background-color: rgb(93 198 11 / var(--tw-bg-opacity));
 }
 
+.bg-blue-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#fed\]{
   --tw-bg-opacity: 1;
   background-color: rgb(255 238 221 / var(--tw-bg-opacity));
+}
+
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .object-cover{
@@ -1004,6 +1106,10 @@ label {
 
 .p-2{
   padding: 0.5rem;
+}
+
+.p-6{
+  padding: 1.5rem;
 }
 
 .px-2{
@@ -1052,6 +1158,10 @@ label {
   font-size: 1.125rem;
 }
 
+.text-2xl{
+  font-size: 1.563rem;
+}
+
 .text-\[7vw\]{
   font-size: 7vw;
 }
@@ -1082,6 +1192,11 @@ label {
   color: rgb(6 33 45 / var(--tw-text-opacity));
 }
 
+.text-red-500{
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .text-thirdClr{
   --tw-text-opacity: 1;
   color: rgb(9 96 118 / var(--tw-text-opacity));
@@ -1101,6 +1216,22 @@ label {
 
 .opacity-40{
   opacity: 0.4;
+}
+
+.opacity-5{
+  opacity: 0.05;
+}
+
+.opacity-25{
+  opacity: 0.25;
+}
+
+.opacity-0{
+  opacity: 0;
+}
+
+.opacity-75{
+  opacity: 0.75;
 }
 
 .shadow-custom2{
@@ -1279,6 +1410,37 @@ label {
 
 .card .price span {
   margin-left: 0.5rem;
+}
+
+.carousel-image-container {
+  min-width: 100%;
+  /* max-width: 300px; */
+  margin: auto;
+  position: absolute;
+  /* object-fit: contain; */
+  /* text-align: center; */
+  /* flex: 0 0 1; */
+  transition: 0.3s;
+}
+
+.carousel-image-container img {
+  cursor: pointer;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.current-slide {
+  /* margin: auto; */
+  transform: translateX(0%);
+  /* transform: translateY(-10%); */
+}
+
+.next-slide {
+  transform: translateX(100%);
+}
+
+.prev-slide {
+  transform: translateX(-100%);
 }
 
 .hover\:border-whiteClr:hover{

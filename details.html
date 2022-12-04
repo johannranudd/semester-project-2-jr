@@ -153,10 +153,46 @@
 
       <!-- *main content -->
       <section id="auction-section" class="p-2 md:ml-72">
-        <div id="carousel"></div>
-        <a href="" id="edit-listing" type="button" class="btn-primary">
-          Edit listing
-        </a>
+        <aside class="flex justify-between">
+          <button
+            type="button"
+            class="btn-primary z-10 absolute left-2 md:ml-72"
+          >
+            <a id="edit-listing">Edit listing </a>
+          </button>
+          <button
+            id="delete-listing"
+            type="button"
+            class="btn-primary z-10 absolute right-2"
+          >
+            <a id="delete-listing">Delete listing</a>
+          </button>
+        </aside>
+        <ul
+          id="carousel"
+          class="relative h-64 overflow-hidden flex justify-between bg-blue-500"
+        >
+          <!-- <nav
+            id="carousel-controls"
+            class="absolute top-1/2 -translate-y-1/2 my-auto w-full flex justify-between z-50 text-red-500 text-2xl"
+          > -->
+          <button
+            type="button"
+            id="prev-btn"
+            class="z-50 text-2xl text-whiteClr"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button
+            type="button"
+            id="next-btn"
+            class="z-50 text-2xl text-whiteClr"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+          <!-- </nav> -->
+        </ul>
+        <h1>wsfsdfsdfsdf</h1>
         <!-- carousel -->
         <!-- title, seller, description -->
         <!-- live auction -->
