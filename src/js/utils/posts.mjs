@@ -14,10 +14,9 @@ export async function postListing(submitObject) {
       body: JSON.stringify(submitObject),
     });
     if (req.ok) {
-      console.log(req);
-      const data = req.json();
-      console.log(data);
-      return data;
+      // const data = req.json();
+      // return data;
+      window.location = "/listings.html";
     } else {
       console.log("req not OK");
     }

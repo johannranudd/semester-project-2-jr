@@ -157,4 +157,30 @@
   .card .price span {
     margin-left: 0.5rem;
   }
+
+  .carousel-image-container {
+    min-width: 100%;
+    /* max-width: 300px; */
+    margin: auto;
+    position: absolute;
+    /* object-fit: contain; */
+    /* text-align: center; */
+    /* flex: 0 0 1; */
+    transition: 0.3s;
+  }
+  .carousel-image-container img {
+    cursor: pointer;
+    object-fit: contain;
+  }
+  .current-slide {
+    /* margin: auto; */
+    transform: translateX(0%);
+    /* transform: translateY(-10%); */
+  }
+  .next-slide {
+    transform: translateX(100%);
+  }
+  .prev-slide {
+    transform: translateX(-100%);
+  }
 }
