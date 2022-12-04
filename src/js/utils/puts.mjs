@@ -13,9 +13,11 @@ export async function updateEntry(id, submitObject) {
       body: JSON.stringify(submitObject),
     });
     if (req.ok) {
+
       // const data = req.json();
       // return data;
       window.location = "/listings.html";
+
     } else {
       console.log("req not OK");
     }
