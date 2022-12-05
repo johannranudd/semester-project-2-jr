@@ -1,8 +1,12 @@
-import { getListings, getSingleListing } from "../utils/gets.mjs";
+import {
+  getSingleProfile,
+  getListings,
+  getSingleListing,
+} from "../utils/gets.mjs";
 import { getLocalStorage } from "../utils/storage.mjs";
 
 import { deleteEntry } from "../utils/deletes.mjs";
-
+import { filterHighestBid } from "../utils/various.mjs";
 
 const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
@@ -25,8 +29,13 @@ const sellerUsername = sellerSection.querySelector("h6");
 const sellerProfileImg = sellerSection.querySelector("#profile img");
 const sellerDescription = sellerSection.querySelector("#desc");
 
-let counter = 0;
+// auction section
+const liveAuctionSection = document.querySelector("#live-auction-section");
+const listOfProfilImg = liveAuctionSection.querySelector(
+  "#bidders-profile-image-list"
+);
 
+let counter = 0;
 
 window.addEventListener("DOMContentLoaded", displaySignle);
 
@@ -51,8 +60,37 @@ async function displaySignle() {
   // sellerSection
   sellerTitle.textContent = title;
   sellerUsername.textContent = seller.name;
-  sellerProfileImg.src = seller.avatar;
+  sellerProfileImg.src = seller.avatar
+    ? seller.avatar
+    : "../../../assets/images/profile-img.png";
   sellerDescription.textContent = description;
+
+  // Todo: display list of profile images to the listOfProfilImg element
+  // get all bidders to an element
+
+  const newArray = data.bids.slice();
+  const reverseArray = newArray.reverse();
+  reverseArray.map(async (bid, index) => {
+    if (index > 7) {
+      return;
+    } else {
+      const { amount, bidderName, created } = bid;
+      const profile = await getSingleProfile(bidderName);
+      const { avatar } = profile;
+      listOfProfilImg.innerHTML += `<li><img class="w-8 h-8 rounded-full" src="${
+        avatar ? avatar : "../../../assets/images/profile-img.png"
+      }" alt="profile image of ${bidderName}" /></li>`;
+    }
+  });
+  const amountOfBidsText = liveAuctionSection.querySelector("#amout-of-bids");
+  const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
+  amountOfBidsText.textContent = `${reverseArray.length}bidders`;
+  const highestBid = filterHighestBid(data);
+  highestBidElem.textContent = `$ ${highestBid}`;
+  //
+  //
+  //
+  // Todo: place bids on a spesiffic item and make a list of bidders
 }
 
 nextBtn.addEventListener("click", () => {
@@ -133,7 +171,6 @@ function slideFn(carouselItem, index) {
     carouselItem.classList.add("next-slide");
   } else if (index < counter) {
     carouselItem.classList.add("prev-slide");
-
   }
 }
 
