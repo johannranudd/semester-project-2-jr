@@ -50,10 +50,8 @@
       <!-- *sidebar -->
       <div
         id="backdrop"
-        class="hidden top-0 -left-[50vw] right-0 bottom-0 min-h-screen min-w-screen bg-blackClr opacity-50 md:hidden"
-      >
-        backdrop
-      </div>
+        class="hidden cursor-pointer top-0 -left-[50vw] right-0 bottom-0 min-h-screen min-w-screen bg-blackClr z-40 opacity-50 md:hidden"
+      ></div>
       <aside
         id="sidebar"
         class="fixed top-12 -translate-x-[200%] w-full min-h-screen z-50 bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
@@ -161,13 +159,13 @@
           >
             <a id="edit-listing">Edit listing </a>
           </button>
-          <button type="button" class="btn-primary z-10 absolute right-2">
+          <button type="button" class="btn-primary absolute right-2 z-10">
             <a id="delete-listing">Delete listing</a>
           </button>
         </aside>
         <ul
           id="carousel"
-          class="relative h-72 overflow-hidden flex justify-between bg-gray-300"
+          class="relative h-72 overflow-hidden flex justify-between items-center bg-gray-300"
         >
           <button
             type="button"
@@ -258,11 +256,29 @@
         ></ul>
         <!-- place bid -->
       </section>
-      <section id="placce-bid-section" class="p-2 md:ml-72">
-        <form>
-          <label for="amount">Amount:</label>
-          <input type="number" />
-          <button type="submit">Place Bid</button>
+      <section id="placce-bid-section" class="p-2 bg-primaryClr md:ml-72">
+        <form id="bid-form" class="space-y-3">
+          <!-- 380xs:flex-row 380xs:items-center 380xs:justify-center 380xs:space-x-2 -->
+          <div
+            class="flex flex-col 380xs:flex-row 380xs:justify-between 380xs:items-center max-w-xs mx-auto"
+          >
+            <label for="amount" class="text-white">Amount:</label>
+            <input
+              type="text"
+              id="amount"
+              class="custom-input"
+              placeholder="$"
+              aria-label="bid"
+            />
+          </div>
+          <div class="flex justify-center max-w-xs mx-auto">
+            <button
+              type="submit"
+              class="p-2 text-whiteClr text-lg w-full max-w-md rounded-md bg-primaryClr border-solid border-2 border-whiteClr hover:bg-whiteClr hover:text-primaryClr hover:border-primaryClr transition duration-custom"
+            >
+              Place Bid
+            </button>
+          </div>
         </form>
       </section>
     </main>

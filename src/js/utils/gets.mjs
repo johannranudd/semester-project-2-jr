@@ -11,13 +11,7 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
   const tagQuery = setTagQuery(tag);
   try {
     const res = await fetch(
-      `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&offset=${offset}${limitQuery}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${locStor.token}`,
-        },
-      }
+      `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&offset=${offset}${limitQuery}`
     );
     if (res.ok) {
       const data = await res.json();
@@ -148,3 +142,28 @@ function setSortOrderQuery(sortOrder) {
     return sortOrderQuery;
   }
 }
+
+/** `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&offset=${offset}${limitQuery}` */
+
+// export async function getListingsUnathorized() {
+// limit,
+// offset = 0,
+// sort,
+// sortOrder,
+// tag
+// const locStor = getLocalStorage();
+// const limitQuery = setFetchLimitURL(limit);
+// const sortQuery = setSortQuery(sort);
+// const sortOrderQuery = setSortOrderQuery(sortOrder);
+// const tagQuery = setTagQuery(tag);
+//   try {
+//     const res = await fetch(`${baseURL}/auction/listings`);
+//     if (res.ok) {
+//       const data = await res.json();
+//       console.log(data);
+//       return data;
+//     }
+//   } catch (error) {
+//     console.log(error, "an error occured in getListings()");
+//   }
+// }

@@ -8,6 +8,7 @@ const line2 = document.querySelector(".line2");
 const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
 const LogoutBtn = document.querySelector("#logout-btn");
+const backdrop = document.querySelector("#backdrop");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -35,6 +36,7 @@ function toggleMenu() {
 }
 
 menuBtn.addEventListener("click", toggleMenu);
+backdrop.addEventListener("click", toggleMenu);
 
 window.addEventListener("resize", () => {
   if (window.innerWidth >= 768) {
@@ -56,8 +58,12 @@ window.addEventListener("DOMContentLoaded", () => {
     "#credit-profile-card span"
   );
   const locStor = getLocalStorage();
-  profileImage.src = locStor.avatar;
-  creditProfileCard.textContent = locStor.credits;
+  if (locStor.avatar) {
+    profileImage.src = locStor.avatar;
+    creditProfileCard.textContent = locStor.credits;
+  } else {
+    profileImage.src = "../../../assets/images/profile-img.png";
+  }
 });
 
 // async function getActiveBids() {

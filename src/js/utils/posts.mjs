@@ -2,7 +2,6 @@ import { getLocalStorage } from "./storage.mjs";
 const baseURL = "https://api.noroff.dev/api/v1";
 
 export async function postListing(submitObject) {
-  console.log(submitObject);
   const locStor = getLocalStorage();
   try {
     const req = await fetch(`${baseURL}/auction/listings`, {
@@ -25,4 +24,30 @@ export async function postListing(submitObject) {
   }
 }
 
-// 3d486168-1380-41e0-b552-66e3fd038a22
+export async function bidOnEntry(requestObj, id) {
+  console.log(requestObj);
+  console.log(JSON.stringify(requestObj));
+  console.log(id);
+  const locStor = getLocalStorage();
+  try {
+    const req = await fetch(`${baseURL}/auction/listings/${id}/bids`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${locStor.token}`,
+      },
+      body: JSON.stringify(requestObj),
+    });
+    if (req.ok) {
+      console.log(req);
+      const data = await req.json();
+      console.log(data);
+      return data;
+    } else {
+      console.log(req);
+      console.log("req not OK");
+    }
+  } catch (error) {
+    throw new Error(error.toString());
+  }
+}

@@ -171,11 +171,14 @@
   }
   .current-slide {
     transform: translateX(0%);
+    opacity: 1;
   }
   .next-slide {
     transform: translateX(100%);
+    opacity: 0;
   }
   .prev-slide {
     transform: translateX(-100%);
+    opacity: 0;
   }
 }
