@@ -152,7 +152,8 @@
       <!-- *end sidebar -->
 
       <!-- *main content -->
-      <section id="auction-section" class="p-2 md:ml-72">
+      <section id="carousel-section" class="md:ml-72">
+        <!-- carousel -->
         <aside class="flex justify-between">
           <button
             type="button"
@@ -160,45 +161,106 @@
           >
             <a id="edit-listing">Edit listing </a>
           </button>
-          <button
-            id="delete-listing"
-            type="button"
-            class="btn-primary z-10 absolute right-2"
-          >
+          <button type="button" class="btn-primary z-10 absolute right-2">
             <a id="delete-listing">Delete listing</a>
           </button>
         </aside>
         <ul
           id="carousel"
-          class="relative h-64 overflow-hidden flex justify-between bg-blue-500"
+          class="relative h-72 overflow-hidden flex justify-between bg-gray-300"
         >
-          <!-- <nav
-            id="carousel-controls"
-            class="absolute top-1/2 -translate-y-1/2 my-auto w-full flex justify-between z-50 text-red-500 text-2xl"
-          > -->
           <button
             type="button"
             id="prev-btn"
-            class="z-50 text-2xl text-whiteClr"
+            class="z-10 text-2xl text-primaryClr"
           >
             <i class="fa-solid fa-chevron-left"></i>
           </button>
           <button
             type="button"
             id="next-btn"
-            class="z-50 text-2xl text-whiteClr"
+            class="z-10 text-2xl text-primaryClr"
           >
             <i class="fa-solid fa-chevron-right"></i>
           </button>
-          <!-- </nav> -->
         </ul>
-        <h1>wsfsdfsdfsdf</h1>
-        <!-- carousel -->
-        <!-- title, seller, description -->
-        <!-- live auction -->
+      </section>
+      <!-- title, seller, description section-->
+      <section id="seller-section" class="p-2 md:ml-72 bg-[#def] space-y-2">
+        <div class="380xs:flex 380xs:justify-between">
+          <h2 class="decoration-0 text-left capitalize my-2">listing title</h2>
+          <div id="profile" class="flex items-center space-x-1">
+            <img
+              class="w-8 h-8 object-cover rounded-full border-solid border-2 border-whiteClr"
+              src="./assets/images/profile-img.png"
+              alt="profile image"
+            />
+            <h6>username</h6>
+          </div>
+        </div>
+        <article id="desc" class="pb-10"></article>
+      </section>
+      <!-- live auction -->
+      <section
+        id="live-auction-section"
+        class="p-2 border-solid border-[1px] border-primaryClr md:ml-72"
+      >
         <!-- countdown card -->
+        <div
+          id="countdown-card"
+          class="flex justify-between w-full max-w-md mx-auto"
+        >
+          <aside
+            id="bidders-aside"
+            class="basis-[49.5%] space-y-3 bg-secondaryClr p-2"
+          >
+            <h5 class="">Bidders</h5>
+            <div class="flex flex-col space-y-3">
+              <p id="highest-bid"></p>
+              <div
+                class="flex flex-col 2xs:flex-row 2xs:justify-between 2xs:items-center"
+              >
+                <ul
+                  id="bidders-profile-image-list"
+                  class="flex -space-x-6"
+                ></ul>
+                <p id="amout-of-bids"><span></span></p>
+              </div>
+            </div>
+          </aside>
+
+          <aside id="countdown-aside" class="basis-[49.5%] bg-secondaryClr p-2">
+            <div class="flex justify-between items-center">
+              <h5>Time Left</h5>
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <p><span></span></p>
+            <div id="countdown-container" class="flex"></div>
+          </aside>
+        </div>
+        <!-- live auction text -->
+        <div id="live-auction-text">
+          <div id="green-light-text">
+            <div></div>
+            <p>Live</p>
+          </div>
+          <p id="bids-made"><span>24</span> Bids</p>
+        </div>
         <!-- bids -->
-        <!-- live auction -->
+        <ul id="bidders-profile">
+          <img src="./assets/images/profile-img.png" alt="profile image" />
+          <div class="flex flex-col">
+            <h5>Username</h5>
+            <p id="time-since-bid"><span></span></p>
+          </div>
+          <p id="price-of-bid-made"><span></span></p>
+        </ul>
+        <!-- place bid -->
+        <form>
+          <label for="amount">Amount:</label>
+          <input type="number" />
+          <button type="submit">Place Bid</button>
+        </form>
       </section>
     </main>
     <!-- *end main content -->

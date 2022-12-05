@@ -25,15 +25,15 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (!urlID) {
     headline.innerHTML = "Create New Listing";
   } else if (urlID) {
+
     mediaVal.parentElement.parentElement.style.display = "block";
     mediaVal.parentElement.style.display = "block";
 
-    //
-    //
     headline.innerHTML = "Edit Listing";
     dateVal.previousElementSibling.style.display = "none";
     dateVal.style.display = "none";
     const singleData = await getSingleListing(urlID);
+
     const { title, description, tags, media } = singleData;
     titleVal.value = title;
     descriptionVal.value = description;
