@@ -11,7 +11,7 @@ export function sortByMostBids(data) {
 // sort by highest integer
 export function sortByHighestInteger(data) {
   return data.sort((a, b) => {
-    if (a.highestBid < b.highestBid) {
+    if (a.amount < b.amount) {
       return 1;
     } else {
       return -1;
@@ -50,6 +50,12 @@ export function calculateTime(timeLeft) {
   return { days, hours, minutes, seconds };
 }
 
+// export function returnsTimeLeftInt(obj) {
+//   const { endsAt } = obj;
+//   const now = new Date().getTime();
+//   const countDownDate = new Date(endsAt).getTime();
+//   return countDownDate - now;
+// }
 export function returnsTimeLeftInt(listing) {
   const { endsAt } = listing;
   const now = new Date().getTime();
@@ -69,15 +75,13 @@ export function filterHighestBid(listings) {
 }
 
 // modify listings still fro sale (give it a countdown object)
-export function addCountdownObject(data) {
-  return data.map((listing) => {
-    const timeLeft = returnsTimeLeftInt(listing);
-    const countDownObject = calculateTime(timeLeft);
-    return {
-      ...listing,
-      countDownObject,
-    };
-  });
+export function addCountdownObject(listing) {
+  const timeLeft = returnsTimeLeftInt(listing);
+  const countDownObject = calculateTime(timeLeft);
+  return {
+    ...listing,
+    countDownObject,
+  };
   // const { days, hours, minutes, seconds } = countDownObject;
   // const countDownString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }

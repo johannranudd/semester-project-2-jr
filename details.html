@@ -186,7 +186,7 @@
         </ul>
       </section>
       <!-- title, seller, description section-->
-      <section id="seller-section" class="p-2 md:ml-72 bg-[#def] space-y-2">
+      <section id="seller-section" class="p-2 bg-[#def] space-y-2 md:ml-72">
         <div class="380xs:flex 380xs:justify-between">
           <h2 class="decoration-0 text-left capitalize my-2">listing title</h2>
           <div id="profile" class="flex items-center space-x-1">
@@ -208,7 +208,7 @@
         <!-- countdown card -->
         <div
           id="countdown-card"
-          class="flex justify-between w-full max-w-md mx-auto"
+          class="flex justify-between w-full max-w-lg mx-auto"
         >
           <aside
             id="bidders-aside"
@@ -224,38 +224,41 @@
                   id="bidders-profile-image-list"
                   class="flex -space-x-6"
                 ></ul>
-                <p id="amout-of-bids"><span></span></p>
+                <p class="amount-of-bids"></p>
               </div>
             </div>
           </aside>
 
-          <aside id="countdown-aside" class="basis-[49.5%] bg-secondaryClr p-2">
-            <div class="flex justify-between items-center">
-              <h5>Time Left</h5>
-              <i class="fa-solid fa-clock"></i>
-            </div>
-            <p><span></span></p>
-            <div id="countdown-container" class="flex"></div>
+          <aside
+            id="countdown-aside"
+            class="flex flex-col justify-between basis-[49.5%] bg-secondaryClr p-2"
+          >
+            <h5>Time Left</h5>
+            <i class="fa-solid fa-clock"></i>
+            <p id="time-left"></p>
           </aside>
         </div>
         <!-- live auction text -->
-        <div id="live-auction-text">
-          <div id="green-light-text">
-            <div></div>
+        <div
+          id="live-auction-text"
+          class="flex justify-between max-w-md mx-auto py-4"
+        >
+          <div class="flex items-center space-x-2">
+            <div
+              class="w-2.5 h-2.5 rounded-full shadow-lg shadow-custom3 bg-success"
+            ></div>
             <p>Live</p>
           </div>
-          <p id="bids-made"><span>24</span> Bids</p>
+          <p class="amount-of-bids"></p>
         </div>
         <!-- bids -->
-        <ul id="bidders-profile">
-          <img src="./assets/images/profile-img.png" alt="profile image" />
-          <div class="flex flex-col">
-            <h5>Username</h5>
-            <p id="time-since-bid"><span></span></p>
-          </div>
-          <p id="price-of-bid-made"><span></span></p>
-        </ul>
+        <ul
+          id="bidders-profile-list"
+          class="mx-auto space-y-3 xl:max-w-3xl"
+        ></ul>
         <!-- place bid -->
+      </section>
+      <section id="placce-bid-section" class="p-2 md:ml-72">
         <form>
           <label for="amount">Amount:</label>
           <input type="number" />

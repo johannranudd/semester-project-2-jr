@@ -2,17 +2,26 @@ import {
   getSingleProfile,
   getListings,
   getSingleListing,
+  getAllProfiles,
 } from "../utils/gets.mjs";
 import { getLocalStorage } from "../utils/storage.mjs";
 
 import { deleteEntry } from "../utils/deletes.mjs";
-import { filterHighestBid } from "../utils/various.mjs";
+import {
+  filterHighestBid,
+  returnsTimeLeftInt,
+  addCountdownObject,
+  sortByHighestInteger,
+  calculateTime,
+} from "../utils/various.mjs";
+import { loadingSpinner, removeSpinner } from "../utils/loading.mjs";
 
 const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
 const urlID = mySearchParams.get("id");
 
 const carouselSection = document.querySelector("#carousel-section");
+const main = document.querySelector("main");
 
 const carousel = document.querySelector("#carousel");
 const btnEditListing = document.querySelector("#edit-listing");
@@ -34,63 +43,160 @@ const liveAuctionSection = document.querySelector("#live-auction-section");
 const listOfProfilImg = liveAuctionSection.querySelector(
   "#bidders-profile-image-list"
 );
+const biddersProfileListElem = document.querySelector("#bidders-profile-list");
 
 let counter = 0;
+let showLimit = 4;
 
 window.addEventListener("DOMContentLoaded", displaySignle);
 
 async function displaySignle() {
+  loadingSpinner(biddersProfileListElem);
   const locStor = getLocalStorage();
   const data = await getSingleListing(urlID);
 
   // console.log(data);
-  const { id, title, description, media, tags, seller, bids } = data;
-  media.map((image, index) => {
-    displayCarousel(image, index);
-  });
+  if (data) {
+    removeSpinner(biddersProfileListElem);
+    const { id, title, description, media, tags, seller, bids, endsAt } = data;
+    media.map((image, index) => {
+      displayCarousel(image, index);
+    });
 
-  // edit
-  btnEditListing.href = `/new-listing.html?id=${urlID}`;
-  if (seller.name !== locStor.name) {
-    btnEditListing.parentElement.style.display = "none";
-    btnDeleteListing.parentElement.style.display = "none";
-  }
-  // delete
-  btnDeleteListing.addEventListener("click", () => deleteEntry(urlID));
-  // sellerSection
-  sellerTitle.textContent = title;
-  sellerUsername.textContent = seller.name;
-  sellerProfileImg.src = seller.avatar
-    ? seller.avatar
-    : "../../../assets/images/profile-img.png";
-  sellerDescription.textContent = description;
+    // edit
+    btnEditListing.href = `/new-listing.html?id=${urlID}`;
+    if (seller.name !== locStor.name) {
+      btnEditListing.parentElement.style.display = "none";
+      btnDeleteListing.parentElement.style.display = "none";
+    }
+    // delete
+    btnDeleteListing.addEventListener("click", () => deleteEntry(urlID));
+    // sellerSection
+    sellerTitle.textContent = title;
+    sellerUsername.textContent = seller.name;
+    sellerProfileImg.src = seller.avatar
+      ? seller.avatar
+      : "../../../assets/images/profile-img.png";
+    sellerDescription.textContent = description;
 
-  // Todo: display list of profile images to the listOfProfilImg element
-  // get all bidders to an element
+    const newArray = data.bids.slice();
+    const reverseArray = newArray.reverse();
+    // const test = sortByHighestInteger(newArray);
+    reverseArray.map(async (bid, index) => {
+      const { amount, bidderName, created } = bid;
+      if (index > showLimit) {
+        return;
+      } else {
+        biddersProfileListElem.innerHTML += `<li class="bidder-status flex items-center justify-between">
+        <div class="flex items-center">
+        <img class="bidder-profile-image" />
+        <div class="flex flex-col">
+        <h5>${bidderName}</h5>
+        <p class="time-since-bid" data-created="${created}"></p>
+        </div>
+        </div>
+        <p><span>$ ${amount}</span></p></li>`;
+      }
+      // console.log(created);
 
-  const newArray = data.bids.slice();
-  const reverseArray = newArray.reverse();
-  reverseArray.map(async (bid, index) => {
-    if (index > 7) {
+      // created
+
+      // const countDownString = `${days}<span>d</span> ${hours}<span>h</span>  ${minutes}<span>m</span>  ${seconds}<span>s</span> `;
+
+      // console.log(timeSinceBid);
+      // console.log(countDownString);
+
+      // console.log(created.getTime());
+    });
+    const timeSinceBidElem =
+      biddersProfileListElem.querySelectorAll(".time-since-bid");
+    timeSinceBidFn(timeSinceBidElem);
+
+    const listElem = biddersProfileListElem.querySelectorAll("li");
+    listElem.forEach(async (elem, index) => {
+      if (index > showLimit) {
+        return;
+      } else {
+        const image = elem.querySelector("img");
+        const header = elem.querySelector("h5");
+        const profile = await getSingleProfile(header.textContent);
+        const { avatar } = profile;
+        image.src = avatar ? avatar : "../../../assets/images/profile-img.png";
+        image.alt = `profile image of ${header.textContent}`;
+        image.classList.add(
+          "w-12",
+          "h-12",
+          "object-cover",
+          "rounded-full",
+          "border-solid",
+          "border-2",
+          "border-primaryClr"
+        );
+
+        listOfProfilImg.innerHTML += `<li><img class="w-8 h-8 object-cover rounded-full border-solid border-2 border-whiteClr" src="${
+          avatar ? avatar : "../../../assets/images/profile-img.png"
+        }" alt="profile image of ${header.textContent}" /></li>`;
+      }
+    });
+
+    const amountOfBidsText =
+      liveAuctionSection.querySelectorAll(".amount-of-bids");
+    amountOfBidsText.forEach((elem) => {
+      elem.textContent = `${reverseArray.length}bids`;
+    });
+    const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
+    const highestBid = filterHighestBid(data);
+    highestBidElem.textContent = `$ ${highestBid}`;
+
+    setInterval(() => displayCountdownTimer(data), 1000);
+  } // if (data) end
+}
+
+function timeSinceBidFn(timeSinceBidElem) {
+  timeSinceBidElem.forEach((bid, index) => {
+    if (index > showLimit) {
       return;
     } else {
-      const { amount, bidderName, created } = bid;
-      const profile = await getSingleProfile(bidderName);
-      const { avatar } = profile;
-      listOfProfilImg.innerHTML += `<li><img class="w-8 h-8 rounded-full" src="${
-        avatar ? avatar : "../../../assets/images/profile-img.png"
-      }" alt="profile image of ${bidderName}" /></li>`;
+      const created = bid.dataset.created;
+
+      const now = new Date().getTime();
+      const createdToInt = new Date(created).getTime();
+      const timeLeft = now - createdToInt;
+      const timeObj = calculateTime(timeLeft);
+      const { days, hours, minutes, seconds } = timeObj;
+
+      if (days) {
+        bid.innerHTML = `${days}<small>d</small>`;
+      } else if (hours) {
+        bid.innerHTML = `${hours}<small>h</small>`;
+      } else if (minutes) {
+        bid.innerHTML = `${minutes}<small>m</small>`;
+      } else if (seconds) {
+        bid.innerHTML = `${seconds}<small>s</small>`;
+      }
     }
   });
-  const amountOfBidsText = liveAuctionSection.querySelector("#amout-of-bids");
-  const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
-  amountOfBidsText.textContent = `${reverseArray.length}bidders`;
-  const highestBid = filterHighestBid(data);
-  highestBidElem.textContent = `$ ${highestBid}`;
-  //
-  //
-  //
-  // Todo: place bids on a spesiffic item and make a list of bidders
+}
+// async function getImage() {
+//   // const test = await getAllProfiles();
+//   // console.log(test);
+//   const bidderElem = document.querySelectorAll(".bidder-status");
+//   const imageElem = document.querySelectorAll(".bidder-profile-image");
+//   const bidderElemHeader = document.querySelectorAll(".bidder-status h5");
+
+//   bidderElemHeader.forEach(async (header) => {
+//     const profile = await getSingleProfile(header.textContent);
+//     console.log(profile);
+//   });
+
+// }
+
+function displayCountdownTimer(data) {
+  const timeLeftElem = liveAuctionSection.querySelector("#time-left");
+  const modifiedObject = addCountdownObject(data);
+  const { days, hours, minutes, seconds } = modifiedObject.countDownObject;
+  const countDownString = `${days}<span>d</span> ${hours}<span>h</span>  ${minutes}<span>m</span>  ${seconds}<span>s</span> `;
+  timeLeftElem.innerHTML = countDownString;
 }
 
 nextBtn.addEventListener("click", () => {
