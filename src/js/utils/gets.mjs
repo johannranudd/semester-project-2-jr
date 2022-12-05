@@ -80,6 +80,23 @@ export async function getAllListingsByProfile(
   }
 }
 
+export async function getAllProfiles() {
+  const locStor = getLocalStorage();
+  try {
+    const res = await fetch(`${baseURL}/auction/profiles`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${locStor.token}`,
+      },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+  } catch (error) {
+    console.log(error, "an error occured in getAllProfiles()");
+  }
+}
 export async function getSingleProfile(name) {
   const locStor = getLocalStorage();
   try {
