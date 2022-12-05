@@ -61,6 +61,8 @@ export async function displayBasedOnSort(
 
   if (window.location.href.includes("profile.html")) {
     const locStor = getLocalStorage();
+    // todo: check if locstor exists, if not display YOU MUST LOGIN TO VIEW kida message
+    // todo: else display as normal
 
     if (categories.value === "newest") {
       const data = await getAllListingsByProfile(

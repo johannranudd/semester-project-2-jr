@@ -3,6 +3,7 @@ import {
   getListings,
   getSingleListing,
   getAllProfiles,
+  // getListingsUnathorized,
 } from "../utils/gets.mjs";
 import { getLocalStorage } from "../utils/storage.mjs";
 
@@ -15,6 +16,7 @@ import {
   calculateTime,
 } from "../utils/various.mjs";
 import { loadingSpinner, removeSpinner } from "../utils/loading.mjs";
+import { bidOnEntry } from "../utils/posts.mjs";
 
 const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
@@ -45,10 +47,24 @@ const listOfProfilImg = liveAuctionSection.querySelector(
 );
 const biddersProfileListElem = document.querySelector("#bidders-profile-list");
 
+// submit bid
+const placeBidForm = document.querySelector("#bid-form");
+
 let counter = 0;
 let showLimit = 4;
 
 window.addEventListener("DOMContentLoaded", displaySignle);
+// window.addEventListener("DOMContentLoaded", getListingsUnathorized);
+
+placeBidForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const amountInput = placeBidForm.querySelector("#amount");
+  const valueToNumber = Number(amountInput.value);
+  if (valueToNumber) {
+    let submitObject = { amount: valueToNumber };
+    bidOnEntry(submitObject, urlID);
+  }
+});
 
 async function displaySignle() {
   loadingSpinner(biddersProfileListElem);
@@ -59,9 +75,23 @@ async function displaySignle() {
   if (data) {
     removeSpinner(biddersProfileListElem);
     const { id, title, description, media, tags, seller, bids, endsAt } = data;
-    media.map((image, index) => {
-      displayCarousel(image, index);
-    });
+
+    if (media.length === 0) {
+      const carouselItem = document.createElement("li");
+      carouselItem.classList.add("carousel-image-container");
+      const carouselImage = document.createElement("img");
+      carouselImage.src = "../../../assets/images/placeholder.png";
+      carouselItem.appendChild(carouselImage);
+      carousel.appendChild(carouselItem);
+    } else {
+      media.map((image, index) => {
+        displayCarousel(image, index);
+      });
+      const navDots = document.querySelectorAll(".nav-dot");
+      navDots.forEach((dot) => {
+        dot.style.transform = `translateX(calc(-100% * ${navDots.length})`;
+      });
+    }
 
     // edit
     btnEditListing.href = `/new-listing.html?id=${urlID}`;
@@ -97,16 +127,6 @@ async function displaySignle() {
         </div>
         <p><span>$ ${amount}</span></p></li>`;
       }
-      // console.log(created);
-
-      // created
-
-      // const countDownString = `${days}<span>d</span> ${hours}<span>h</span>  ${minutes}<span>m</span>  ${seconds}<span>s</span> `;
-
-      // console.log(timeSinceBid);
-      // console.log(countDownString);
-
-      // console.log(created.getTime());
     });
     const timeSinceBidElem =
       biddersProfileListElem.querySelectorAll(".time-since-bid");
@@ -196,7 +216,13 @@ function displayCountdownTimer(data) {
   const modifiedObject = addCountdownObject(data);
   const { days, hours, minutes, seconds } = modifiedObject.countDownObject;
   const countDownString = `${days}<span>d</span> ${hours}<span>h</span>  ${minutes}<span>m</span>  ${seconds}<span>s</span> `;
-  timeLeftElem.innerHTML = countDownString;
+  const sumOfTIme = days + hours + minutes + seconds;
+  if (sumOfTIme <= 0) {
+    timeLeftElem.innerHTML = "<p>SOLD</p>";
+    return;
+  } else {
+    timeLeftElem.innerHTML = countDownString;
+  }
 }
 
 nextBtn.addEventListener("click", () => {
@@ -234,6 +260,9 @@ function displayCarousel(image, index) {
   carouselImage.alt = `product image ${index}`;
 
   const navDot = document.createElement("span");
+  // const navDotContainer = document.createElement("div");
+  // navDotContainer.appendChild(navDot);
+
   navDot.classList.add("nav-dot");
   navDot.style.height = "7px";
   navDot.style.width = "7px";
@@ -244,7 +273,7 @@ function displayCarousel(image, index) {
   navDot.style.zIndex = "9";
   navDot.style.marginLeft = `${index * 15}px`;
   navDot.style.left = "50%";
-  navDot.style.transform = `translateX(calc(-100% * 4))`;
+  // navDot.style.transform = `translateX(calc(-100% * 3)`;
 
   carousel.appendChild(navDot);
 
