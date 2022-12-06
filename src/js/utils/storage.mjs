@@ -1,4 +1,4 @@
-import { checkIfLoggedIn } from "../layout/redirect.mjs";
+// import { checkIfLoggedIn } from "../layout/redirect.mjs";
 
 export function getLocalStorage() {
   const locStorage = localStorage.getItem("isLoggedIn")
@@ -30,5 +30,5 @@ export function setLocalStorage(
 
 export function clearLocalStorage() {
   localStorage.clear();
-  checkIfLoggedIn();
+  window.location.href = "../../../login.html";
 }

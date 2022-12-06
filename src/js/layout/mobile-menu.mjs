@@ -58,11 +58,11 @@ window.addEventListener("DOMContentLoaded", () => {
     "#credit-profile-card span"
   );
   const locStor = getLocalStorage();
-  if (locStor.avatar) {
+  if (!locStor) {
+    profileImage.src = "../../../assets/images/profile-img.png";
+  } else {
     profileImage.src = locStor.avatar;
     creditProfileCard.textContent = locStor.credits;
-  } else {
-    profileImage.src = "../../../assets/images/profile-img.png";
   }
 });
 

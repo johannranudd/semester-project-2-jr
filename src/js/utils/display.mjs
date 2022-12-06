@@ -2,10 +2,10 @@ import { loadingSpinner, removeSpinner } from "./loading.mjs";
 import { filterHighestBid, getListingsStillForSale } from "./various.mjs";
 
 export function displayListings(data, listElement) {
-  const stillForSale = getListingsStillForSale(data);
-  if (stillForSale) {
+  // const stillForSale = getListingsStillForSale(data);
+  if (data) {
     removeSpinner();
-    stillForSale.map((listing) => {
+    data.map((listing) => {
       const {
         id,
         title,

@@ -710,6 +710,10 @@ label {
   margin-top: 1rem;
 }
 
+.mb-10{
+  margin-bottom: 2.5rem;
+}
+
 .block{
   display: block;
 }
@@ -1083,6 +1087,14 @@ label {
 
 .p-2{
   padding: 0.5rem;
+}
+
+.p-4{
+  padding: 1rem;
+}
+
+.p-6{
+  padding: 1.5rem;
 }
 
 .px-2{
