@@ -7,6 +7,7 @@
 import { postListing } from "../utils/posts.mjs";
 import { getSingleListing } from "../utils/gets.mjs";
 import { updateEntry } from "../utils/puts.mjs";
+import { getLocalStorage } from "../utils/storage.mjs";
 
 const formNewListing = document.querySelector("#new-listing-form");
 let titleVal = formNewListing.querySelector("#title");
@@ -21,6 +22,13 @@ const headline = document.querySelector("#create-or-edit-header");
 const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
 const urlID = mySearchParams.get("id");
+
+// window.addEventListener("load", () => {
+//   // const locStor = getLocalStorage();
+//   // if (!locStor) {
+//   //   window.location.href = "../../../login.html";
+//   // }
+// });
 
 window.addEventListener("DOMContentLoaded", async () => {
   if (!urlID) {

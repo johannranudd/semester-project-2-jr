@@ -4,7 +4,7 @@ import { getListingsStillForSale } from "./various.mjs";
 const baseURL = "https://api.noroff.dev/api/v1";
 
 export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
-  const locStor = getLocalStorage();
+  // const locStor = getLocalStorage();
   const limitQuery = setFetchLimitURL(limit);
   const sortQuery = setSortQuery(sort);
   const sortOrderQuery = setSortOrderQuery(sortOrder);
@@ -15,6 +15,7 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
     );
     if (res.ok) {
       const data = await res.json();
+      // const stillForSale = getListingsStillForSale(data);
       return data;
     }
   } catch (error) {

@@ -19,6 +19,16 @@ export function sortByHighestInteger(data) {
   });
 }
 // sort by highest integer
+export function sortByHighestIntegerBid(data) {
+  return data.sort((a, b) => {
+    if (a.highestBid < b.highestBid) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+}
+// sort by highest integer
 export function sortByLowestInteger(data) {
   return data.sort((a, b) => {
     if (a.highestBid > b.highestBid) {

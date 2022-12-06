@@ -5,6 +5,7 @@ import {
   filterHighestBid,
   sortByHighestInteger,
   sortByLowestInteger,
+  sortByHighestIntegerBid,
 } from "../utils/various.mjs";
 import { loadingSpinner } from "../utils/loading.mjs";
 import { getLocalStorage } from "../utils/storage.mjs";
@@ -14,22 +15,18 @@ const categories = document.querySelector("#sort-selector");
 const btnCategory = document.querySelectorAll(".btn-category");
 
 const resultsShowing = document.querySelector("#results-showing");
-
-// const sortSpan = document.querySelectorAll("#sort-span");
-// const tagSpan = document.querySelectorAll("#tag-span");
+const loadMoreBtn = document.querySelector("#load-more-btn");
 
 let offset = 0;
 let tag = "";
-let sortValue = "";
-let limit = "";
-
-window.addEventListener(
-  "DOMContentLoaded",
-  displayBasedOnSort(sortValue, false)
-);
+let limit = 50;
+window.addEventListener("DOMContentLoaded", displayBasedOnSort(false));
 
 if (categories) {
-  categories.addEventListener("change", displayBasedOnSort);
+  categories.addEventListener("change", () => {
+    offset = 0;
+    displayBasedOnSort();
+  });
 }
 if (btnCategory) {
   btnCategory.forEach((btn) => {
@@ -39,17 +36,16 @@ if (btnCategory) {
 
 async function getTags(event) {
   // TODO: come back here to filter after creating posts with apropriate tags
-  // TODO: paginate
-  // TODO: set tag = event.currentTarget.dataset.category.toLowerCase();
-  // create a global var that changes so that each fetch gets it
-  tag = event.currentTarget.dataset.category;
-  displayBasedOnSort(categories.value, sortValue, false);
+  offset = 0;
+  tag = event.currentTarget.dataset.category.toLowerCase();
+  displayBasedOnSort(false);
 }
 
-export async function displayBasedOnSort(
-  sortValue,
-  isAddingToPrevList = false
-) {
+loadMoreBtn.addEventListener("click", () => {
+  displayBasedOnSort(true);
+});
+
+export async function displayBasedOnSort(isAddingToPrevList = false) {
   if (!isAddingToPrevList) {
     if (listingsULElement) {
       listingsULElement.innerHTML = "";
@@ -61,9 +57,6 @@ export async function displayBasedOnSort(
 
   if (window.location.href.includes("profile.html")) {
     const locStor = getLocalStorage();
-    // todo: check if locstor exists, if not display YOU MUST LOGIN TO VIEW kida message
-    // todo: else display as normal
-
     if (categories.value === "newest") {
       const data = await getAllListingsByProfile(
         limit,
@@ -73,9 +66,7 @@ export async function displayBasedOnSort(
         tag,
         locStor.name
       );
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Newest</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "oldest") {
       const data = await getAllListingsByProfile(
         limit,
@@ -85,9 +76,7 @@ export async function displayBasedOnSort(
         tag,
         locStor.name
       );
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Oldest</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "title-asc") {
       const data = await getAllListingsByProfile(
         limit,
@@ -97,9 +86,7 @@ export async function displayBasedOnSort(
         tag,
         locStor.name
       );
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Title (asc)</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "title-desc") {
       const data = await getAllListingsByProfile(
         limit,
@@ -109,76 +96,60 @@ export async function displayBasedOnSort(
         tag,
         locStor.name
       );
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Title (desc)</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "price-low-high") {
       sortByPrice(
         "asc",
-        sortValue,
-        isAddingToPrevList,
         getAllListingsByProfile(limit, offset, "", "", tag, locStor.name)
       );
     } else if (categories.value === "price-high-low") {
       sortByPrice(
         "desc",
-        sortValue,
-        isAddingToPrevList,
         getAllListingsByProfile(limit, offset, "", "", tag, locStor.name)
       );
     }
   } else {
     if (categories.value === "newest") {
       const data = await getListings(limit, offset, "created", "desc", tag);
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Newest</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "oldest") {
-      console.log(categories.value);
       const data = await getListings(limit, offset, "created", "asc", tag);
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Oldest</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "title-asc") {
       const data = await getListings(limit, offset, "title", "asc", tag);
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Title (asc)</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "title-desc") {
       const data = await getListings(limit, offset, "title", "desc", tag);
-      displayListings(data, listingsULElement, isAddingToPrevList);
-      resultsShowing.innerHTML = `Showing: <span>Title (desc)</span><span> ${tag}</span>`;
-      sortValue = categories.value;
+      checkOffsetDisplay(data);
     } else if (categories.value === "price-low-high") {
-      sortByPrice(
-        "asc",
-        sortValue,
-        isAddingToPrevList,
-        getListings(limit, offset, "", "", tag)
-      );
+      sortByPrice("asc", getListings(limit, offset, "", "", tag));
     } else if (categories.value === "price-high-low") {
-      sortByPrice(
-        "desc",
-        sortValue,
-        isAddingToPrevList,
-        getListings(limit, offset, "", "", tag)
-      );
+      sortByPrice("desc", getListings(limit, offset, "", "", tag));
     }
   }
-
-  // console.log("sortValue::", sortValue);
-  // console.log("tag:::", tag);
 }
 
-async function sortByPrice(
-  sortDirection,
-  sortValue,
-  isAddingToPrevList,
-  fetchMethod
-) {
+function checkOffsetDisplay(data) {
+  const stillForSale = getListingsStillForSale(data);
+  offset += limit;
+  displayListings(stillForSale, listingsULElement);
+  resultsShowing.innerHTML = `Showing: <span>Newest</span><span> ${tag}</span>`;
+  if (stillForSale.length === 0) {
+    resultsShowing.innerHTML += ` > ${stillForSale.length} results`;
+    loadMoreBtn.style.display = "none";
+  }
+}
+
+async function sortByPrice(sortDirection, fetchMethod) {
   const newArray = [];
   const data = await fetchMethod;
-  data.map((listing) => {
+  const stillForSale = getListingsStillForSale(data);
+  offset += limit;
+  if (stillForSale.length === 0) {
+    loadMoreBtn.style.display = "none";
+  }
+
+  stillForSale.map((listing) => {
     const highestBid = filterHighestBid(listing);
     const listingWithHighestBidProperty = { ...listing, highestBid };
     newArray.push(listingWithHighestBidProperty);
@@ -186,18 +157,12 @@ async function sortByPrice(
   if (sortDirection === "asc") {
     sortDirection = sortByLowestInteger(newArray);
     resultsShowing.innerHTML = `Showing: <span>Price (Low to high)</span><span> ${tag}</span>`;
-    sortValue = categories.value;
   } else if (sortDirection === "desc") {
-    sortDirection = sortByHighestInteger(newArray);
+    sortDirection = sortByHighestIntegerBid(newArray);
     resultsShowing.innerHTML = `Showing: <span>Price (High to low)</span><span> ${tag}</span>`;
-    sortValue = categories.value;
   }
   const listingsPriceLowToHight = sortDirection;
-  displayListings(
-    listingsPriceLowToHight,
-    listingsULElement,
-    isAddingToPrevList
-  );
+  displayListings(listingsPriceLowToHight, listingsULElement);
 }
 
 // display all
