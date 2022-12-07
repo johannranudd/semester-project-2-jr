@@ -1,5 +1,5 @@
 import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
-import { getListings } from "../utils/gets.mjs";
+import { getListings, getSingleProfile } from "../utils/gets.mjs";
 
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
@@ -46,22 +46,42 @@ window.addEventListener("resize", () => {
 
 LogoutBtn.addEventListener("click", clearLocalStorage);
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
   const profileCard = document.querySelector(".profile-card");
-  const profileImage = profileCard.querySelector("img");
-  // TODO: get active bids and your listings
-  // const listingsProfileCard = profileCard.querySelector(
-  //   "#listings-profile-card"
-  // );
-  // const bidsProfileCard = profileCard.querySelector("#bids-profile-card");
-  const creditProfileCard = profileCard.querySelector(
-    "#credit-profile-card span"
-  );
   const locStor = getLocalStorage();
-  if (!locStor) {
-    profileImage.src = "../../../assets/images/profile-img.png";
-  } else {
-    profileImage.src = locStor.avatar;
+  if (
+    !locStor ||
+    !locStor.isLoggedIn ||
+    window.location.href.includes("profile.html")
+  ) {
+    // TODO: get active bids and your listings
+
+    // profileImage.src = "../../../assets/images/profile-img.png";
+    // profileCard.innerHTML = `<p class="text-center">Please log in to see profile information</p>`;
+    profileCard.style.display = "none";
+    LogoutBtn.textContent = "Login";
+  } else if (locStor) {
+    const usernameProfileCard = profileCard.querySelector(
+      "#username-profile-card"
+    );
+    const profileImage = profileCard.querySelector("img");
+    const bidsProfileCard = profileCard.querySelector("#bids-profile-card");
+
+    const creditProfileCard = profileCard.querySelector(
+      "#credit-profile-card span"
+    );
+
+    const listingsProfileCard = profileCard.querySelector(
+      "#listings-profile-card span"
+    );
+
+    const profile = await getSingleProfile(locStor.name);
+    const { listings } = profile._count;
+    listingsProfileCard.textContent = listings;
+    profileImage.src = locStor.avatar
+      ? locStor.avatar
+      : "../../../assets/images/profile-img.png";
+    usernameProfileCard.textContent = locStor.name;
     creditProfileCard.textContent = locStor.credits;
   }
 });
