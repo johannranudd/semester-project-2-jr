@@ -165,6 +165,7 @@
           <!-- image -->
           <div class="relative">
             <img
+              id="profile-image-main-card"
               src="./assets/images/profile-img.png"
               alt="your profile image"
               class="w-20 h-20 mr-1 rounded-full object-cover border-solid border-2 border-primaryClr xs:w-24 xs:h-24"
@@ -178,19 +179,29 @@
             <div
               class="flex flex-col 2xs:flex-row 2xs:justify-between 2xs:items-center"
             >
-              <h3 class="capitalize whitespace-nowrap">johann ranudd</h3>
-              <p class="text-sm">email@email.com</p>
+              <h3
+                id="username-main-profil-card"
+                class="capitalize whitespace-nowrap"
+              ></h3>
+              <p id="user-email" class="text-sm"></p>
             </div>
             <div class="flex justify-between items-end">
               <div class="flex flex-col">
-                <p id="listings-profile-card" class="text-sm break-words">
+                <p id="listings-main-profile-card" class="text-sm break-words">
                   Listings: <span>0</span>
                 </p>
-                <p class="text-sm break-words">Active bids: <span>0</span></p>
-                <p class="text-sm break-words">Credit: <span>0</span></p>
-                <p class="text-sm break-words">Wins: <span>0</span></p>
+                <p id="credits-main-profile-card" class="text-sm break-words">
+                  Credits: <span>0</span>
+                </p>
+                <p id="wins-main-profile-card" class="text-sm break-words">
+                  Wins: <span>0</span>
+                </p>
               </div>
-              <div><button type="button">Edit Profile</button></div>
+              <div>
+                <button type="button" id="edit-profile-btn">
+                  Edit Profile
+                </button>
+              </div>
             </div>
           </div>
         </header>
