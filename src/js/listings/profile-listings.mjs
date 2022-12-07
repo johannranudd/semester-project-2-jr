@@ -6,7 +6,7 @@ import {
 } from "../utils/gets.mjs";
 import { getLocalStorage, setLocalStorage } from "../utils/storage.mjs";
 import { loadingSpinner } from "../utils/loading.mjs";
-import { displayBasedOnSort, limit, offset } from "./index.mjs";
+import { displayBasedOnSort } from "./index.mjs";
 import { getListingsStillForSale } from "../utils/various.mjs";
 import { updateProfileAvatar } from "../utils/puts.mjs";
 const querystring = document.location.search;

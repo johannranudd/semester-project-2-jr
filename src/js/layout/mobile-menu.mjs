@@ -1,5 +1,8 @@
 import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
-import { getListings, getSingleProfile } from "../utils/gets.mjs";
+import { getListings, getSingleProfile, search } from "../utils/gets.mjs";
+import { getListingsStillForSale } from "../utils/various.mjs";
+import { displayListings } from "../utils/display.mjs";
+import { loadingSpinner } from "../utils/loading.mjs";
 
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
@@ -9,6 +12,7 @@ const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
 const LogoutBtn = document.querySelector("#logout-btn");
 const backdrop = document.querySelector("#backdrop");
+const listingsULElement = document.querySelector("#listing");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -85,12 +89,45 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// async function getActiveBids() {
-//   const data = await getListings();
-//   console.log("HERE::: ", data);
-//   const getYourBids = data.filter((listing) => {
-//     const bidsOnListing = listing.bids;
-//     console.log(bidsOnListing);
-//   });
+// todo: searchform
+let limit = 100;
+let offset = 0;
+let tag = "";
+
+const searchForm = document.querySelector("#search-form");
+
+searchForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const input = searchForm.querySelector("input[type='search']");
+
+  if (input.value) {
+    if (listingsULElement) {
+      listingsULElement.innerHTML = "";
+      loadingSpinner(listingsULElement);
+      const data = await search();
+      const filter = data.filter((item) => {
+        console.log(item);
+      });
+      // displayListings(data, listingsULElement);
+    }
+  }
+  input.value = "";
+});
+
+// async function rec() {
+// if (newArray.length === 0) {
+// let newArray = [];
+// const data = await search();
+// console.log(data);
+// if (data.length !== 0) {
+//   for (let i = 0; i < 3; i++) {
+//     offset += data.length;
+//     newArray.push(...data);
+//     setTimeout(() => {
+//       rec();
+//     }, 1000);
+//   }
+//   console.log(newArray);
+//   displayListings(newArray, listingsULElement);
 // }
-// getActiveBids();
+// }

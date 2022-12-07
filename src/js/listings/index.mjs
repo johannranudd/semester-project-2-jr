@@ -17,9 +17,13 @@ const btnCategory = document.querySelectorAll(".btn-category");
 const resultsShowing = document.querySelector("#results-showing");
 const loadMoreBtn = document.querySelector("#load-more-btn");
 
-export let offset = 0;
+const querystring = document.location.search;
+const mySearchParams = new URLSearchParams(querystring);
+const urlID = mySearchParams.get("id");
+
+let offset = 0;
 let tag = "";
-export let limit = 50;
+let limit = 50;
 window.addEventListener("DOMContentLoaded", displayBasedOnSort(false));
 
 if (categories) {
@@ -133,7 +137,7 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
 
 function checkOffsetDisplay(data) {
   const stillForSale = getListingsStillForSale(data);
-  offset += limit;
+  offset += data.length;
   displayListings(stillForSale, listingsULElement);
   resultsShowing.innerHTML = `Showing: <span>Newest</span><span> ${tag}</span>`;
   if (stillForSale.length === 0) {
@@ -146,7 +150,7 @@ async function sortByPrice(sortDirection, fetchMethod) {
   const newArray = [];
   const data = await fetchMethod;
   const stillForSale = getListingsStillForSale(data);
-  offset += limit;
+  offset += data.length;
   if (stillForSale.length === 0) {
     loadMoreBtn.style.display = "none";
   }
