@@ -682,8 +682,8 @@ label {
   margin-right: 0.25rem;
 }
 
-.mb-20{
-  margin-bottom: 5rem;
+.mb-10{
+  margin-bottom: 2.5rem;
 }
 
 .mt-auto{
@@ -708,10 +708,6 @@ label {
 
 .mt-4{
   margin-top: 1rem;
-}
-
-.mb-10{
-  margin-bottom: 2.5rem;
 }
 
 .block{
@@ -842,12 +838,20 @@ label {
   max-width: 24rem;
 }
 
+.max-w-\[50px\]{
+  max-width: 50px;
+}
+
 .grow{
   flex-grow: 1;
 }
 
 .basis-\[49\.5\%\]{
   flex-basis: 49.5%;
+}
+
+.basis-1\/2{
+  flex-basis: 50%;
 }
 
 .-translate-x-\[200\%\]{
@@ -1089,10 +1093,6 @@ label {
   padding: 0.5rem;
 }
 
-.p-4{
-  padding: 1rem;
-}
-
 .p-6{
   padding: 1.5rem;
 }
@@ -1125,6 +1125,11 @@ label {
 .px-3{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .pb-10{
