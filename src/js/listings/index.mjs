@@ -17,9 +17,9 @@ const btnCategory = document.querySelectorAll(".btn-category");
 const resultsShowing = document.querySelector("#results-showing");
 const loadMoreBtn = document.querySelector("#load-more-btn");
 
-let offset = 0;
+export let offset = 0;
 let tag = "";
-let limit = 50;
+export let limit = 50;
 window.addEventListener("DOMContentLoaded", displayBasedOnSort(false));
 
 if (categories) {
@@ -127,6 +127,8 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
       sortByPrice("desc", getListings(limit, offset, "", "", tag));
     }
   }
+  // console.log(limit);
+  // console.log(offset);
 }
 
 function checkOffsetDisplay(data) {

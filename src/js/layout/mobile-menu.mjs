@@ -65,7 +65,6 @@ window.addEventListener("DOMContentLoaded", async () => {
       "#username-profile-card"
     );
     const profileImage = profileCard.querySelector("img");
-    const bidsProfileCard = profileCard.querySelector("#bids-profile-card");
 
     const creditProfileCard = profileCard.querySelector(
       "#credit-profile-card span"

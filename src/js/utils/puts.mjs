@@ -13,11 +13,33 @@ export async function updateEntry(id, submitObject) {
       body: JSON.stringify(submitObject),
     });
     if (req.ok) {
-
+      window.location = "/listings.html";
       // const data = req.json();
       // return data;
-      window.location = "/listings.html";
+    } else {
+      console.log("req not OK");
+    }
+  } catch (error) {
+    throw new Error(error.toString());
+  }
+}
 
+export async function updateProfileAvatar(name, submitObject) {
+  const locStor = getLocalStorage();
+  try {
+    const req = await fetch(`${baseURL}/auction/profiles/${name}/media`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${locStor.token}`,
+      },
+      body: JSON.stringify(submitObject),
+    });
+    if (req.ok) {
+      // window.location = "/listings.html";
+      const data = req.json();
+      console.log(data);
+      return data;
     } else {
       console.log("req not OK");
     }
