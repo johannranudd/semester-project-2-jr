@@ -17,15 +17,27 @@ const btnCategory = document.querySelectorAll(".btn-category");
 const resultsShowing = document.querySelector("#results-showing");
 const loadMoreBtn = document.querySelector("#load-more-btn");
 
-const querystring = document.location.search;
-const mySearchParams = new URLSearchParams(querystring);
-const urlID = mySearchParams.get("id");
+// todo: if id then display search, else display newest
+
+function geturlID() {
+  const querystring = document.location.search;
+  const mySearchParams = new URLSearchParams(querystring);
+  const urlID = mySearchParams.get("id");
+  return urlID;
+}
 
 let offset = 0;
 let tag = "";
 let limit = 50;
-window.addEventListener("DOMContentLoaded", displayBasedOnSort(false));
+let newArray = [];
 
+window.addEventListener("DOMContentLoaded", () => {
+  displayBasedOnSort(false);
+});
+// const urlID = geturlID();
+// console.log(urlID);
+// const data = await getListings(limit, offset, "", "", "");
+// console.log(data);
 if (categories) {
   categories.addEventListener("change", () => {
     offset = 0;
@@ -40,16 +52,50 @@ if (btnCategory) {
 
 async function getTags(event) {
   // TODO: come back here to filter after creating posts with apropriate tags
+  const stateObj = {};
+  history.pushState(stateObj, "", `listings.html`);
   offset = 0;
   tag = event.currentTarget.dataset.category.toLowerCase();
   displayBasedOnSort(false);
 }
 
-loadMoreBtn.addEventListener("click", () => {
-  displayBasedOnSort(true);
-});
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener("click", () => {
+    displayBasedOnSort(true);
+  });
+}
+
+function searchFn(searchValue, data) {
+  const filter = data.filter((item) => {
+    const searchToLowerCase = searchValue.toLowerCase();
+    const title = item.title.toLowerCase();
+    if (title.includes(searchToLowerCase)) {
+      return item;
+    }
+  });
+  return filter;
+}
+
+function display(urlID) {
+  listingsULElement.innerHTML = "";
+  loadingSpinner(listingsULElement);
+  const hasTitle = searchFn(urlID, newArray);
+  const filter = hasTitle.filter((item) => {
+    if (item.id === "35328d12-2d25-4b43-86b6-d33ef1ed7d3c") {
+      return item;
+    }
+  });
+  // console.log(hasTitle);
+  // const reduce =
+  console.log(filter);
+  displayListings(hasTitle, listingsULElement);
+  loadMoreBtn.style.display = "none";
+}
 
 export async function displayBasedOnSort(isAddingToPrevList = false) {
+  if (window.location.href.includes("index.html")) {
+    return;
+  }
   if (!isAddingToPrevList) {
     if (listingsULElement) {
       listingsULElement.innerHTML = "";
@@ -58,6 +104,68 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
   } else {
     loadingSpinner(listingsULElement);
   }
+
+  const urlID = geturlID();
+  if (urlID) {
+    // !This max value could be changed to get more results
+    limit = 100;
+    offset = 0;
+    let max = 10;
+    for (let i = 0; i <= max; i++) {
+      if (offset === 0) {
+        console.log(offset);
+        const data = await getListings(limit, offset, "", "", tag);
+        if (data.length < limit) {
+          newArray.push(...data);
+          return;
+        } else {
+          offset += data.length;
+          newArray.push(...data);
+        }
+      } else {
+        setTimeout(async () => {
+          const data = await getListings(limit, offset, "", "", tag);
+          if (data.length < limit) {
+            newArray.push(...data);
+            return;
+          } else {
+            offset += data.length;
+            newArray.push(...data);
+            if (i === max) {
+              display(urlID);
+            }
+          }
+        }, 3000);
+      }
+    }
+
+    console.log(`yes, urlID is: ${urlID}`);
+  } else {
+    // run everything else
+    console.log(`no, urlID is: ${urlID}`);
+    if (window.location.href.includes("listings.html")) {
+      if (categories.value === "newest") {
+        const data = await getListings(limit, offset, "created", "desc", tag);
+        checkOffsetDisplay(data);
+      } else if (categories.value === "oldest") {
+        const data = await getListings(limit, offset, "created", "asc", tag);
+        checkOffsetDisplay(data);
+      } else if (categories.value === "title-asc") {
+        const data = await getListings(limit, offset, "title", "asc", tag);
+        checkOffsetDisplay(data);
+      } else if (categories.value === "title-desc") {
+        const data = await getListings(limit, offset, "title", "desc", tag);
+        checkOffsetDisplay(data);
+      } else if (categories.value === "price-low-high") {
+        sortByPrice("asc", getListings(limit, offset, "", "", tag));
+      } else if (categories.value === "price-high-low") {
+        sortByPrice("desc", getListings(limit, offset, "", "", tag));
+      }
+    }
+  }
+  // make sure to set
+  // const data = await getListings(limit, offset, "", "", "");
+  // console.log(data);
 
   if (window.location.href.includes("profile.html")) {
     const locStor = getLocalStorage();
@@ -112,50 +220,33 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
         getAllListingsByProfile(limit, offset, "", "", tag, locStor.name)
       );
     }
-  } else {
-    if (categories.value === "newest") {
-      const data = await getListings(limit, offset, "created", "desc", tag);
-      checkOffsetDisplay(data);
-    } else if (categories.value === "oldest") {
-      const data = await getListings(limit, offset, "created", "asc", tag);
-      checkOffsetDisplay(data);
-    } else if (categories.value === "title-asc") {
-      const data = await getListings(limit, offset, "title", "asc", tag);
-      checkOffsetDisplay(data);
-    } else if (categories.value === "title-desc") {
-      const data = await getListings(limit, offset, "title", "desc", tag);
-      checkOffsetDisplay(data);
-    } else if (categories.value === "price-low-high") {
-      sortByPrice("asc", getListings(limit, offset, "", "", tag));
-    } else if (categories.value === "price-high-low") {
-      sortByPrice("desc", getListings(limit, offset, "", "", tag));
-    }
   }
+
   // console.log(limit);
   // console.log(offset);
 }
 
 function checkOffsetDisplay(data) {
-  const stillForSale = getListingsStillForSale(data);
+  // const stillForSale = getListingsStillForSale(data);
   offset += data.length;
-  displayListings(stillForSale, listingsULElement);
+  displayListings(data, listingsULElement);
   resultsShowing.innerHTML = `Showing: <span>Newest</span><span> ${tag}</span>`;
-  if (stillForSale.length === 0) {
-    resultsShowing.innerHTML += ` > ${stillForSale.length} results`;
+  // resultsShowing.innerHTML += ` > ${data.length} results`;
+  if (data.length === 0) {
     loadMoreBtn.style.display = "none";
   }
 }
 
 async function sortByPrice(sortDirection, fetchMethod) {
-  const newArray = [];
+  let newArray = [];
   const data = await fetchMethod;
-  const stillForSale = getListingsStillForSale(data);
+  // const stillForSale = getListingsStillForSale(data);
   offset += data.length;
-  if (stillForSale.length === 0) {
+  if (data.length === 0) {
     loadMoreBtn.style.display = "none";
   }
 
-  stillForSale.map((listing) => {
+  data.map((listing) => {
     const highestBid = filterHighestBid(listing);
     const listingWithHighestBidProperty = { ...listing, highestBid };
     newArray.push(listingWithHighestBidProperty);

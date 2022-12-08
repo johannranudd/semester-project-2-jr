@@ -1,8 +1,9 @@
 import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
-import { getListings, getSingleProfile, search } from "../utils/gets.mjs";
+import { getListings, getSingleProfile } from "../utils/gets.mjs";
 import { getListingsStillForSale } from "../utils/various.mjs";
 import { displayListings } from "../utils/display.mjs";
 import { loadingSpinner } from "../utils/loading.mjs";
+import { displayBasedOnSort } from "../listings/index.mjs";
 
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
@@ -90,44 +91,55 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 // todo: searchform
-let limit = 100;
+
 let offset = 0;
 let tag = "";
+let limit = 100;
 
 const searchForm = document.querySelector("#search-form");
 
 searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const input = searchForm.querySelector("input[type='search']");
-
-  if (input.value) {
-    if (listingsULElement) {
-      listingsULElement.innerHTML = "";
-      loadingSpinner(listingsULElement);
-      const data = await search();
-      const filter = data.filter((item) => {
-        console.log(item);
-      });
-      // displayListings(data, listingsULElement);
-    }
+  if (!window.location.href.includes("listings.html")) {
+    window.location.href = `../../../listings.html?id=${input.value.toLowerCase()}`;
+    // console.log(input.value);
+    // const urlID = geturlID();
+    // console.log(urlID);
+    //  grab urlID
+    // fetch
+    // display
+  } else if (window.location.href.includes("listings.html")) {
+    // console.log(`you are already on ${window.location.href}`);
+    const stateObj = {};
+    history.pushState(
+      stateObj,
+      "",
+      `listings.html?id=${input.value.toLowerCase()}`
+    );
+    displayBasedOnSort(false);
+    // console.log(input.value);
+    //  grab urlID
+    // const urlID = geturlID();
+    // console.log(urlID);
+    // const data = await getListings(limit, offset, "", "", "");
+    // console.log(data);
+    // fetch
+    // const data
+    // display
   }
+  // displayBasedOnSort(false);
+  // if (input.value) {
+  //   if (listingsULElement) {
+  //     listingsULElement.innerHTML = "";
+  //     loadingSpinner(listingsULElement);
+  //     const data = await getListings();
+  //     console.log(data);
+  //     // const filter = data.filter((item) => {
+  //     //   console.log(item);
+  //     // });
+  //     // displayListings(data, listingsULElement);
+  //   }
+  // }
   input.value = "";
 });
-
-// async function rec() {
-// if (newArray.length === 0) {
-// let newArray = [];
-// const data = await search();
-// console.log(data);
-// if (data.length !== 0) {
-//   for (let i = 0; i < 3; i++) {
-//     offset += data.length;
-//     newArray.push(...data);
-//     setTimeout(() => {
-//       rec();
-//     }, 1000);
-//   }
-//   console.log(newArray);
-//   displayListings(newArray, listingsULElement);
-// }
-// }
