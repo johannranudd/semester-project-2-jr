@@ -79,15 +79,17 @@ function searchFn(searchValue, data) {
 function display(urlID) {
   listingsULElement.innerHTML = "";
   loadingSpinner(listingsULElement);
+  // console.log(newArray[111]);
   const hasTitle = searchFn(urlID, newArray);
-  const filter = hasTitle.filter((item) => {
-    if (item.id === "35328d12-2d25-4b43-86b6-d33ef1ed7d3c") {
-      return item;
-    }
-  });
+  // console.log(hasTitle[0]);
+  // const filter = hasTitle.filter((item) => {
+  //   if (item.id === newArray[0]) {
+  //     return item;
+  //   }
+  // });
   // console.log(hasTitle);
   // const reduce =
-  console.log(filter);
+  // console.log(filter);
   displayListings(hasTitle, listingsULElement);
   loadMoreBtn.style.display = "none";
 }
@@ -110,7 +112,7 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
     // !This max value could be changed to get more results
     limit = 100;
     offset = 0;
-    let max = 10;
+    let max = 9;
     for (let i = 0; i <= max; i++) {
       if (offset === 0) {
         console.log(offset);
@@ -135,7 +137,7 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
               display(urlID);
             }
           }
-        }, 3000);
+        }, 1000);
       }
     }
 
