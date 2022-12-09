@@ -79,9 +79,9 @@ window.addEventListener("DOMContentLoaded", async () => {
       "#listings-profile-card span"
     );
 
-    const profile = await getSingleProfile(locStor.name);
-    const { listings } = profile._count;
-    listingsProfileCard.textContent = listings;
+    // const profile = await getSingleProfile(locStor.name);
+    // const { listings } = profile._count;
+    // listingsProfileCard.textContent = listings;
     profileImage.src = locStor.avatar
       ? locStor.avatar
       : "../../../assets/images/profile-img.png";
@@ -91,10 +91,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 // todo: searchform
-
-let offset = 0;
-let tag = "";
-let limit = 100;
 
 const searchForm = document.querySelector("#search-form");
 
