@@ -11,7 +11,7 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
   const tagQuery = setTagQuery(tag);
   try {
     const res = await fetch(
-      `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&offset=${offset}${limitQuery}`
+      `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`
     );
     if (res.ok) {
       const data = await res.json();
@@ -21,7 +21,30 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
   } catch (error) {
     console.log(error, "an error occured in getListings()");
   }
+  // console.log(
+  //   `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`
+  // );
 }
+
+// export async function search(limit, offset = 0, sort, sortOrder, tag) {
+//   // const locStor = getLocalStorage();
+//   const limitQuery = setFetchLimitURL(limit);
+//   const sortQuery = setSortQuery(sort);
+//   const sortOrderQuery = setSortOrderQuery(sortOrder);
+//   const tagQuery = setTagQuery(tag);
+//   try {
+//     const res = await fetch(
+//       `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`
+//     );
+//     if (res.ok) {
+//       const data = await res.json();
+//       // const stillForSale = getListingsStillForSale(data);
+//       return data;
+//     }
+//   } catch (error) {
+//     console.log(error, "an error occured in getListings()");
+//   }
+// }
 
 export async function getSingleListing(id) {
   const locStor = getLocalStorage();
@@ -58,7 +81,7 @@ export async function getAllListingsByProfile(
   const tagQuery = setTagQuery(tag);
   try {
     const res = await fetch(
-      `${baseURL}/auction/profiles/${name}/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&offset=${offset}${limitQuery}`,
+      `${baseURL}/auction/profiles/${name}/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -73,6 +96,7 @@ export async function getAllListingsByProfile(
   } catch (error) {
     console.log(error, "an error occured in getAllListingsByProfile()");
   }
+  // `${baseURL}/auction/profiles/${name}/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`
 }
 
 export async function getAllProfiles() {

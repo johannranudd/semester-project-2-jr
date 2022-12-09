@@ -1,5 +1,9 @@
 import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
-import { getListings } from "../utils/gets.mjs";
+import { getListings, getSingleProfile } from "../utils/gets.mjs";
+import { getListingsStillForSale } from "../utils/various.mjs";
+import { displayListings } from "../utils/display.mjs";
+import { loadingSpinner } from "../utils/loading.mjs";
+import { displayBasedOnSort } from "../listings/index.mjs";
 
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
@@ -9,6 +13,7 @@ const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
 const LogoutBtn = document.querySelector("#logout-btn");
 const backdrop = document.querySelector("#backdrop");
+const listingsULElement = document.querySelector("#listing");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -46,32 +51,62 @@ window.addEventListener("resize", () => {
 
 LogoutBtn.addEventListener("click", clearLocalStorage);
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
   const profileCard = document.querySelector(".profile-card");
-  const profileImage = profileCard.querySelector("img");
-  // TODO: get active bids and your listings
-  // const listingsProfileCard = profileCard.querySelector(
-  //   "#listings-profile-card"
-  // );
-  // const bidsProfileCard = profileCard.querySelector("#bids-profile-card");
-  const creditProfileCard = profileCard.querySelector(
-    "#credit-profile-card span"
-  );
   const locStor = getLocalStorage();
-  if (!locStor) {
-    profileImage.src = "../../../assets/images/profile-img.png";
-  } else {
-    profileImage.src = locStor.avatar;
+  if (
+    !locStor ||
+    !locStor.isLoggedIn ||
+    window.location.href.includes("profile.html")
+  ) {
+    // TODO: get active bids and your listings
+
+    // profileImage.src = "../../../assets/images/profile-img.png";
+    // profileCard.innerHTML = `<p class="text-center">Please log in to see profile information</p>`;
+    profileCard.style.display = "none";
+    LogoutBtn.textContent = "Login";
+  } else if (locStor) {
+    const usernameProfileCard = profileCard.querySelector(
+      "#username-profile-card"
+    );
+    const profileImage = profileCard.querySelector("img");
+
+    const creditProfileCard = profileCard.querySelector(
+      "#credit-profile-card span"
+    );
+
+    const listingsProfileCard = profileCard.querySelector(
+      "#listings-profile-card span"
+    );
+
+    // const profile = await getSingleProfile(locStor.name);
+    // const { listings } = profile._count;
+    // listingsProfileCard.textContent = listings;
+    profileImage.src = locStor.avatar
+      ? locStor.avatar
+      : "../../../assets/images/profile-img.png";
+    usernameProfileCard.textContent = locStor.name;
     creditProfileCard.textContent = locStor.credits;
   }
 });
 
-// async function getActiveBids() {
-//   const data = await getListings();
-//   console.log("HERE::: ", data);
-//   const getYourBids = data.filter((listing) => {
-//     const bidsOnListing = listing.bids;
-//     console.log(bidsOnListing);
-//   });
-// }
-// getActiveBids();
+// todo: searchform
+
+const searchForm = document.querySelector("#search-form");
+
+searchForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const input = searchForm.querySelector("input[type='search']");
+  if (!window.location.href.includes("listings.html")) {
+    window.location.href = `../../../listings.html?id=${input.value.toLowerCase()}`;
+  } else if (window.location.href.includes("listings.html")) {
+    const stateObj = {};
+    history.pushState(
+      stateObj,
+      "",
+      `listings.html?id=${input.value.toLowerCase()}`
+    );
+    displayBasedOnSort(false);
+  }
+  input.value = "";
+});

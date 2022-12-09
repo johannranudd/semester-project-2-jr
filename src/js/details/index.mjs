@@ -104,19 +104,20 @@ async function displaySignle() {
     // sellerSection
     sellerTitle.textContent = title;
     sellerUsername.textContent = seller.name;
-    sellerProfileImg.src = seller.avatar
-      ? seller.avatar
-      : "../../../assets/images/profile-img.png";
+    sellerProfileImg.src = seller.avatar && seller.avatar;
+    sellerProfileImg.addEventListener("error", () => {
+      sellerProfileImg.src = "../../../assets/images/profile-img.png";
+    });
     sellerDescription.textContent = description;
 
     const newArray = data.bids.slice();
     const reverseArray = newArray.reverse();
     // const test = sortByHighestInteger(newArray);
     reverseArray.map(async (bid, index) => {
-      const { amount, bidderName, created } = bid;
       if (index > showLimit) {
         return;
       } else {
+        const { amount, bidderName, created } = bid;
         biddersProfileListElem.innerHTML += `<li class="bidder-status flex items-center justify-between">
         <div class="flex items-center">
         <img class="bidder-profile-image" />
@@ -133,16 +134,55 @@ async function displaySignle() {
     timeSinceBidFn(timeSinceBidElem);
 
     const listElem = biddersProfileListElem.querySelectorAll("li");
-    listElem.forEach(async (elem, index) => {
+    // get unique bidders
+    const reduce = reverseArray.reduce((total, current) => {
+      if (!total.includes(current.bidderName)) {
+        total.push(current.bidderName);
+      }
+      return total;
+    }, []);
+
+    reduce.map(async (bidderName, index) => {
       if (index > showLimit) {
         return;
       } else {
-        const image = elem.querySelector("img");
-        const header = elem.querySelector("h5");
-        const profile = await getSingleProfile(header.textContent);
-        const { avatar } = profile;
-        image.src = avatar ? avatar : "../../../assets/images/profile-img.png";
-        image.alt = `profile image of ${header.textContent}`;
+        setTimeout(async () => {
+          const profile = await getSingleProfile(bidderName);
+          const { avatar } = profile;
+          displayProfileImages(profile, listElem);
+          listOfProfilImg.innerHTML += `<li><img class="w-8 h-8 object-cover rounded-full border-solid border-2 border-whiteClr" src="${
+            avatar ? avatar : "../../../assets/images/profile-img.png"
+          }" alt="profile image of ${
+            profile.name
+          }" onerror="this.src='../../../assets/images/profile-img.png';" /></li>`;
+        }, 1000);
+      }
+    });
+
+    const amountOfBidsText =
+      liveAuctionSection.querySelector(".amount-of-bids");
+    amountOfBidsText.textContent = `${reverseArray.length}bids`;
+    const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
+    const highestBid = filterHighestBid(data);
+    highestBidElem.textContent = `$ ${highestBid}`;
+
+    setInterval(() => displayCountdownTimer(data), 1000);
+  } // if (data) end
+}
+function displayProfileImages(profile, listElem) {
+  listElem.forEach((elem, index) => {
+    if (index > showLimit) {
+      return;
+    } else {
+      const image = elem.querySelector("img");
+      const header = elem.querySelector("h5");
+      const { avatar } = profile;
+      if (header.textContent === profile.name) {
+        image.src = avatar && avatar;
+        image.addEventListener("error", () => {
+          image.src = "../../../assets/images/profile-img.png";
+        });
+        image.alt = `profile image of ${profile.name}`;
         image.classList.add(
           "w-12",
           "h-12",
@@ -152,26 +192,10 @@ async function displaySignle() {
           "border-2",
           "border-primaryClr"
         );
-
-        listOfProfilImg.innerHTML += `<li><img class="w-8 h-8 object-cover rounded-full border-solid border-2 border-whiteClr" src="${
-          avatar ? avatar : "../../../assets/images/profile-img.png"
-        }" alt="profile image of ${header.textContent}" /></li>`;
       }
-    });
-
-    const amountOfBidsText =
-      liveAuctionSection.querySelectorAll(".amount-of-bids");
-    amountOfBidsText.forEach((elem) => {
-      elem.textContent = `${reverseArray.length}bids`;
-    });
-    const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
-    const highestBid = filterHighestBid(data);
-    highestBidElem.textContent = `$ ${highestBid}`;
-
-    setInterval(() => displayCountdownTimer(data), 1000);
-  } // if (data) end
+    }
+  });
 }
-
 function timeSinceBidFn(timeSinceBidElem) {
   timeSinceBidElem.forEach((bid, index) => {
     if (index > showLimit) {
@@ -197,19 +221,6 @@ function timeSinceBidFn(timeSinceBidElem) {
     }
   });
 }
-// async function getImage() {
-//   // const test = await getAllProfiles();
-//   // console.log(test);
-//   const bidderElem = document.querySelectorAll(".bidder-status");
-//   const imageElem = document.querySelectorAll(".bidder-profile-image");
-//   const bidderElemHeader = document.querySelectorAll(".bidder-status h5");
-
-//   bidderElemHeader.forEach(async (header) => {
-//     const profile = await getSingleProfile(header.textContent);
-//     console.log(profile);
-//   });
-
-// }
 
 function displayCountdownTimer(data) {
   const timeLeftElem = liveAuctionSection.querySelector("#time-left");
