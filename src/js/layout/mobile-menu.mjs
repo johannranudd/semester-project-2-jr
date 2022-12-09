@@ -103,14 +103,7 @@ searchForm.addEventListener("submit", async (e) => {
   const input = searchForm.querySelector("input[type='search']");
   if (!window.location.href.includes("listings.html")) {
     window.location.href = `../../../listings.html?id=${input.value.toLowerCase()}`;
-    // console.log(input.value);
-    // const urlID = geturlID();
-    // console.log(urlID);
-    //  grab urlID
-    // fetch
-    // display
   } else if (window.location.href.includes("listings.html")) {
-    // console.log(`you are already on ${window.location.href}`);
     const stateObj = {};
     history.pushState(
       stateObj,
@@ -118,28 +111,6 @@ searchForm.addEventListener("submit", async (e) => {
       `listings.html?id=${input.value.toLowerCase()}`
     );
     displayBasedOnSort(false);
-    // console.log(input.value);
-    //  grab urlID
-    // const urlID = geturlID();
-    // console.log(urlID);
-    // const data = await getListings(limit, offset, "", "", "");
-    // console.log(data);
-    // fetch
-    // const data
-    // display
   }
-  // displayBasedOnSort(false);
-  // if (input.value) {
-  //   if (listingsULElement) {
-  //     listingsULElement.innerHTML = "";
-  //     loadingSpinner(listingsULElement);
-  //     const data = await getListings();
-  //     console.log(data);
-  //     // const filter = data.filter((item) => {
-  //     //   console.log(item);
-  //     // });
-  //     // displayListings(data, listingsULElement);
-  //   }
-  // }
   input.value = "";
 });

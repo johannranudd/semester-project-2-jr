@@ -31,6 +31,24 @@ let tag = "";
 let limit = 50;
 let newArray = [];
 
+function refreshOrUpdateList(isAddingToPrevList) {
+  if (
+    window.location.href.includes("listings.html") ||
+    window.location.href.includes("profile.html")
+  ) {
+    if (!isAddingToPrevList) {
+      if (listingsULElement) {
+        listingsULElement.innerHTML = "";
+        loadingSpinner(listingsULElement);
+      }
+    } else {
+      loadingSpinner(listingsULElement);
+    }
+  }
+  categories.style.display = "inline";
+  categories.previousElementSibling.style.display = "inline";
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   displayBasedOnSort(false);
 });
@@ -40,6 +58,8 @@ window.addEventListener("DOMContentLoaded", () => {
 // console.log(data);
 if (categories) {
   categories.addEventListener("change", () => {
+    const stateObj = {};
+    history.pushState(stateObj, "", `listings.html`);
     offset = 0;
     displayBasedOnSort();
   });
@@ -93,76 +113,51 @@ function searchFn(searchValue, data) {
 }
 
 function display(urlID) {
-  listingsULElement.innerHTML = "";
-  loadingSpinner(listingsULElement);
-  // console.log(newArray[111]);
+  // listingsULElement.innerHTML = "";
+  // loadingSpinner(listingsULElement);
+  refreshOrUpdateList(false);
   const hasTitle = searchFn(urlID, newArray);
-  // console.log(hasTitle[0]);
-  // const filter = hasTitle.filter((item) => {
-  //   if (item.id === "13725321-4ded-4a26-960c-9e6a123589d6") {
-  //     return item;
-  //   }
-  // });
-  // console.log(hasTitle);
-  // const reduce =
-  // console.log(filter);
-  displayListings(hasTitle, listingsULElement);
+  const reduce = hasTitle.reduce((total, current) => {
+    if (!total.includes({ id: current.id })) {
+      total.push(current);
+    } else {
+      return;
+    }
+    return total;
+  }, []);
+  console.log(reduce);
+  displayListings(reduce, listingsULElement);
+  categories.style.display = "none";
+  categories.previousElementSibling.style.display = "none";
+  resultsShowing.innerHTML = `Searched for: <span>${urlID} <span><br/> ${reduce.length} results</span></span>`;
   loadMoreBtn.style.display = "none";
 }
 
 export async function displayBasedOnSort(isAddingToPrevList = false) {
-  if (window.location.href.includes("index.html")) {
-    return;
-  }
-  if (!isAddingToPrevList) {
-    if (listingsULElement) {
-      listingsULElement.innerHTML = "";
-      loadingSpinner(listingsULElement);
-    }
-  } else {
-    loadingSpinner(listingsULElement);
-  }
+  refreshOrUpdateList(isAddingToPrevList);
 
   const urlID = geturlID();
   if (urlID) {
     // !This max value could be changed to get more results
     limit = 100;
     offset = 0;
+    newArray = [];
     let max = 9;
     for (let i = 0; i <= max; i++) {
-      if (offset === 0) {
-        // console.log(offset);
-        const data = await getListings(limit, offset, "", "", "");
-        offset += data.length;
-        if (data.length < limit) {
+      const data = await getListings(limit, offset, "", "", "");
+      if (data.length > 0) {
+        if (data.length < limit || i === max) {
+          offset += data.length;
           newArray.push(...data);
+          display(urlID);
           return;
         } else {
-          // offset += data.length;
-          // console.log(offset);
           newArray.push(...data);
-          // console.log(offset);
+          offset += data.length;
         }
       } else {
-        // console.log(offset);
-        setTimeout(async () => {
-          const data = await getListings(limit, offset, "", "", "");
-          offset += data.length;
-          if (data.length < limit) {
-            newArray.push(...data);
-            return;
-          } else {
-            // offset += data.length;
-            newArray.push(...data);
-            // console.log(offset);
-            if (i === max) {
-              display(urlID);
-            }
-          }
-        }, 500);
+        console.log("no data");
       }
-
-      console.log("counting");
     }
     console.log(`yes, urlID is: ${urlID}`);
   } else {
@@ -255,7 +250,7 @@ function checkOffsetDisplay(data) {
   // const stillForSale = getListingsStillForSale(data);
   offset += data.length;
   displayListings(data, listingsULElement);
-  resultsShowing.innerHTML = `Showing: <span>Newest</span><span> ${tag}</span>`;
+  resultsShowing.innerHTML = `Showing: <span>${categories.value}</span><span> ${tag}</span>`;
   // resultsShowing.innerHTML += ` > ${data.length} results`;
   if (data.length === 0) {
     loadMoreBtn.style.display = "none";
