@@ -1,5 +1,9 @@
 import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
 import { getListings, getSingleProfile } from "../utils/gets.mjs";
+import { getListingsStillForSale } from "../utils/various.mjs";
+import { displayListings } from "../utils/display.mjs";
+import { loadingSpinner } from "../utils/loading.mjs";
+import { displayBasedOnSort } from "../listings/index.mjs";
 
 const sidebar = document.querySelector("#sidebar");
 const menuBtn = document.querySelector("#menu-btn");
@@ -9,6 +13,7 @@ const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
 const LogoutBtn = document.querySelector("#logout-btn");
 const backdrop = document.querySelector("#backdrop");
+const listingsULElement = document.querySelector("#listing");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -85,12 +90,27 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// async function getActiveBids() {
-//   const data = await getListings();
-//   console.log("HERE::: ", data);
-//   const getYourBids = data.filter((listing) => {
-//     const bidsOnListing = listing.bids;
-//     console.log(bidsOnListing);
-//   });
-// }
-// getActiveBids();
+// todo: searchform
+
+let offset = 0;
+let tag = "";
+let limit = 100;
+
+const searchForm = document.querySelector("#search-form");
+
+searchForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const input = searchForm.querySelector("input[type='search']");
+  if (!window.location.href.includes("listings.html")) {
+    window.location.href = `../../../listings.html?id=${input.value.toLowerCase()}`;
+  } else if (window.location.href.includes("listings.html")) {
+    const stateObj = {};
+    history.pushState(
+      stateObj,
+      "",
+      `listings.html?id=${input.value.toLowerCase()}`
+    );
+    displayBasedOnSort(false);
+  }
+  input.value = "";
+});
