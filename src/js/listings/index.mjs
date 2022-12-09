@@ -66,12 +66,28 @@ if (loadMoreBtn) {
 }
 
 function searchFn(searchValue, data) {
+  const searchToLowerCase = searchValue.toLowerCase();
   const filter = data.filter((item) => {
-    const searchToLowerCase = searchValue.toLowerCase();
     const title = item.title.toLowerCase();
     if (title.includes(searchToLowerCase)) {
       return item;
     }
+
+    // if (item.tags.length === 0) {
+    //   return;
+    // } else {
+    //   item.tags.filter((tag) => {
+    //     // console.log(tag);
+    //     const splitComma = tag.split(",");
+    //     const test = splitComma.filter((string) => {
+    //       // console.log(splitComma[0].trim());
+    //       if (string.trim().toLowerCase() === searchToLowerCase) {
+    //         console.log(string);
+    //         return string;
+    //       }
+    //     });
+    //   });
+    // }
   });
   return filter;
 }
@@ -83,7 +99,7 @@ function display(urlID) {
   const hasTitle = searchFn(urlID, newArray);
   // console.log(hasTitle[0]);
   // const filter = hasTitle.filter((item) => {
-  //   if (item.id === newArray[0]) {
+  //   if (item.id === "13725321-4ded-4a26-960c-9e6a123589d6") {
   //     return item;
   //   }
   // });
@@ -115,32 +131,39 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
     let max = 9;
     for (let i = 0; i <= max; i++) {
       if (offset === 0) {
-        console.log(offset);
-        const data = await getListings(limit, offset, "", "", tag);
+        // console.log(offset);
+        const data = await getListings(limit, offset, "", "", "");
+        offset += data.length;
         if (data.length < limit) {
           newArray.push(...data);
           return;
         } else {
-          offset += data.length;
+          // offset += data.length;
+          // console.log(offset);
           newArray.push(...data);
+          // console.log(offset);
         }
       } else {
+        // console.log(offset);
         setTimeout(async () => {
-          const data = await getListings(limit, offset, "", "", tag);
+          const data = await getListings(limit, offset, "", "", "");
+          offset += data.length;
           if (data.length < limit) {
             newArray.push(...data);
             return;
           } else {
-            offset += data.length;
+            // offset += data.length;
             newArray.push(...data);
+            // console.log(offset);
             if (i === max) {
               display(urlID);
             }
           }
-        }, 1000);
+        }, 500);
       }
-    }
 
+      console.log("counting");
+    }
     console.log(`yes, urlID is: ${urlID}`);
   } else {
     // run everything else
