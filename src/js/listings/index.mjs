@@ -45,8 +45,10 @@ function refreshOrUpdateList(isAddingToPrevList) {
       loadingSpinner(listingsULElement);
     }
   }
-  categories.style.display = "inline";
-  categories.previousElementSibling.style.display = "inline";
+  if (categories) {
+    categories.style.display = "inline";
+    categories.previousElementSibling.style.display = "inline";
+  }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -76,6 +78,10 @@ async function getTags(event) {
   history.pushState(stateObj, "", `listings.html`);
   offset = 0;
   tag = event.currentTarget.dataset.category.toLowerCase();
+  if (tag === "various") {
+    tag = "";
+  } else {
+  }
   displayBasedOnSort(false);
 }
 
@@ -87,34 +93,25 @@ if (loadMoreBtn) {
 
 function searchFn(searchValue, data) {
   const searchToLowerCase = searchValue.toLowerCase();
-  const filter = data.filter((item) => {
+  let searchArray = [];
+  data.filter((item) => {
     const title = item.title.toLowerCase();
     if (title.includes(searchToLowerCase)) {
-      return item;
+      searchArray.push(item);
+    } else {
+      item.tags.filter((tag) => {
+        const split = tag.split(",");
+        const splitToLowerCase = split[0].toLowerCase();
+        if (splitToLowerCase.includes(searchToLowerCase)) {
+          searchArray.push(item);
+        }
+      });
     }
-
-    // if (item.tags.length === 0) {
-    //   return;
-    // } else {
-    //   item.tags.filter((tag) => {
-    //     // console.log(tag);
-    //     const splitComma = tag.split(",");
-    //     const test = splitComma.filter((string) => {
-    //       // console.log(splitComma[0].trim());
-    //       if (string.trim().toLowerCase() === searchToLowerCase) {
-    //         console.log(string);
-    //         return string;
-    //       }
-    //     });
-    //   });
-    // }
   });
-  return filter;
+  return searchArray;
 }
 
 function display(urlID) {
-  // listingsULElement.innerHTML = "";
-  // loadingSpinner(listingsULElement);
   refreshOrUpdateList(false);
   const hasTitle = searchFn(urlID, newArray);
   const reduce = hasTitle.reduce((total, current) => {
@@ -125,12 +122,14 @@ function display(urlID) {
     }
     return total;
   }, []);
-  console.log(reduce);
   displayListings(reduce, listingsULElement);
-  categories.style.display = "none";
-  categories.previousElementSibling.style.display = "none";
-  resultsShowing.innerHTML = `Searched for: <span>${urlID} <span><br/> ${reduce.length} results</span></span>`;
-  loadMoreBtn.style.display = "none";
+
+  if (categories) {
+    categories.style.display = "none";
+    categories.previousElementSibling.style.display = "none";
+    resultsShowing.innerHTML = `Searched for: <span>${urlID} <span><br/> ${reduce.length} results</span></span>`;
+    loadMoreBtn.style.display = "none";
+  }
 }
 
 export async function displayBasedOnSort(isAddingToPrevList = false) {
