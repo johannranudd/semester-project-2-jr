@@ -53,7 +53,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 formNewListing.addEventListener("submit", (e) => {
   e.preventDefault();
-
   if (!urlID) {
     createNewListing();
   } else if (urlID) {
