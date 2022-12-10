@@ -168,7 +168,13 @@
             <label for="title"
               >Title<span class="warning" data-name="title"></span
             ></label>
-            <input type="text" id="title" name="title" class="custom-input" />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="custom-input"
+              required
+            />
           </div>
           <!-- tag -->
           <div class="flex flex-col space-y-2">
@@ -183,6 +189,7 @@
               name="tags"
               id="tags"
               multiple
+              required
             >
               <option value="various">various</option>
               <option value="vehicles">vehicles</option>
