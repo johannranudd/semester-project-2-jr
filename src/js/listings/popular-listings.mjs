@@ -24,6 +24,17 @@ async function filterTwentyMostPopular() {
   const twentyMostPopular = stillForSale.slice(0, 20);
   // console.log(twentyMostPopular);
   displayListings(twentyMostPopular, listingsULElement);
+
+  // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // for (let i = 0; i <= arr.length; i++) {
+  //   setTimeout(() => {
+  //     console.log(`this is round ${i}`);
+  //     if (i === arr.length) {
+  //       // clearInterval(interval);
+  //       console.log("---------LAST----------------");
+  //     }
+  //   }, i * 100);
+  // }
 }
 
 window.addEventListener("DOMContentLoaded", filterTwentyMostPopular);

@@ -5,7 +5,11 @@ import {
   getAllProfiles,
   // getListingsUnathorized,
 } from "../utils/gets.mjs";
-import { getLocalStorage } from "../utils/storage.mjs";
+import {
+  getLocalStorage,
+  setSessionStorage,
+  getSessionStorage,
+} from "../utils/storage.mjs";
 
 import { deleteEntry } from "../utils/deletes.mjs";
 import {
@@ -53,20 +57,24 @@ const placeBidForm = document.querySelector("#bid-form");
 let counter = 0;
 let showLimit = 4;
 
-window.addEventListener("DOMContentLoaded", displaySignle);
+window.addEventListener("DOMContentLoaded", () => {
+  displaySignle();
+});
 // window.addEventListener("DOMContentLoaded", getListingsUnathorized);
 
-placeBidForm.addEventListener("submit", (e) => {
+placeBidForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const amountInput = placeBidForm.querySelector("#amount");
   const valueToNumber = Number(amountInput.value);
   if (valueToNumber) {
     let submitObject = { amount: valueToNumber };
-    bidOnEntry(submitObject, urlID);
+    await bidOnEntry(submitObject, urlID);
+    window.location.reload();
   }
 });
 
 async function displaySignle() {
+  biddersProfileListElem.innerHTML = "";
   loadingSpinner(biddersProfileListElem);
   const locStor = getLocalStorage();
   const data = await getSingleListing(urlID);
@@ -99,6 +107,7 @@ async function displaySignle() {
       btnEditListing.parentElement.style.display = "none";
       btnDeleteListing.parentElement.style.display = "none";
     }
+
     // delete
     btnDeleteListing.addEventListener("click", () => deleteEntry(urlID));
     // sellerSection
@@ -109,16 +118,22 @@ async function displaySignle() {
       sellerProfileImg.src = "../../../assets/images/profile-img.png";
     });
     sellerDescription.textContent = description;
+    liveAuction(data);
 
-    const newArray = data.bids.slice();
-    const reverseArray = newArray.reverse();
-    // const test = sortByHighestInteger(newArray);
-    reverseArray.map(async (bid, index) => {
-      if (index > showLimit) {
-        return;
-      } else {
-        const { amount, bidderName, created } = bid;
-        biddersProfileListElem.innerHTML += `<li class="bidder-status flex items-center justify-between">
+    setInterval(() => displayCountdownTimer(data), 1000);
+  } // if (data) end
+}
+
+async function liveAuction(data) {
+  const newArray = data.bids.slice();
+  const reverseBidArray = newArray.reverse();
+  // const test = sortByHighestInteger(newArray);
+  reverseBidArray.map(async (bid, index) => {
+    if (index > showLimit) {
+      return;
+    } else {
+      const { amount, bidderName, created } = bid;
+      biddersProfileListElem.innerHTML += `<li class="bidder-status flex items-center justify-between">
         <div class="flex items-center">
         <img class="bidder-profile-image" />
         <div class="flex flex-col">
@@ -127,47 +142,38 @@ async function displaySignle() {
         </div>
         </div>
         <p><span>$ ${amount}</span></p></li>`;
-      }
-    });
-    const timeSinceBidElem =
-      biddersProfileListElem.querySelectorAll(".time-since-bid");
-    timeSinceBidFn(timeSinceBidElem);
+    }
+  });
+  const timeSinceBidElem =
+    biddersProfileListElem.querySelectorAll(".time-since-bid");
+  timeSinceBidFn(timeSinceBidElem);
 
-    const listElem = biddersProfileListElem.querySelectorAll("li");
-    // get unique bidders
-    const reduce = reverseArray.reduce((total, current) => {
-      if (!total.includes(current.bidderName)) {
-        total.push(current.bidderName);
-      }
-      return total;
-    }, []);
+  const listElem = biddersProfileListElem.querySelectorAll("li");
+  // get unique bidders
+  const reduce = reverseBidArray.reduce((total, current) => {
+    if (!total.includes(current.bidderName)) {
+      total.push(current.bidderName);
+    }
+    return total;
+  }, []);
 
-    reduce.map(async (bidderName, index) => {
-      if (index > showLimit) {
-        return;
-      } else {
-        setTimeout(async () => {
-          const profile = await getSingleProfile(bidderName);
-          const { avatar } = profile;
-          displayProfileImages(profile, listElem);
-          listOfProfilImg.innerHTML += `<li><img class="w-8 h-8 object-cover rounded-full border-solid border-2 border-whiteClr" src="${
-            avatar ? avatar : "../../../assets/images/profile-img.png"
-          }" alt="profile image of ${
-            profile.name
-          }" onerror="this.src='../../../assets/images/profile-img.png';" /></li>`;
-        }, 1000);
-      }
-    });
+  reduce.map(async (bidderName, index) => {
+    if (index > showLimit) {
+      return;
+    } else {
+      setTimeout(async () => {
+        const profile = await getSingleProfile(bidderName);
+        displayProfileImages(profile, listElem);
+        showListOfImages(profile);
+      }, index * 600);
+    }
+  });
 
-    const amountOfBidsText =
-      liveAuctionSection.querySelector(".amount-of-bids");
-    amountOfBidsText.textContent = `${reverseArray.length}bids`;
-    const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
-    const highestBid = filterHighestBid(data);
-    highestBidElem.textContent = `$ ${highestBid}`;
-
-    setInterval(() => displayCountdownTimer(data), 1000);
-  } // if (data) end
+  const amountOfBidsText = liveAuctionSection.querySelector(".amount-of-bids");
+  amountOfBidsText.textContent = `${reverseBidArray.length}bids`;
+  const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
+  const highestBid = filterHighestBid(data);
+  highestBidElem.textContent = `$ ${highestBid}`;
 }
 function displayProfileImages(profile, listElem) {
   listElem.forEach((elem, index) => {
@@ -195,6 +201,16 @@ function displayProfileImages(profile, listElem) {
       }
     }
   });
+}
+
+function showListOfImages(storageOrProfile) {
+  listOfProfilImg.innerHTML += `<li><img class="w-8 h-8 object-cover rounded-full border-solid border-2 border-whiteClr" src="${
+    storageOrProfile.avatar
+      ? storageOrProfile.avatar
+      : "../../../assets/images/profile-img.png"
+  }" alt="profile image of ${
+    storageOrProfile.name
+  }" onerror="this.src='../../../assets/images/profile-img.png';" /></li>`;
 }
 function timeSinceBidFn(timeSinceBidElem) {
   timeSinceBidElem.forEach((bid, index) => {

@@ -5,6 +5,7 @@ const baseURL = "https://api.noroff.dev/api/v1";
 
 export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
   // const locStor = getLocalStorage();
+  console.log("getListings");
   const limitQuery = setFetchLimitURL(limit);
   const sortQuery = setSortQuery(sort);
   const sortOrderQuery = setSortOrderQuery(sortOrder);
@@ -47,6 +48,7 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
 // }
 
 export async function getSingleListing(id) {
+  console.log("getSingleListing");
   const locStor = getLocalStorage();
   try {
     const res = await fetch(
@@ -74,6 +76,7 @@ export async function getAllListingsByProfile(
   tag,
   name
 ) {
+  console.log("getAllListingsByProfile");
   const locStor = getLocalStorage();
   const limitQuery = setFetchLimitURL(limit);
   const sortQuery = setSortQuery(sort);
@@ -100,6 +103,7 @@ export async function getAllListingsByProfile(
 }
 
 export async function getAllProfiles() {
+  console.log("getAllProfiles");
   const locStor = getLocalStorage();
   try {
     const res = await fetch(`${baseURL}/auction/profiles`, {
@@ -117,6 +121,7 @@ export async function getAllProfiles() {
   }
 }
 export async function getSingleProfile(name) {
+  console.log("getSingleProfile");
   const locStor = getLocalStorage();
   try {
     const res = await fetch(`${baseURL}/auction/profiles/${name}`, {
