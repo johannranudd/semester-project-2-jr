@@ -97,16 +97,19 @@ const searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const input = searchForm.querySelector("input[type='search']");
-  if (!window.location.href.includes("listings.html")) {
-    window.location.href = `../../../listings.html?id=${input.value.toLowerCase()}`;
-  } else if (window.location.href.includes("listings.html")) {
-    const stateObj = {};
-    history.pushState(
-      stateObj,
-      "",
-      `listings.html?id=${input.value.toLowerCase()}`
-    );
-    displayBasedOnSort(false);
+  if (input.value) {
+    if (!window.location.href.includes("listings.html")) {
+      window.location.href = `../../../listings.html?id=${input.value.toLowerCase()}`;
+    } else if (window.location.href.includes("listings.html")) {
+      const stateObj = {};
+      history.pushState(
+        stateObj,
+        "",
+        `listings.html?id=${input.value.toLowerCase()}`
+      );
+      displayBasedOnSort(false);
+    }
+    hideMenu();
+    input.value = "";
   }
-  input.value = "";
 });

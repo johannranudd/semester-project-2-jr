@@ -135,34 +135,35 @@ function display(urlID) {
 export async function displayBasedOnSort(isAddingToPrevList = false) {
   refreshOrUpdateList(isAddingToPrevList);
 
-  const urlID = geturlID();
-  if (urlID) {
-    // !This max value could be changed to get more results
-    limit = 100;
-    offset = 0;
-    newArray = [];
-    let max = 9;
-    for (let i = 0; i <= max; i++) {
-      const data = await getListings(limit, offset, "", "", "");
-      if (data.length > 0) {
-        if (data.length < limit || i === max) {
-          offset += data.length;
-          newArray.push(...data);
-          display(urlID);
-          return;
+  if (window.location.href.includes("listings.html")) {
+    const urlID = geturlID();
+    if (urlID) {
+      // !This max value could be changed to get more results
+      limit = 100;
+      offset = 0;
+      newArray = [];
+      let max = 9;
+      for (let i = 0; i <= max; i++) {
+        const data = await getListings(limit, offset, "", "", "");
+        if (data.length > 0) {
+          if (data.length < limit || i === max) {
+            offset += data.length;
+            newArray.push(...data);
+            display(urlID);
+            return;
+          } else {
+            newArray.push(...data);
+            offset += data.length;
+          }
         } else {
-          newArray.push(...data);
-          offset += data.length;
+          console.log("no data");
         }
-      } else {
-        console.log("no data");
       }
-    }
-    console.log(`yes, urlID is: ${urlID}`);
-  } else {
-    // run everything else
-    console.log(`no, urlID is: ${urlID}`);
-    if (window.location.href.includes("listings.html")) {
+      console.log(`yes, urlID is: ${urlID}`);
+    } else {
+      // run everything else
+      console.log(`no, urlID is: ${urlID}`);
+
       if (categories.value === "newest") {
         const data = await getListings(limit, offset, "created", "desc", tag);
         checkOffsetDisplay(data);
