@@ -52,6 +52,9 @@ function refreshOrUpdateList(isAddingToPrevList) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  if (categories) {
+    categories.value = "newest";
+  }
   displayBasedOnSort(false);
 });
 // const urlID = geturlID();
