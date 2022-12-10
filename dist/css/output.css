@@ -424,6 +424,8 @@ video {
 body {
   font-family: "Inter", sans-serif;
   color: #06212d;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 h1,
@@ -1085,20 +1087,20 @@ label {
   padding: 0.25rem;
 }
 
-.p-2{
-  padding: 0.5rem;
-}
-
-.p-6{
-  padding: 1.5rem;
-}
-
 .p-0\.5{
   padding: 0.125rem;
 }
 
 .p-0{
   padding: 0px;
+}
+
+.p-2{
+  padding: 0.5rem;
+}
+
+.p-6{
+  padding: 1.5rem;
 }
 
 .px-2{
