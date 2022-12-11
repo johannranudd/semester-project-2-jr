@@ -296,7 +296,7 @@ function displayCarousel(image, index) {
   navDot.style.borderRadius = "50%";
   navDot.style.backgroundColor = "grey";
   navDot.style.position = "absolute";
-  navDot.style.bottom = "10px";
+  navDot.style.bottom = "15px";
   navDot.style.zIndex = "9";
   navDot.style.marginLeft = `${index * 15}px`;
   navDot.style.left = "50%";
