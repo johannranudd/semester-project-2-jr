@@ -74,6 +74,7 @@ async function getProfileCardInfo() {
   );
   const userEmail = document.querySelector("#user-email");
 
+  // todo: decide whether to display other profiles here or not
   if (!urlID) {
     const locStorInitial = getLocalStorage();
     const profile = await getSingleProfile(locStorInitial.name);
@@ -81,6 +82,8 @@ async function getProfileCardInfo() {
     const { token, name, email } = locStorInitial;
     setLocalStorage(true, token, name, email, profile.avatar, profile.credits);
     const locStor = getLocalStorage();
+
+    console.log(profile);
 
     // new
     profileImageMainCard.src = locStor.avatar
