@@ -30,6 +30,7 @@ module.exports = {
         fifthClr: "#94746F",
         contrastClr: "#DC0A27",
         success: "#5DC60B",
+        danger: "#F16A6A",
         blackClr: "#000000",
         whiteClr: "#FFFFFF",
         hoverClr: "rgb(50, 50, 50)",
@@ -40,6 +41,8 @@ module.exports = {
         custom: "rgba(234, 246, 248, .3) 0px -4px 12px;",
         custom2: "rgba(6, 33, 45, .3) 0px 4px 12px;",
         custom3: "rgba(93, 198, 11, 1) 0px 0px 12px;",
+        custom4: "rgba(0, 0, 0, .5) 0px -1px 8px;",
+        custom5: "rgba(250, 250, 250, .5) 0px -1px 8px;",
       },
       maxWidth: {
         logo: "3rem",

@@ -52,6 +52,15 @@ window.addEventListener("resize", () => {
 LogoutBtn.addEventListener("click", clearLocalStorage);
 
 window.addEventListener("DOMContentLoaded", async () => {
+  // TODO: get active bids and your listings
+  const allLinksInSidebar = sidebar.querySelectorAll(".nav-link");
+  allLinksInSidebar.forEach((link) => {
+    if (window.location.pathname === `/${link.name}`) {
+      link.style.color = "#096076";
+    }
+  });
+  // console.log(window.location.pathname);
+
   const profileCard = document.querySelector(".profile-card");
   const locStor = getLocalStorage();
   if (
@@ -59,12 +68,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     !locStor.isLoggedIn ||
     window.location.href.includes("profile.html")
   ) {
-    // TODO: get active bids and your listings
-
-    // profileImage.src = "../../../assets/images/profile-img.png";
-    // profileCard.innerHTML = `<p class="text-center">Please log in to see profile information</p>`;
     profileCard.style.display = "none";
-    LogoutBtn.textContent = "Login";
+    LogoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket w-10"></i>Logout`;
   } else if (locStor) {
     const usernameProfileCard = profileCard.querySelector(
       "#username-profile-card"

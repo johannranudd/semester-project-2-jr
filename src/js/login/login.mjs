@@ -4,14 +4,6 @@ const registerForm = document.querySelector("#registerForm");
 const loginForm = document.querySelector("#login-form");
 const logingWarning = document.querySelector(".login-wanring");
 
-const reg = {
-  name: "testnjbr1", // Required
-  email: "testnjbr1@stud.noroff.no", // Required
-  password: "qwertyuiop", // Required
-  avatar:
-    "https://images.unsplash.com/photo-1661956602926-db6b25f75947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2198&q=80", // Optional
-};
-
 async function registerFn(loginDetails) {
   try {
     const res = await fetch(`${baseURL}/auction/auth/register`, {
@@ -51,7 +43,7 @@ async function loginFn(email, password) {
     if (res.ok) {
       const { accessToken, name, email, avatar, credits } = data;
       setLocalStorage(true, accessToken, name, email, avatar, credits);
-      window.location.href = "../../../index.html";
+      window.location.href = "/";
     }
   } catch (e) {
     console.log(e, "error happened in loginFn()");
@@ -77,12 +69,7 @@ if (registerForm) {
           email: emailInputValue, // Required
           password: passwordInputValue, // Required
         };
-        // avatar: avatarInputValue ? avatarInputValue : null, // Required
         if (avatarInputValue) {
-          // const imageRegex =
-          //   /^https?:\/\/.*\/.*\.(png|gif|avif|webp|jpeg|jpg)\??.*$/gim;
-          // const isImageString = imageRegex.test(avatarInputValue);
-          // console.log("1: ", isImageString);
           registerDetails.avatar = avatarInputValue;
         }
         console.log(registerDetails);

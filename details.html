@@ -45,7 +45,7 @@
     <!-- *main -->
     <main
       id="main-container"
-      class="relative top-12 w-full mx-auto z-0 mb-10 md:container"
+      class="relative top-12 w-full mx-auto z-0 mb-20 md:container"
     >
       <!-- *sidebar -->
       <div
@@ -57,7 +57,6 @@
         class="fixed top-12 -translate-x-[200%] w-full min-h-screen z-50 bg-secondaryClr transition duration-custom 2xs:w-72 md:translate-x-0"
       >
         <!-- profile card -->
-        <!-- todo profile card-->
         <header
           class="profile-card flex items-center px-2 py-2 w-full space-x-1 rounded-b-md shadow-custom2 text-whiteClr bg-primaryClr"
         >
@@ -77,21 +76,13 @@
           <div class="">
             <h3 id="username-profile-card" class="test capitalize"></h3>
             <div class="flex justify-between items-center space-x-6">
-              <!-- <p id="listings-profile-card" class="text-sm break-words">
-                Listings: <span>0</span>
-              </p> -->
-              <!-- <p id="bids-profile-card" class="text-sm break-words">
-                Active bids: <span>0</span>
-              </p> -->
               <p id="credit-profile-card" class="text-sm break-words">
                 Credit: <span>0</span>
               </p>
             </div>
           </div>
         </header>
-        <!-- todo profile card END-->
 
-        <!-- <div class="p-1 text-primaryClr"> -->
         <div class="p-1 text-primaryClr">
           <!-- search bar -->
           <form
@@ -113,42 +104,48 @@
           </form>
 
           <!-- Links -->
-          <!-- TODO: active class for page user is on -->
           <ul class="space-y-3 font-semibold">
             <li>
-              <a href="./index.html" class="inline-block text-lg hoverAnimation"
-                >Home</a
+              <a
+                href="./"
+                name="'"
+                class="nav-link inline-block text-lg hoverAnimation"
+                ><i class="fa-solid fa-house w-10"></i>Home</a
               >
             </li>
             <li>
               <a
                 href="./listings.html"
-                class="inline-block text-lg hoverAnimation"
-                >Listings</a
+                name="listings.html"
+                class="nav-link inline-block text-lg hoverAnimation"
+                ><i class="fa-solid fa-list-ul w-10"></i>Listings</a
               >
             </li>
             <li>
               <a
                 href="./new-listing.html"
-                class="inline-block text-lg hoverAnimation"
-                >New Listning</a
+                name="new-listing.html"
+                class="nav-link inline-block text-lg hoverAnimation"
+                ><i class="fa-regular fa-square-plus w-10"></i>New Listning</a
               >
             </li>
             <li>
               <a
                 href="./profile.html"
-                class="inline-block text-lg hoverAnimation"
-                >Profile</a
+                name="profile.html"
+                class="nav-link inline-block text-lg hoverAnimation"
+                ><i class="fa-regular fa-user w-10"></i>Profile</a
               >
             </li>
             <li>
-              <button
-                type="button"
+              <a
+                href="./login.html"
                 id="logout-btn"
-                class="inline-block text-lg hoverAnimation"
+                name="login.html"
+                class="nav-link inline-block text-lg hoverAnimation"
               >
-                Logout
-              </button>
+                <i class="fa-solid fa-arrow-right-from-bracket w-10"></i>Logout
+              </a>
             </li>
           </ul>
         </div>
@@ -159,18 +156,21 @@
       <section id="carousel-section" class="md:ml-72">
         <!-- carousel -->
         <aside class="flex justify-between">
-          <button type="button" class="z-10 absolute left-2 md:ml-72">
+          <button
+            type="button"
+            class="z-10 absolute left-2 top-2 shadow-lg md:ml-72"
+          >
             <a
               id="edit-listing"
-              class="inline-block p-0.5 border-solid border-2 border-primaryClr rounded-md"
-              >Edit listing
+              class="inline-block w-14 text-primaryClr hover:text-whiteClr bg-success rounded-md"
+              >Edit
             </a>
           </button>
-          <button type="button" class="absolute right-2 z-10">
+          <button type="button" class="absolute right-2 top-2 shadow-lg z-10">
             <a
               id="delete-listing"
-              class="inline-block p-0.5 border-solid border-2 border-primaryClr rounded-md"
-              >Delete listing</a
+              class="inline-block inline-block w-14 text-primaryClr hover:text-whiteClr bg-danger rounded-md rounded-md"
+              >Delete</a
             >
           </button>
         </aside>
@@ -181,21 +181,24 @@
           <button
             type="button"
             id="prev-btn"
-            class="z-10 text-2xl text-primaryClr"
+            class="z-10 text-2xl p-2 text-primaryClr hover:text-whiteClr"
           >
             <i class="fa-solid fa-chevron-left"></i>
           </button>
           <button
             type="button"
             id="next-btn"
-            class="z-10 text-2xl text-primaryClr"
+            class="z-10 text-2xl p-2 text-primaryClr hover:text-whiteClr"
           >
             <i class="fa-solid fa-chevron-right"></i>
           </button>
         </ul>
       </section>
       <!-- title, seller, description section-->
-      <section id="seller-section" class="p-2 bg-[#def] space-y-2 md:ml-72">
+      <section
+        id="seller-section"
+        class="relative -top-2 rounded-t-lg p-2 bg-primaryClr text-whiteClr space-y-2 shadow-custom4 md:ml-72"
+      >
         <div class="380xs:flex 380xs:justify-between">
           <h2 class="decoration-0 text-left capitalize my-2">listing title</h2>
           <div id="profile" class="flex items-center space-x-1">
@@ -207,12 +210,12 @@
             <h6>username</h6>
           </div>
         </div>
-        <article id="desc" class="pb-10"></article>
+        <article id="desc" class="pb-2"></article>
       </section>
       <!-- live auction -->
       <section
         id="live-auction-section"
-        class="p-2 border-solid border-[1px] border-primaryClr md:ml-72"
+        class="relative -top-4 bg-whiteClr p-2 rounded-t-lg shadow-custom5 md:ml-72"
       >
         <!-- countdown card -->
         <div
@@ -298,7 +301,7 @@
     <footer class="w-full mt-auto z-50 bg-primaryClr p-2 text-whiteClr">
       <!-- wrapper -->
       <div class="relative w-full max-w-sm m-auto md:container">
-        <div class="flex justify-between mb-5 mx-3 md:mx-0">
+        <div class="flex justify-between mb-5">
           <!-- logo -->
           <a href="./">
             <img
@@ -308,19 +311,31 @@
             />
           </a>
           <!-- social -->
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center md:mr-2">
             <p>Find us on:</p>
             <div class="flex space-x-6">
-              <a href="#" class="hover:text-hoverWhiteClr">
+              <a
+                href="https://www.instagram.com/"
+                class="hover:text-hoverWhiteClr"
+              >
                 <i class="fa-brands fa-instagram"></i>
               </a>
-              <a href="#" class="hover:text-hoverWhiteClr">
+              <a
+                href="https://www.facebook.com/"
+                class="hover:text-hoverWhiteClr"
+              >
                 <i class="fa-brands fa-facebook"></i>
               </a>
-              <a href="#" class="hover:text-hoverWhiteClr">
+              <a
+                href="https://twitter.com/home"
+                class="hover:text-hoverWhiteClr"
+              >
                 <i class="fa-brands fa-twitter"></i>
               </a>
-              <a href="#" class="hover:text-hoverWhiteClr">
+              <a
+                href="https://www.whatsapp.com/"
+                class="hover:text-hoverWhiteClr"
+              >
                 <i class="fa-brands fa-whatsapp"></i>
               </a>
             </div>
