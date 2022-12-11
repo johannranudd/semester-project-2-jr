@@ -691,8 +691,8 @@ label {
   margin-right: 0.25rem;
 }
 
-.mb-20{
-  margin-bottom: 5rem;
+.mb-\[3rem\]{
+  margin-bottom: 3rem;
 }
 
 .mt-auto{
@@ -701,6 +701,10 @@ label {
 
 .mb-5{
   margin-bottom: 1.25rem;
+}
+
+.mb-20{
+  margin-bottom: 5rem;
 }
 
 .mb-8{
@@ -717,26 +721,6 @@ label {
 
 .mt-4{
   margin-top: 1rem;
-}
-
-.mb-\[10rem\]{
-  margin-bottom: 10rem;
-}
-
-.mb-\[5rem\]{
-  margin-bottom: 5rem;
-}
-
-.mb-\[4rem\]{
-  margin-bottom: 4rem;
-}
-
-.mb-\[3rem\]{
-  margin-bottom: 3rem;
-}
-
-.block{
-  display: block;
 }
 
 .inline-block{
@@ -873,10 +857,6 @@ label {
 
 .max-w-sm{
   max-width: 24rem;
-}
-
-.max-w-xl{
-  max-width: 36rem;
 }
 
 .grow{
@@ -1171,11 +1151,6 @@ label {
   padding-bottom: 0.25rem;
 }
 
-.px-3{
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
 .pb-2{
   padding-bottom: 0.5rem;
 }
@@ -1312,10 +1287,6 @@ label {
 }
 
 .duration-custom{
-  transition-duration: 300ms;
-}
-
-.duration-300{
   transition-duration: 300ms;
 }
 
@@ -1530,11 +1501,6 @@ label {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-primaryClr:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(6 33 45 / var(--tw-bg-opacity));
-}
-
 .hover\:text-primaryClr:hover{
   --tw-text-opacity: 1;
   color: rgb(6 33 45 / var(--tw-text-opacity));
@@ -1569,18 +1535,8 @@ label {
     align-items: center;
   }
 
-  .\33 80xs\:justify-center{
-    justify-content: center;
-  }
-
   .\33 80xs\:justify-between{
     justify-content: space-between;
-  }
-
-  .\33 80xs\:space-x-2 > :not([hidden]) ~ :not([hidden]){
-    --tw-space-x-reverse: 0;
-    margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-    margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 }
 
@@ -1643,30 +1599,12 @@ label {
     bottom: 0.5rem;
   }
 
-  .xs\:flex{
-    display: flex;
-  }
-
   .xs\:h-24{
     height: 6rem;
   }
 
   .xs\:w-24{
     width: 6rem;
-  }
-
-  .xs\:items-center{
-    align-items: center;
-  }
-
-  .xs\:justify-between{
-    justify-content: space-between;
-  }
-
-  .xs\:space-y-0 > :not([hidden]) ~ :not([hidden]){
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 }
 

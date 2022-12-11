@@ -1,7 +1,6 @@
 import { postListing } from "../utils/posts.mjs";
 import { getSingleListing } from "../utils/gets.mjs";
 import { updateEntry } from "../utils/puts.mjs";
-import { getLocalStorage } from "../utils/storage.mjs";
 
 const formNewListing = document.querySelector("#new-listing-form");
 let titleVal = formNewListing.querySelector("#title");
@@ -17,20 +16,10 @@ const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
 const urlID = mySearchParams.get("id");
 
-// window.addEventListener("load", () => {
-//   // const locStor = getLocalStorage();
-//   // if (!locStor) {
-//   //   window.location.href = "../../../login.html";
-//   // }
-// });
-
 window.addEventListener("DOMContentLoaded", async () => {
   if (!urlID) {
     headline.innerHTML = "Create New Listing";
   } else if (urlID) {
-    // mediaVal.parentElement.parentElement.style.display = "block";
-    // mediaVal.parentElement.style.display = "block";
-
     headline.innerHTML = "Edit Listing";
     dateVal.previousElementSibling.style.display = "none";
     timeExpiration.style.display = "none";
@@ -94,7 +83,6 @@ function createNewListing() {
   const hourString = `${dateVal.value} ${timeExpiration.value}`;
   if (titleVal.value && dateVal.value && tags.value) {
     const now = new Date();
-    // console.log(now);
     const date = new Date(hourString);
     if (date.getTime() > now.getTime()) {
       submitObject.title = titleVal.value;

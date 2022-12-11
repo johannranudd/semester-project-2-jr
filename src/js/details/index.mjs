@@ -1,22 +1,9 @@
-import {
-  getSingleProfile,
-  getListings,
-  getSingleListing,
-  getAllProfiles,
-  // getListingsUnathorized,
-} from "../utils/gets.mjs";
-import {
-  getLocalStorage,
-  setSessionStorage,
-  getSessionStorage,
-} from "../utils/storage.mjs";
-
+import { getSingleProfile, getSingleListing } from "../utils/gets.mjs";
+import { getLocalStorage } from "../utils/storage.mjs";
 import { deleteEntry } from "../utils/deletes.mjs";
 import {
   filterHighestBid,
-  returnsTimeLeftInt,
   addCountdownObject,
-  sortByHighestInteger,
   calculateTime,
 } from "../utils/various.mjs";
 import { loadingSpinner, removeSpinner } from "../utils/loading.mjs";
@@ -33,7 +20,6 @@ const carousel = document.querySelector("#carousel");
 const btnEditListing = document.querySelector("#edit-listing");
 
 const btnDeleteListing = document.querySelector("#delete-listing");
-const controlsCarousel = document.querySelector("#carousel-controls");
 const prevBtn = document.querySelector("#prev-btn");
 const nextBtn = document.querySelector("#next-btn");
 
@@ -60,7 +46,6 @@ let showLimit = 4;
 window.addEventListener("DOMContentLoaded", () => {
   displaySignle();
 });
-// window.addEventListener("DOMContentLoaded", getListingsUnathorized);
 
 placeBidForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -79,7 +64,6 @@ async function displaySignle() {
   const locStor = getLocalStorage();
   const data = await getSingleListing(urlID);
 
-  // console.log(data);
   if (data) {
     removeSpinner(biddersProfileListElem);
     const { id, title, description, media, tags, seller, bids, endsAt } = data;
@@ -121,13 +105,12 @@ async function displaySignle() {
     liveAuction(data);
 
     setInterval(() => displayCountdownTimer(data), 1000);
-  } // if (data) end
+  }
 }
 
 async function liveAuction(data) {
   const newArray = data.bids.slice();
   const reverseBidArray = newArray.reverse();
-  // const test = sortByHighestInteger(newArray);
   reverseBidArray.map(async (bid, index) => {
     if (index > showLimit) {
       return;
@@ -287,8 +270,6 @@ function displayCarousel(image, index) {
   carouselImage.alt = `product image ${index}`;
 
   const navDot = document.createElement("span");
-  // const navDotContainer = document.createElement("div");
-  // navDotContainer.appendChild(navDot);
 
   navDot.classList.add("nav-dot");
   navDot.style.height = "7px";
@@ -300,7 +281,6 @@ function displayCarousel(image, index) {
   navDot.style.zIndex = "9";
   navDot.style.marginLeft = `${index * 15}px`;
   navDot.style.left = "50%";
-  // navDot.style.transform = `translateX(calc(-100% * 3)`;
 
   carousel.appendChild(navDot);
 
@@ -364,7 +344,6 @@ function toggleModal(image, index) {
     "items-center",
     "cursor-pointer"
   );
-  // backdrop.appendChild(modal);
   modal.innerHTML = `<img src="${image}" class="mx-auto max-w-[90%] max-h-[90vh]" alt="product image ${index}" />`;
   document.body.appendChild(backdrop);
   document.body.appendChild(modal);

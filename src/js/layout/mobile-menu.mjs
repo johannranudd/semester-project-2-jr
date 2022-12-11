@@ -1,8 +1,8 @@
 import { clearLocalStorage, getLocalStorage } from "../utils/storage.mjs";
-import { getListings, getSingleProfile } from "../utils/gets.mjs";
-import { getListingsStillForSale } from "../utils/various.mjs";
-import { displayListings } from "../utils/display.mjs";
-import { loadingSpinner } from "../utils/loading.mjs";
+// import { getListings, getSingleProfile } from "../utils/gets.mjs";
+// import { getListingsStillForSale } from "../utils/various.mjs";
+// import { displayListings } from "../utils/display.mjs";
+// import { loadingSpinner } from "../utils/loading.mjs";
 import { displayBasedOnSort } from "../listings/index.mjs";
 
 const sidebar = document.querySelector("#sidebar");
@@ -13,7 +13,7 @@ const line3 = document.querySelector(".line3");
 const menuBackdrop = document.querySelector("#backdrop");
 const LogoutBtn = document.querySelector("#logout-btn");
 const backdrop = document.querySelector("#backdrop");
-const listingsULElement = document.querySelector("#listing");
+// const listingsULElement = document.querySelector("#listing");
 
 async function showMenu() {
   sidebar.classList.remove("-translate-x-[200%]");
@@ -52,7 +52,6 @@ window.addEventListener("resize", () => {
 LogoutBtn.addEventListener("click", clearLocalStorage);
 
 window.addEventListener("DOMContentLoaded", async () => {
-  // TODO: get active bids and your listings
   const allLinksInSidebar = sidebar.querySelectorAll(".nav-link");
   allLinksInSidebar.forEach((link) => {
     if (window.location.pathname === `/${link.name}`) {
@@ -80,9 +79,9 @@ window.addEventListener("DOMContentLoaded", async () => {
       "#credit-profile-card span"
     );
 
-    const listingsProfileCard = profileCard.querySelector(
-      "#listings-profile-card span"
-    );
+    // const listingsProfileCard = profileCard.querySelector(
+    //   "#listings-profile-card span"
+    // );
 
     // const profile = await getSingleProfile(locStor.name);
     // const { listings } = profile._count;
