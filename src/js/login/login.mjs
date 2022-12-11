@@ -87,6 +87,9 @@ if (registerForm) {
         }
         console.log(registerDetails);
         registerFn(registerDetails);
+      } else {
+        logingWarning.innerHTML =
+          "Email must include @noroff.no or @stud.noroff.no and password must be at least 6 characters";
       }
     } else {
       logingWarning.innerHTML =

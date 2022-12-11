@@ -1,9 +1,3 @@
-// POST /api/v1/auction/listings
-// let titleVal = formNewListing.querySelector("#title").value;
-// let descriptionVal = formNewListing.querySelector("#description").value;
-// let dateVal = formNewListing.querySelector("#endsAt").value;
-// let tags = formNewListing.querySelector("#tags");
-// let mediaVal = formNewListing.querySelector("#media").value;
 import { postListing } from "../utils/posts.mjs";
 import { getSingleListing } from "../utils/gets.mjs";
 import { updateEntry } from "../utils/puts.mjs";
@@ -34,11 +28,12 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (!urlID) {
     headline.innerHTML = "Create New Listing";
   } else if (urlID) {
-    mediaVal.parentElement.parentElement.style.display = "block";
-    mediaVal.parentElement.style.display = "block";
+    // mediaVal.parentElement.parentElement.style.display = "block";
+    // mediaVal.parentElement.style.display = "block";
 
     headline.innerHTML = "Edit Listing";
     dateVal.previousElementSibling.style.display = "none";
+    timeExpiration.style.display = "none";
     dateVal.style.display = "none";
     const singleData = await getSingleListing(urlID);
 
@@ -46,14 +41,16 @@ window.addEventListener("DOMContentLoaded", async () => {
     titleVal.value = title;
     descriptionVal.value = description;
     media.map((imageURL) => {
-      mediaVal.value = imageURL;
+      mediaVal.value += imageURL;
+      mediaVal.value += ", ";
     });
+    const withoutLastComma = mediaVal.value.slice(0, -2);
+    mediaVal.value = withoutLastComma;
   }
 });
 
 formNewListing.addEventListener("submit", (e) => {
   e.preventDefault();
-
   if (!urlID) {
     createNewListing();
   } else if (urlID) {
@@ -86,18 +83,15 @@ async function editListing() {
     const mediaArray = mediaVal.value.split(/[ ,]+/);
     submitObject.media = mediaArray;
   }
-  console.log(submitObject);
   updateEntry(urlID, submitObject);
 }
 
 function createNewListing() {
   let submitObject = {};
 
-  const hour = timeExpiration.value;
-  console.log(dateVal.value);
-  console.log(hour);
+  const dateWarning = dateVal.previousElementSibling;
+
   const hourString = `${dateVal.value} ${timeExpiration.value}`;
-  console.log(hourString);
   if (titleVal.value && dateVal.value && tags.value) {
     const now = new Date();
     // console.log(now);
@@ -120,14 +114,12 @@ function createNewListing() {
         const mediaArray = mediaVal.value.split(/[ ,]+/);
         submitObject.media = mediaArray;
       }
-      // console.log(now.toISOString());
-      console.log("submitObject", submitObject);
       postListing(submitObject);
-      // window.location = "../../../listings.html";
     } else {
-      console.log("smaller");
+      dateWarning.innerHTML =
+        "Ends at<br/><small>Must be a future date</small>";
     }
   } else {
-    // display warnings here
+    dateWarning.innerHTML = "Ends at<br/><small>Please select a date</small>";
   }
 }

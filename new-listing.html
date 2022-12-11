@@ -45,7 +45,7 @@
     <!-- *main -->
     <main
       id="main-container"
-      class="relative top-12 w-full mx-auto z-0 mb-10 md:container"
+      class="relative top-12 w-full mx-auto mb-20 z-0 mb-10 md:container"
     >
       <!-- *sidebar -->
       <div
@@ -168,7 +168,13 @@
             <label for="title"
               >Title<span class="warning" data-name="title"></span
             ></label>
-            <input type="text" id="title" name="title" class="custom-input" />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="custom-input"
+              required
+            />
           </div>
           <!-- tag -->
           <div class="flex flex-col space-y-2">
@@ -183,6 +189,7 @@
               name="tags"
               id="tags"
               multiple
+              required
             >
               <option value="various">various</option>
               <option value="vehicles">vehicles</option>
@@ -246,31 +253,37 @@
             </div> -->
           <!-- </div> -->
           <!-- smaller inputs 2 -->
-          <div
+          <!-- <div
             class="space-y-4 xs:flex xs:justify-between xs:items-center xs:space-y-0"
-          >
-            <!-- ends at -->
-            <div class="flex flex-col space-y-2 w-44">
-              <label for="endsAt"
-                >Ends at<span class="warning" data-name="endsAt"></span
-              ></label>
-              <input
-                type="date"
-                id="endsAt"
-                name="endsAt"
-                class="custom-input cursor-pointer"
-              />
-              <!-- time -->
-              <input type="time" id="time-of-expiration" />
-            </div>
-            <!-- image url -->
-            <div class="flex flex-col space-y-2 w-44">
-              <label for="media"
-                >Image URL<span class="warning" data-name="media"></span
-              ></label>
-              <input type="text" id="media" name="media" class="custom-input" />
-            </div>
+          > -->
+          <!-- ends at -->
+          <div class="flex flex-col space-y-2 w-44">
+            <label for="endsAt"
+              >Ends at<span class="warning" data-name="endsAt"></span
+            ></label>
+            <input
+              type="date"
+              id="endsAt"
+              name="endsAt"
+              class="custom-input cursor-pointer"
+            />
+            <!-- time -->
+            <input type="time" id="time-of-expiration" />
           </div>
+          <!-- image url -->
+          <div class="flex flex-col space-y-2">
+            <label for="media"
+              >Image URL<span class="warning" data-name="media"></span
+            ></label>
+            <!-- <input type="text" id="media" name="media" class="custom-input" /> -->
+            <textarea
+              id="media"
+              name="media"
+              class="custom-input"
+              rows="5"
+            ></textarea>
+          </div>
+          <!-- </div> -->
 
           <!-- preview -->
           <!-- <button

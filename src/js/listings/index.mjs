@@ -52,16 +52,17 @@ function refreshOrUpdateList(isAddingToPrevList) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  if (categories) {
+    categories.value = "newest";
+  }
   displayBasedOnSort(false);
 });
-// const urlID = geturlID();
-// console.log(urlID);
-// const data = await getListings(limit, offset, "", "", "");
-// console.log(data);
 if (categories) {
   categories.addEventListener("change", () => {
-    const stateObj = {};
-    history.pushState(stateObj, "", `listings.html`);
+    if (window.location.href.includes("listings.html")) {
+      const stateObj = {};
+      history.pushState(stateObj, "", `listings.html`);
+    }
     offset = 0;
     displayBasedOnSort();
   });
