@@ -1,19 +1,9 @@
-import { displayListings } from "../utils/display.mjs";
-import {
-  getListings,
-  getSingleListing,
-  getSingleProfile,
-} from "../utils/gets.mjs";
+import { getSingleProfile } from "../utils/gets.mjs";
 import { getLocalStorage, setLocalStorage } from "../utils/storage.mjs";
-import { loadingSpinner } from "../utils/loading.mjs";
-import { displayBasedOnSort } from "./index.mjs";
-import { getListingsStillForSale } from "../utils/various.mjs";
 import { updateProfileAvatar } from "../utils/puts.mjs";
 const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
 const urlID = mySearchParams.get("id");
-
-// const mainProfileCard = document.querySelector(".main-profile-card");
 
 window.addEventListener("DOMContentLoaded", () => {
   getProfileCardInfo();
@@ -83,8 +73,6 @@ async function getProfileCardInfo() {
     setLocalStorage(true, token, name, email, profile.avatar, profile.credits);
     const locStor = getLocalStorage();
 
-    console.log(profile);
-
     // new
     profileImageMainCard.src = locStor.avatar
       ? locStor.avatar
@@ -96,9 +84,6 @@ async function getProfileCardInfo() {
     winsMainProfileCard.textContent = profile.wins.length;
   } else {
     // * has id will display other profile and listings
-    // display other profiles
-    console.log("has id:: ", urlID);
+    // display other profiles ??
   }
 }
-
-// function displayProfileListings() {}

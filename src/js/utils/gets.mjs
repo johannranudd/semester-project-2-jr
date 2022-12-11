@@ -1,11 +1,7 @@
-// `${baseURL}/profiles/${userName}?_posts=true&_following=true&_followers=true${limitQuery}`;
 import { getLocalStorage } from "../utils/storage.mjs";
-import { getListingsStillForSale } from "./various.mjs";
 const baseURL = "https://api.noroff.dev/api/v1";
 
 export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
-  // const locStor = getLocalStorage();
-  console.log("getListings");
   const limitQuery = setFetchLimitURL(limit);
   const sortQuery = setSortQuery(sort);
   const sortOrderQuery = setSortOrderQuery(sortOrder);
@@ -16,39 +12,14 @@ export async function getListings(limit, offset = 0, sort, sortOrder, tag) {
     );
     if (res.ok) {
       const data = await res.json();
-      // const stillForSale = getListingsStillForSale(data);
       return data;
     }
   } catch (error) {
     console.log(error, "an error occured in getListings()");
   }
-  // console.log(
-  //   `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`
-  // );
 }
 
-// export async function search(limit, offset = 0, sort, sortOrder, tag) {
-//   // const locStor = getLocalStorage();
-//   const limitQuery = setFetchLimitURL(limit);
-//   const sortQuery = setSortQuery(sort);
-//   const sortOrderQuery = setSortOrderQuery(sortOrder);
-//   const tagQuery = setTagQuery(tag);
-//   try {
-//     const res = await fetch(
-//       `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`
-//     );
-//     if (res.ok) {
-//       const data = await res.json();
-//       // const stillForSale = getListingsStillForSale(data);
-//       return data;
-//     }
-//   } catch (error) {
-//     console.log(error, "an error occured in getListings()");
-//   }
-// }
-
 export async function getSingleListing(id) {
-  console.log("getSingleListing");
   const locStor = getLocalStorage();
   try {
     const res = await fetch(
@@ -76,7 +47,6 @@ export async function getAllListingsByProfile(
   tag,
   name
 ) {
-  console.log("getAllListingsByProfile");
   const locStor = getLocalStorage();
   const limitQuery = setFetchLimitURL(limit);
   const sortQuery = setSortQuery(sort);
@@ -99,11 +69,9 @@ export async function getAllListingsByProfile(
   } catch (error) {
     console.log(error, "an error occured in getAllListingsByProfile()");
   }
-  // `${baseURL}/auction/profiles/${name}/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&_active=true&offset=${offset}${limitQuery}`
 }
 
 export async function getAllProfiles() {
-  console.log("getAllProfiles");
   const locStor = getLocalStorage();
   try {
     const res = await fetch(`${baseURL}/auction/profiles`, {
@@ -172,28 +140,3 @@ function setSortOrderQuery(sortOrder) {
     return sortOrderQuery;
   }
 }
-
-/** `${baseURL}/auction/listings?${tagQuery}${sortQuery}${sortOrderQuery}&_seller=true&_bids=true&offset=${offset}${limitQuery}` */
-
-// export async function getListingsUnathorized() {
-// limit,
-// offset = 0,
-// sort,
-// sortOrder,
-// tag
-// const locStor = getLocalStorage();
-// const limitQuery = setFetchLimitURL(limit);
-// const sortQuery = setSortQuery(sort);
-// const sortOrderQuery = setSortOrderQuery(sortOrder);
-// const tagQuery = setTagQuery(tag);
-//   try {
-//     const res = await fetch(`${baseURL}/auction/listings`);
-//     if (res.ok) {
-//       const data = await res.json();
-//       console.log(data);
-//       return data;
-//     }
-//   } catch (error) {
-//     console.log(error, "an error occured in getListings()");
-//   }
-// }

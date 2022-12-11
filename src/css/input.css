@@ -169,7 +169,7 @@
   }
   .carousel-image-container img {
     cursor: pointer;
-    max-height: 18rem;
+    max-height: 21rem;
   }
   .current-slide {
     transform: translateX(0%);
