@@ -98,7 +98,9 @@ async function displaySignle() {
     }
 
     // edit
-    btnEditListing.href = `/new-listing.html?id=${urlID}`;
+    btnEditListing.addEventListener("click", () => {
+      window.location.href = `/new-listing.html?id=${urlID}`;
+    });
     if (seller.name !== locStor.name) {
       btnEditListing.parentElement.style.display = "none";
       btnDeleteListing.parentElement.style.display = "none";
@@ -170,7 +172,11 @@ async function liveAuction(data) {
   });
 
   const amountOfBidsText = liveAuctionSection.querySelector(".amount-of-bids");
-  amountOfBidsText.textContent = `${sortedByHighestBid.length}bids`;
+  if (sortedByHighestBid.length === 1) {
+    amountOfBidsText.textContent = `${sortedByHighestBid.length} bid`;
+  } else {
+    amountOfBidsText.textContent = `${sortedByHighestBid.length} bids`;
+  }
   const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
   const highestBid = filterHighestBid(data);
   highestBidElem.textContent = `$ ${highestBid}`;

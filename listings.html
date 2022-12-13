@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="website, auction house, buy and sell" />
+    <meta name="author" content="Johann Ranudd" />
+    <meta
+      name="description"
+      content="This website is an auction house where you can buy and sell items."
+    />
     <link rel="stylesheet" href="./dist/css/output.css" />
     <script
       src="https://kit.fontawesome.com/7246593e30.js"
       crossorigin="anonymous"
     ></script>
-    <!-- <script type="module" src="./src/js/layout/redirect.mjs" defer></script> -->
-    <script type="module" src="./src/js/layout/mobile-menu.mjs" defer></script>
-    <script type="module" src="./src/js/listings/index.mjs" defer></script>
-    <title>Stash Auction House</title>
+    <title>Listings | Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
     <!-- *navbar -->
@@ -34,9 +37,9 @@
           id="menu-btn"
           class="rounded-full text-whiteClr md:hidden mr-1.5"
         >
-          <div class="line line1"></div>
-          <div class="line line2"></div>
-          <div class="line line3"></div>
+          <span class="line line1 block"></span>
+          <span class="line line2 block"></span>
+          <span class="line line3 block"></span>
         </button>
       </div>
     </nav>
@@ -108,7 +111,7 @@
             <li>
               <a
                 href="./"
-                name=""
+                id="home-link"
                 class="nav-link inline-block text-lg hoverAnimation"
                 ><i class="fa-solid fa-house w-10"></i>Home</a
               >
@@ -153,10 +156,6 @@
       <!-- *end sidebar -->
 
       <!-- *main content -->
-      <!-- <section
-        class="mb-8 p-2 space-y-6 max-w-sm mx-auto md:ml-72 md:max-w-full md:px-12 lg:px-44 md:space-y-10"
-      > -->
-      <!-- md:max-w-full md:px-12 lg:px-44 md:space-y-10 -->
       <section
         class="mb-8 p-2 space-y-6 max-w-sm mx-auto md:ml-72 md:max-w-full lg:px-44 xl:px-64 2xl:px-96"
       >
@@ -316,5 +315,9 @@
         </div>
       </div>
     </footer>
+
+    <!-- *JS -->
+    <script type="module" src="./src/js/layout/mobile-menu.mjs"></script>
+    <script type="module" src="./src/js/listings/index.mjs"></script>
   </body>
 </html>

@@ -49,6 +49,10 @@ LogoutBtn.addEventListener("click", clearLocalStorage);
 window.addEventListener("DOMContentLoaded", async () => {
   const allLinksInSidebar = sidebar.querySelectorAll(".nav-link");
   allLinksInSidebar.forEach((link) => {
+    if (window.location.pathname === "/") {
+      const homeLink = sidebar.querySelector("#home-link");
+      homeLink.style.color = "#096076";
+    }
     if (window.location.pathname === `/${link.name}`) {
       link.style.color = "#096076";
     }
@@ -62,7 +66,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     window.location.href.includes("profile.html")
   ) {
     profileCard.style.display = "none";
-    LogoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket w-10"></i>Logout`;
+    LogoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket w-10"></i>Login`;
   } else if (locStor) {
     const usernameProfileCard = profileCard.querySelector(
       "#username-profile-card"
@@ -80,8 +84,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     creditProfileCard.textContent = locStor.credits;
   }
 });
-
-// todo: searchform
 
 const searchForm = document.querySelector("#search-form");
 

@@ -4,7 +4,7 @@ const baseURL = "https://api.noroff.dev/api/v1";
 export async function updateEntry(id, submitObject) {
   const locStor = getLocalStorage();
   try {
-    const req = await fetch(`${baseURL}/auction/listings/${id}`, {
+    const res = await fetch(`${baseURL}/auction/listings/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -12,12 +12,10 @@ export async function updateEntry(id, submitObject) {
       },
       body: JSON.stringify(submitObject),
     });
-    if (req.ok) {
+    if (res.ok) {
       window.location = "/listings.html";
-      // const data = req.json();
-      // return data;
     } else {
-      console.log("req not OK");
+      return await res.json();
     }
   } catch (error) {
     throw new Error(error.toString());

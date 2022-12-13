@@ -78,8 +78,8 @@ async function getProfileCardInfo() {
   );
   const userEmail = document.querySelector("#user-email");
 
-  if (!urlID) {
-    const locStorInitial = getLocalStorage();
+  const locStorInitial = getLocalStorage();
+  if (!urlID || urlID === locStorInitial.name) {
     const profile = await getSingleProfile(locStorInitial.name);
     const { listings } = profile._count;
     const { token, name, email } = locStorInitial;
