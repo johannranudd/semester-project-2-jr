@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     window.location.href.includes("profile.html")
   ) {
     profileCard.style.display = "none";
-    LogoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket w-10"></i>Logout`;
+    LogoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket w-10"></i>Login`;
   } else if (locStor) {
     const usernameProfileCard = profileCard.querySelector(
       "#username-profile-card"
