@@ -8,7 +8,6 @@ import {
 import { loadingSpinner } from "../utils/loading.mjs";
 import { getLocalStorage } from "../utils/storage.mjs";
 const listingsULElement = document.querySelector("#listing");
-// const sortListingsForm = document.querySelector("#sort-listings-form");
 const categories = document.querySelector("#sort-selector");
 const btnCategory = document.querySelectorAll(".btn-category");
 
@@ -60,7 +59,7 @@ if (categories) {
       history.pushState(stateObj, "", `listings.html`);
     }
     offset = 0;
-    displayBasedOnSort();
+    displayBasedOnSort(false);
   });
 }
 if (btnCategory) {
@@ -76,7 +75,6 @@ async function getTags(event) {
   tag = event.currentTarget.dataset.category.toLowerCase();
   if (tag === "various") {
     tag = "";
-  } else {
   }
   displayBasedOnSort(false);
 }
@@ -130,9 +128,8 @@ function display(urlID) {
 
 export async function displayBasedOnSort(isAddingToPrevList = false) {
   refreshOrUpdateList(isAddingToPrevList);
-
+  const urlID = geturlID();
   if (window.location.href.includes("listings.html")) {
-    const urlID = geturlID();
     if (urlID) {
       // !This max value could be changed to get more results
       limit = 100;
@@ -174,57 +171,111 @@ export async function displayBasedOnSort(isAddingToPrevList = false) {
     }
   }
   if (window.location.href.includes("profile.html")) {
-    const locStor = getLocalStorage();
-    if (categories.value === "newest") {
-      const data = await getAllListingsByProfile(
-        limit,
-        offset,
-        "created",
-        "desc",
-        tag,
-        locStor.name
-      );
-      checkOffsetDisplay(data);
-    } else if (categories.value === "oldest") {
-      const data = await getAllListingsByProfile(
-        limit,
-        offset,
-        "created",
-        "asc",
-        tag,
-        locStor.name
-      );
-      checkOffsetDisplay(data);
-    } else if (categories.value === "title-asc") {
-      const data = await getAllListingsByProfile(
-        limit,
-        offset,
-        "title",
-        "asc",
-        tag,
-        locStor.name
-      );
-      checkOffsetDisplay(data);
-    } else if (categories.value === "title-desc") {
-      const data = await getAllListingsByProfile(
-        limit,
-        offset,
-        "title",
-        "desc",
-        tag,
-        locStor.name
-      );
-      checkOffsetDisplay(data);
-    } else if (categories.value === "price-low-high") {
-      sortByPrice(
-        "asc",
-        getAllListingsByProfile(limit, offset, "", "", tag, locStor.name)
-      );
-    } else if (categories.value === "price-high-low") {
-      sortByPrice(
-        "desc",
-        getAllListingsByProfile(limit, offset, "", "", tag, locStor.name)
-      );
+    if (urlID) {
+      if (categories.value === "newest") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "created",
+          "desc",
+          tag,
+          urlID
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "oldest") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "created",
+          "asc",
+          tag,
+          urlID
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "title-asc") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "title",
+          "asc",
+          tag,
+          urlID
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "title-desc") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "title",
+          "desc",
+          tag,
+          urlID
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "price-low-high") {
+        sortByPrice(
+          "asc",
+          getAllListingsByProfile(limit, offset, "", "", tag, urlID)
+        );
+      } else if (categories.value === "price-high-low") {
+        sortByPrice(
+          "desc",
+          getAllListingsByProfile(limit, offset, "", "", tag, urlID)
+        );
+      }
+    } else {
+      const locStor = getLocalStorage();
+      if (categories.value === "newest") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "created",
+          "desc",
+          tag,
+          locStor.name
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "oldest") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "created",
+          "asc",
+          tag,
+          locStor.name
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "title-asc") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "title",
+          "asc",
+          tag,
+          locStor.name
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "title-desc") {
+        const data = await getAllListingsByProfile(
+          limit,
+          offset,
+          "title",
+          "desc",
+          tag,
+          locStor.name
+        );
+        checkOffsetDisplay(data);
+      } else if (categories.value === "price-low-high") {
+        sortByPrice(
+          "asc",
+          getAllListingsByProfile(limit, offset, "", "", tag, locStor.name)
+        );
+      } else if (categories.value === "price-high-low") {
+        sortByPrice(
+          "desc",
+          getAllListingsByProfile(limit, offset, "", "", tag, locStor.name)
+        );
+      }
     }
   }
 }

@@ -4,7 +4,7 @@ const baseURL = "https://api.noroff.dev/api/v1";
 export async function postListing(submitObject) {
   const locStor = getLocalStorage();
   try {
-    const req = await fetch(`${baseURL}/auction/listings`, {
+    const res = await fetch(`${baseURL}/auction/listings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -12,12 +12,10 @@ export async function postListing(submitObject) {
       },
       body: JSON.stringify(submitObject),
     });
-    if (req.ok) {
-      // const data = req.json();
-      // return data;
+    if (res.ok) {
       window.location = "/listings.html";
     } else {
-      console.log("req not OK");
+      console.log("res not OK");
     }
   } catch (error) {
     throw new Error(error.toString());
@@ -25,12 +23,9 @@ export async function postListing(submitObject) {
 }
 
 export async function bidOnEntry(requestObj, id) {
-  console.log(requestObj);
-  console.log(JSON.stringify(requestObj));
-  console.log(id);
   const locStor = getLocalStorage();
   try {
-    const req = await fetch(`${baseURL}/auction/listings/${id}/bids`, {
+    const res = await fetch(`${baseURL}/auction/listings/${id}/bids`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,15 +33,10 @@ export async function bidOnEntry(requestObj, id) {
       },
       body: JSON.stringify(requestObj),
     });
-    if (req.ok) {
-      console.log(req);
-      const data = await req.json();
-      console.log(data);
-      return data;
-    } else {
-      console.log(req);
-      console.log("req not OK");
+    if (res.ok) {
+      window.location.reload();
     }
+    return res.json();
   } catch (error) {
     throw new Error(error.toString());
   }

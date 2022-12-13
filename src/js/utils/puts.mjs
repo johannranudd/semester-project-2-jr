@@ -27,7 +27,7 @@ export async function updateEntry(id, submitObject) {
 export async function updateProfileAvatar(name, submitObject) {
   const locStor = getLocalStorage();
   try {
-    const req = await fetch(`${baseURL}/auction/profiles/${name}/media`, {
+    const res = await fetch(`${baseURL}/auction/profiles/${name}/media`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -35,14 +35,8 @@ export async function updateProfileAvatar(name, submitObject) {
       },
       body: JSON.stringify(submitObject),
     });
-    if (req.ok) {
-      // window.location = "/listings.html";
-      const data = req.json();
-      console.log(data);
-      return data;
-    } else {
-      console.log("req not OK");
-    }
+    // return res;
+    return await res.json();
   } catch (error) {
     throw new Error(error.toString());
   }

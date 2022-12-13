@@ -5,6 +5,7 @@ import {
   filterHighestBid,
   addCountdownObject,
   calculateTime,
+  sortByHighestInteger,
 } from "../utils/various.mjs";
 import { loadingSpinner, removeSpinner } from "../utils/loading.mjs";
 import { bidOnEntry } from "../utils/posts.mjs";
@@ -12,9 +13,6 @@ import { bidOnEntry } from "../utils/posts.mjs";
 const querystring = document.location.search;
 const mySearchParams = new URLSearchParams(querystring);
 const urlID = mySearchParams.get("id");
-
-const carouselSection = document.querySelector("#carousel-section");
-const main = document.querySelector("main");
 
 const carousel = document.querySelector("#carousel");
 const btnEditListing = document.querySelector("#edit-listing");
@@ -29,6 +27,7 @@ const sellerTitle = sellerSection.querySelector("h2");
 const sellerUsername = sellerSection.querySelector("h6");
 const sellerProfileImg = sellerSection.querySelector("#profile img");
 const sellerDescription = sellerSection.querySelector("#desc");
+const linkToProfile = sellerSection.querySelector("#link-to-profile");
 
 // auction section
 const liveAuctionSection = document.querySelector("#live-auction-section");
@@ -49,14 +48,27 @@ window.addEventListener("DOMContentLoaded", () => {
 
 placeBidForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+  const warning = placeBidForm.querySelector(".place-bid-warning");
   const amountInput = placeBidForm.querySelector("#amount");
   const valueToNumber = Number(amountInput.value);
   if (valueToNumber) {
     let submitObject = { amount: valueToNumber };
-    await bidOnEntry(submitObject, urlID);
-    window.location.reload();
+    const res = await bidOnEntry(submitObject, urlID);
+    if (!res.ok) {
+      bidWarning(warning, res.errors[0].message);
+    }
+  } else {
+    bidWarning(warning, "Amount must be a whole number");
   }
 });
+
+function bidWarning(elem, message) {
+  elem.style.display = "block";
+  elem.innerHTML = message;
+  setTimeout(() => {
+    elem.style.display = "none";
+  }, 3000);
+}
 
 async function displaySignle() {
   biddersProfileListElem.innerHTML = "";
@@ -90,6 +102,9 @@ async function displaySignle() {
     if (seller.name !== locStor.name) {
       btnEditListing.parentElement.style.display = "none";
       btnDeleteListing.parentElement.style.display = "none";
+    } else {
+      const placeBidSection = document.querySelector("#place-bid-section");
+      placeBidSection.style.display = "none";
     }
 
     // delete
@@ -97,6 +112,7 @@ async function displaySignle() {
     // sellerSection
     sellerTitle.textContent = title;
     sellerUsername.textContent = seller.name;
+    linkToProfile.href = `../../../profile.html?id=${seller.name}`;
     sellerProfileImg.src = seller.avatar && seller.avatar;
     sellerProfileImg.addEventListener("error", () => {
       sellerProfileImg.src = "../../../assets/images/profile-img.png";
@@ -109,16 +125,17 @@ async function displaySignle() {
 }
 
 async function liveAuction(data) {
-  const newArray = data.bids.slice();
-  const reverseBidArray = newArray.reverse();
-  reverseBidArray.map(async (bid, index) => {
+  const sortedByHighestBid = sortByHighestInteger(data.bids);
+  sortedByHighestBid.map(async (bid, index) => {
     if (index > showLimit) {
       return;
     } else {
       const { amount, bidderName, created } = bid;
       biddersProfileListElem.innerHTML += `<li class="bidder-status flex items-center justify-between">
         <div class="flex items-center">
-        <img class="bidder-profile-image" />
+        <a href="../../../profile.html?id=${bidderName}">
+          <img class="bidder-profile-image" />
+        </a>
         <div class="flex flex-col">
         <h5>${bidderName}</h5>
         <p class="time-since-bid" data-created="${created}"></p>
@@ -133,7 +150,7 @@ async function liveAuction(data) {
 
   const listElem = biddersProfileListElem.querySelectorAll("li");
   // get unique bidders
-  const reduce = reverseBidArray.reduce((total, current) => {
+  const reduce = sortedByHighestBid.reduce((total, current) => {
     if (!total.includes(current.bidderName)) {
       total.push(current.bidderName);
     }
@@ -153,7 +170,7 @@ async function liveAuction(data) {
   });
 
   const amountOfBidsText = liveAuctionSection.querySelector(".amount-of-bids");
-  amountOfBidsText.textContent = `${reverseBidArray.length}bids`;
+  amountOfBidsText.textContent = `${sortedByHighestBid.length}bids`;
   const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
   const highestBid = filterHighestBid(data);
   highestBidElem.textContent = `$ ${highestBid}`;

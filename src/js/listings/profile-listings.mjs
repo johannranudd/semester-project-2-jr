@@ -18,18 +18,32 @@ editProfileBtn.addEventListener("click", () => {
   openModal();
   // submit
   const formEditUser = document.querySelector("#edit-user-info-form");
+
   formEditUser.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const label = formEditUser.querySelector("label");
     const newAvatarUrlInput = document.querySelector("#newAvatarUrl");
+    // *commented out to allow user to remove their avatar
+    // if (newAvatarUrlInput.value) {
     let submitObject = { avatar: newAvatarUrlInput.value };
     const locStor = getLocalStorage();
     const res = await updateProfileAvatar(locStor.name, submitObject);
-    if (res) {
+    if (res.errors) {
+      changeAvatarWarning(label, res.errors[0].message);
+    } else {
       closeModal();
       getProfileCardInfo();
     }
+    // } else {
+    //   changeAvatarWarning(label, "Please input a valid image URL");
+    // }
   });
 });
+
+function changeAvatarWarning(elem, message) {
+  elem.style.color = "#F16A6A";
+  elem.textContent = message;
+}
 
 modalBackDrop.addEventListener("click", closeModal);
 function openModal() {
@@ -64,7 +78,6 @@ async function getProfileCardInfo() {
   );
   const userEmail = document.querySelector("#user-email");
 
-  // todo: decide whether to display other profiles here or not
   if (!urlID) {
     const locStorInitial = getLocalStorage();
     const profile = await getSingleProfile(locStorInitial.name);
@@ -84,6 +97,16 @@ async function getProfileCardInfo() {
     winsMainProfileCard.textContent = profile.wins.length;
   } else {
     // * has id will display other profile and listings
-    // display other profiles ??
+    const profile = await getSingleProfile(urlID);
+    profileImageMainCard.src = profile.avatar
+      ? profile.avatar
+      : "../../../assets/images/profile-img.png";
+    usernameMainProfileCard.textContent = profile.name;
+    userEmail.textContent = profile.email;
+    listingsMainProfileCard.textContent = profile._count.listings;
+    creditsMainProfileCard.textContent = profile.credits;
+    winsMainProfileCard.textContent = profile.wins.length;
+
+    editProfileBtn.style.display = "none";
   }
 }

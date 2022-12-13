@@ -110,4 +110,8 @@ function createNewListing() {
   } else {
     dateWarning.innerHTML = "Ends at<br/><small>Please select a date</small>";
   }
+  const small = dateWarning.querySelector("small");
+  if (small) {
+    small.style.color = "red";
+  }
 }

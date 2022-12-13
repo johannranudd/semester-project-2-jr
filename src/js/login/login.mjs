@@ -18,15 +18,14 @@ async function registerFn(loginDetails) {
       const { email, password } = loginDetails;
       loginFn(email, password);
     } else {
-      console.log("res NOT OK", res);
+      displayLoginWarning("Incorrect email or password");
     }
   } catch (e) {
-    console.log(e, "error happened in registerFn()");
+    throw new Error(e, "error happened in registerFn()");
   }
 }
 
 async function loginFn(email, password) {
-  console.log("starting loginFn()");
   try {
     const res = await fetch(`${baseURL}/auction/auth/login`, {
       method: "POST",
@@ -44,9 +43,11 @@ async function loginFn(email, password) {
       const { accessToken, name, email, avatar, credits } = data;
       setLocalStorage(true, accessToken, name, email, avatar, credits);
       window.location.href = "/";
+    } else {
+      displayLoginWarning("Incorrect email or password");
     }
   } catch (e) {
-    console.log(e, "error happened in loginFn()");
+    throw new Error(e, "error happened in loginFn()");
   }
 }
 
@@ -63,7 +64,6 @@ if (registerForm) {
         emailInputValue.includes("@noroff.no") ||
         emailInputValue.includes("@stud.noroff.no")
       ) {
-        console.log("does include, continue login");
         const registerDetails = {
           name: nameInputValue, // Required
           email: emailInputValue, // Required
@@ -72,15 +72,16 @@ if (registerForm) {
         if (avatarInputValue) {
           registerDetails.avatar = avatarInputValue;
         }
-        console.log(registerDetails);
         registerFn(registerDetails);
       } else {
-        logingWarning.innerHTML =
-          "Email must include @noroff.no or @stud.noroff.no and password must be at least 6 characters";
+        displayLoginWarning(
+          "Email must include @noroff.no or @stud.noroff.no and password must be at least 8 characters"
+        );
       }
     } else {
-      logingWarning.innerHTML =
-        "Email must include @noroff.no or @stud.noroff.no and password must be at least 6 characters";
+      displayLoginWarning(
+        "Email must include @noroff.no or @stud.noroff.no and password must be at least 8 characters"
+      );
     }
   });
 }
@@ -94,21 +95,27 @@ if (loginForm) {
     const emailValue = emailInput.value;
     const passwordValue = passwordInput.value;
 
-    if (emailValue && passwordValue.length >= 6) {
+    if (emailValue && passwordValue.length >= 8) {
       if (
         emailValue.includes("@noroff.no") ||
         emailValue.includes("@stud.noroff.no")
       ) {
         // success
-        console.log("does include, continue login");
         loginFn(emailValue, passwordValue);
       } else {
-        logingWarning.innerHTML =
-          "Email must include @noroff.no or @stud.noroff.no and password must be at least 6 characters";
+        displayLoginWarning(
+          "Email must include @noroff.no or @stud.noroff.no and password must be at least 8 characters"
+        );
       }
     } else {
-      logingWarning.innerHTML =
-        "Email must include @noroff.no or @stud.noroff.no and password must be at least 6 characters";
+      displayLoginWarning(
+        "Email must include @noroff.no or @stud.noroff.no and password must be at least 8 characters"
+      );
     }
   });
+}
+
+function displayLoginWarning(message) {
+  logingWarning.style.color = "red";
+  logingWarning.innerHTML = message;
 }
