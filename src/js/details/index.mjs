@@ -98,7 +98,9 @@ async function displaySignle() {
     }
 
     // edit
-    btnEditListing.href = `/new-listing.html?id=${urlID}`;
+    btnEditListing.addEventListener("click", () => {
+      window.location.href = `/new-listing.html?id=${urlID}`;
+    });
     if (seller.name !== locStor.name) {
       btnEditListing.parentElement.style.display = "none";
       btnDeleteListing.parentElement.style.display = "none";

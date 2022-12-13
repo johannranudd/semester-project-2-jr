@@ -15,9 +15,6 @@
       src="https://kit.fontawesome.com/7246593e30.js"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./src/js/layout/redirect.mjs" defer></script>
-    <script type="module" src="./src/js/layout/mobile-menu.mjs" defer></script>
-    <script type="module" src="./src/js/new-listing/index.mjs" defer></script>
     <title>New lisitng | Stash Auction House</title>
   </head>
   <body class="flex flex-col justify-between min-h-screen">
@@ -40,9 +37,9 @@
           id="menu-btn"
           class="rounded-full text-whiteClr md:hidden mr-1.5"
         >
-          <div class="line line1"></div>
-          <div class="line line2"></div>
-          <div class="line line3"></div>
+          <span class="line line1 block"></span>
+          <span class="line line2 block"></span>
+          <span class="line line3 block"></span>
         </button>
       </div>
     </nav>
@@ -114,7 +111,7 @@
             <li>
               <a
                 href="./"
-                name=""
+                id="home-link"
                 class="nav-link inline-block text-lg hoverAnimation"
                 ><i class="fa-solid fa-house w-10"></i>Home</a
               >
@@ -311,5 +308,10 @@
         </div>
       </div>
     </footer>
+
+    <!-- *JS -->
+    <script type="module" src="./src/js/layout/redirect.mjs"></script>
+    <script type="module" src="./src/js/layout/mobile-menu.mjs"></script>
+    <script type="module" src="./src/js/new-listing/index.mjs"></script>
   </body>
 </html>
