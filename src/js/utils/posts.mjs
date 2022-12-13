@@ -15,7 +15,7 @@ export async function postListing(submitObject) {
     if (res.ok) {
       window.location = "/listings.html";
     } else {
-      console.log("res not OK");
+      return await res.json();
     }
   } catch (error) {
     throw new Error(error.toString());

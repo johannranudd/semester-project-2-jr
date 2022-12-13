@@ -81,8 +81,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// todo: searchform
-
 const searchForm = document.querySelector("#search-form");
 
 searchForm.addEventListener("submit", async (e) => {

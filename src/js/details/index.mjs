@@ -170,7 +170,11 @@ async function liveAuction(data) {
   });
 
   const amountOfBidsText = liveAuctionSection.querySelector(".amount-of-bids");
-  amountOfBidsText.textContent = `${sortedByHighestBid.length}bids`;
+  if (sortedByHighestBid.length === 1) {
+    amountOfBidsText.textContent = `${sortedByHighestBid.length} bid`;
+  } else {
+    amountOfBidsText.textContent = `${sortedByHighestBid.length} bids`;
+  }
   const highestBidElem = liveAuctionSection.querySelector("#highest-bid");
   const highestBid = filterHighestBid(data);
   highestBidElem.textContent = `$ ${highestBid}`;

@@ -70,12 +70,18 @@ async function editListing() {
   // media
   if (mediaVal.value) {
     const mediaArray = mediaVal.value.split(/[ ,]+/);
-    submitObject.media = mediaArray;
+    const filter = mediaArray.filter((string) => {
+      return string !== "";
+    });
+    submitObject.media = filter;
   }
-  updateEntry(urlID, submitObject);
+  const res = await updateEntry(urlID, submitObject);
+  if (res.errors) {
+    alert(res.errors[0].message);
+  }
 }
 
-function createNewListing() {
+async function createNewListing() {
   let submitObject = {};
 
   const dateWarning = dateVal.previousElementSibling;
@@ -100,9 +106,15 @@ function createNewListing() {
       }
       if (mediaVal.value) {
         const mediaArray = mediaVal.value.split(/[ ,]+/);
-        submitObject.media = mediaArray;
+        const filter = mediaArray.filter((string) => {
+          return string !== "";
+        });
+        submitObject.media = filter;
       }
-      postListing(submitObject);
+      const res = await postListing(submitObject);
+      if (res.errors) {
+        alert(res.errors[0].message);
+      }
     } else {
       dateWarning.innerHTML =
         "Ends at<br/><small>Must be a future date</small>";
