@@ -871,6 +871,22 @@ label {
   max-width: 24rem;
 }
 
+.max-w-xl{
+  max-width: 36rem;
+}
+
+.max-w-2xl{
+  max-width: 42rem;
+}
+
+.max-w-3xl{
+  max-width: 48rem;
+}
+
+.max-w-4xl{
+  max-width: 56rem;
+}
+
 .grow{
   flex-grow: 1;
 }
@@ -1138,6 +1154,11 @@ label {
 .bg-\[\#fed\]{
   --tw-bg-opacity: 1;
   background-color: rgb(255 238 221 / var(--tw-bg-opacity));
+}
+
+.bg-fourthClr{
+  --tw-bg-opacity: 1;
+  background-color: rgb(81 81 80 / var(--tw-bg-opacity));
 }
 
 .object-cover{
