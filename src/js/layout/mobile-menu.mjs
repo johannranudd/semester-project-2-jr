@@ -49,6 +49,10 @@ LogoutBtn.addEventListener("click", clearLocalStorage);
 window.addEventListener("DOMContentLoaded", async () => {
   const allLinksInSidebar = sidebar.querySelectorAll(".nav-link");
   allLinksInSidebar.forEach((link) => {
+    if (window.location.pathname === "/") {
+      const homeLink = sidebar.querySelector("#home-link");
+      homeLink.style.color = "#096076";
+    }
     if (window.location.pathname === `/${link.name}`) {
       link.style.color = "#096076";
     }
