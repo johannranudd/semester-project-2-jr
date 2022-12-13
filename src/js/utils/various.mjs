@@ -60,12 +60,6 @@ export function calculateTime(timeLeft) {
   return { days, hours, minutes, seconds };
 }
 
-// export function returnsTimeLeftInt(obj) {
-//   const { endsAt } = obj;
-//   const now = new Date().getTime();
-//   const countDownDate = new Date(endsAt).getTime();
-//   return countDownDate - now;
-// }
 export function returnsTimeLeftInt(listing) {
   const { endsAt } = listing;
   const now = new Date().getTime();
@@ -95,14 +89,3 @@ export function addCountdownObject(listing) {
   // const { days, hours, minutes, seconds } = countDownObject;
   // const countDownString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
-
-// export function addHighestBidObject(data) {
-//   return data.map((listing) => {
-//     const timeLeft = returnsTimeLeftInt(listing);
-//     const countDownObject = calculateTime(timeLeft);
-//     return {
-//       ...listing,
-//       countDownObject,
-//     };
-//   });
-// }
