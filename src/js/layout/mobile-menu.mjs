@@ -60,14 +60,15 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   const profileCard = document.querySelector(".profile-card");
   const locStor = getLocalStorage();
-  if (
-    !locStor ||
-    !locStor.isLoggedIn ||
-    window.location.href.includes("profile.html")
-  ) {
+
+  if (window.location.href.includes("profile.html")) {
+    profileCard.style.display = "none";
+  }
+
+  if (!locStor || !locStor.isLoggedIn) {
     profileCard.style.display = "none";
     LogoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket w-10"></i>Login`;
-  } else if (locStor) {
+  } else if (locStor.isLoggedIn) {
     const usernameProfileCard = profileCard.querySelector(
       "#username-profile-card"
     );
