@@ -1,7 +1,8 @@
 ## Install dependencies
 
 ```
-npm install
+- clone repository
+- run `npm install` to install dependencies
 ```
 
 ## tailwind.config.js
@@ -87,13 +88,15 @@ module.exports = {
 
 ```
 
-## Create build and watch scripts
+## Create build and watch scripts in package.json
 
 ```
 "scripts": {
     "build": "tailwindcss -i ./src/css/input.css -o ./dist/css/output.css"
     "watch": "tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --watch"
   }
+
+- run `npm run watch` to watch for changes in tailwind
 ```
 
 ## Create a link to the output.css file
