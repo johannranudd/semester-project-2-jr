@@ -16,13 +16,16 @@ modalBackDrop.classList.add("backdrop");
 modal.classList.add("modal");
 editProfileBtn.addEventListener("click", () => {
   openModal();
-  // submit
+
   const formEditUser = document.querySelector("#edit-user-info-form");
+  const label = formEditUser.querySelector("label");
+  const newAvatarUrlInput = document.querySelector("#newAvatarUrl");
+  newAvatarUrlInput.placeholder = "https://images.example.com/photo";
+  // submit
 
   formEditUser.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const label = formEditUser.querySelector("label");
-    const newAvatarUrlInput = document.querySelector("#newAvatarUrl");
+
     // *commented out to allow user to remove their avatar
     // if (newAvatarUrlInput.value) {
     let submitObject = { avatar: newAvatarUrlInput.value };
@@ -50,7 +53,7 @@ function openModal() {
   // create
   document.body.appendChild(modalBackDrop);
   modal.innerHTML = `<form id="edit-user-info-form" class="space-y-2">
-    <label for="newAvatarUrl">Change Profile</label>
+    <label for="newAvatarUrl">Change Avatar</label>
     <input type="text" id="newAvatarUrl" class="custom-input w-full" name="newAvatarUrl"/>
     <button type="submit" class="btn-primary w-full">Submit</button>
   </form>`;
