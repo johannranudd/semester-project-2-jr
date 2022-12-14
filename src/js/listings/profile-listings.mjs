@@ -9,6 +9,9 @@ window.addEventListener("DOMContentLoaded", () => {
   getProfileCardInfo();
 });
 
+const usernameListingsHeader = document.querySelector(
+  "#username-listings-header"
+);
 const editProfileBtn = document.querySelector("#edit-profile-btn");
 const modalBackDrop = document.createElement("div");
 const modal = document.createElement("div");
@@ -98,6 +101,7 @@ async function getProfileCardInfo() {
     listingsMainProfileCard.textContent = listings;
     creditsMainProfileCard.textContent = profile.credits;
     winsMainProfileCard.textContent = profile.wins.length;
+    usernameListingsHeader.textContent = `${profile.name}'s listings`;
   } else {
     // * has id will display other profile and listings
     const profile = await getSingleProfile(urlID);
@@ -111,5 +115,7 @@ async function getProfileCardInfo() {
     winsMainProfileCard.textContent = profile.wins.length;
 
     editProfileBtn.style.display = "none";
+
+    usernameListingsHeader.textContent = `${profile.name}'s listings`;
   }
 }
