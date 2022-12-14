@@ -859,6 +859,10 @@ label {
   max-width: 24rem;
 }
 
+.max-w-full{
+  max-width: 100%;
+}
+
 .grow{
   flex-grow: 1;
 }
@@ -1053,6 +1057,14 @@ label {
 
 .border-r-0{
   border-right-width: 0px;
+}
+
+.border-t-2{
+  border-top-width: 2px;
+}
+
+.border-t-\[1px\]{
+  border-top-width: 1px;
 }
 
 .border-solid{
