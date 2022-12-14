@@ -7,10 +7,6 @@
 }
 
 @layer base {
-  * {
-    outline: 1px solid #f00 !important;
-  }
-
   body {
     font-family: "Inter", sans-serif;
     color: #06212d;
@@ -162,6 +158,10 @@
   }
   .card .price span {
     margin-left: 0.5rem;
+  }
+  .card .description {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .carousel-image-container {
