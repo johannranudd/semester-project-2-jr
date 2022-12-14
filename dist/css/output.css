@@ -994,6 +994,10 @@ label {
   overflow: hidden;
 }
 
+.text-ellipsis{
+  text-overflow: ellipsis;
+}
+
 .whitespace-nowrap{
   white-space: nowrap;
 }
@@ -1436,7 +1440,7 @@ label {
 
 .card .description {
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow-wrap: break-word;
 }
 
 .carousel-image-container {

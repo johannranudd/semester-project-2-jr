@@ -161,7 +161,7 @@
   }
   .card .description {
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow-wrap: break-word;
   }
 
   .carousel-image-container {
