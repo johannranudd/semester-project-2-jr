@@ -7,11 +7,15 @@
 }
 
 @layer base {
+  * {
+    outline: 1px solid #f00 !important;
+  }
+
   body {
     font-family: "Inter", sans-serif;
     color: #06212d;
-    max-width: 100vw;
-    overflow-x: hidden;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
   }
   h1,
   h2 {

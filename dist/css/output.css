@@ -421,11 +421,15 @@ video {
   display: none;
 }
 
+* {
+  outline: 1px solid #f00 !important;
+}
+
 body {
   font-family: "Inter", sans-serif;
   color: #06212d;
-  max-width: 100vw;
-  overflow-x: hidden;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
 }
 
 h1,
@@ -859,10 +863,6 @@ label {
   max-width: 24rem;
 }
 
-.max-w-full{
-  max-width: 100%;
-}
-
 .grow{
   flex-grow: 1;
 }
@@ -1057,10 +1057,6 @@ label {
 
 .border-r-0{
   border-right-width: 0px;
-}
-
-.border-t-2{
-  border-top-width: 2px;
 }
 
 .border-t-\[1px\]{
